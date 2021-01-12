@@ -52,7 +52,7 @@ class SettingsPageLocators:
 class SuitesPageLocators:
     SUITES_URL = "https://trunner.herokuapp.com/suites"
     #SUITES_URL = "http://127.0.0.1:5000/suites"
-    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
+    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
     ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
     AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")
     ABOUT_LNK = (By.XPATH, "//a@class='nav-link'][@href='/about']")
@@ -86,3 +86,30 @@ class AvailableSuitesPageLocators:
     ABOUT_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/about']")
     HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
     SUITE_LINK = (By.XPATH, "//a[@href='/cases/1']")
+
+
+class TestSuitePageLocators:
+
+    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
+    Test_Suites_LNK = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Test Suites')]")
+    SUITE_MANAGER_LNK = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Suite Manager')]")
+    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(text(),'About')]")
+    CURRENT_SUITE_NAME = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Current Suite')]")
+    HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
+    SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")
+    LOGOUT_OPT = (By.XPATH, "//a[@href='/logout'] ")
+    """First row data (1st iteration)"""
+    TEST_CASE_ID_LNK = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='tcid']")
+    TEST_CASE_NAME = (By.XPATH, "///tr[@class='clickable-row'][1]/td[@class='tcid']/following-sibling::td[1]") # /p
+    TEST_CASE_STATE = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='tcid']/following-sibling::td[2]/p")
+    TESTER_NAME = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='tcid']/following-sibling::td[3]//p")
+    """Clickable row active for MB3 options"""
+    ACTIVE_ROW = (By.XPATH, "//tr[@class='clickable-row active']")
+    RUN_TEST_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='run-test']")
+    STATISTICS_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='show-statistics']")
+    ASSIGN_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='assign-to']")
+
+
+
+
+

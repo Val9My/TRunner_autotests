@@ -31,7 +31,7 @@ class AboutPage:
         hello_dpdn.click()
 
     def logout_click(self):
-        """Click on "Logout' option in 'Hello, User' context menu"""
+        """Click on 'Logout' option in 'Hello, User' context menu"""
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         logout = wait.until(EC.visibility_of_element_located(AboutPageLocators.LOGOUT_OPT))
         logout.click()
