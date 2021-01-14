@@ -91,9 +91,9 @@ class AvailableSuitesPageLocators:
 class TestSuitePageLocators:
 
     TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
-    Test_Suites_LNK = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Test Suites')]")
-    SUITE_MANAGER_LNK = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Suite Manager')]")
-    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(text(),'About')]")
+    TEST_SUITES_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Test Suites')]")
+    SUITE_MANAGER_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Suite Manager')]")
+    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'About')]")
     CURRENT_SUITE_NAME = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Current Suite')]")
     HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
     SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")
@@ -108,6 +108,43 @@ class TestSuitePageLocators:
     RUN_TEST_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='run-test']")
     STATISTICS_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='show-statistics']")
     ASSIGN_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='assign-to']")
+
+
+class SuiteManagerPageLocators:
+    SUITE_MANAGER_PAGE_LNK = "https://trunner.herokuapp.com/suites_manager"
+    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
+    TEST_SUITES_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Test Suites')]")
+    SUITE_MANAGER_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Suite Manager')]")
+    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'About')]")
+    TEST_SUITES_SELECT_DPDN = (By.ID, "suites-selector")
+    TEST_SUITES_SELECT_DPDN_OPT = (By.XPATH, "//select[@id='suites-selector']/option[1]") # 1-st Test-Suite from DPDN
+    ADD_CASE_TO_SUITE_BTN = (By.XPATH, "//a[@class='nav-link' and contains(.,'Add')]")
+    DELETE_CASE_FROM_SUITE = (By.XPATH, "//a[@class='nav-link' and contains(.,'Delete')]")
+    CREATE_SUITE_DPDN = (By.XPATH, "//a[@id='navbarDropdownMenuLink' and contains(.,'Create Suite')]")
+    CREATE_SUITE_FROM_ADO_OPT = (By.XPATH, "//a[@id='navbarDropdownMenuLink' and contains(.,'Create "
+                                           "Suite')]/following-sibling::div/a[contains(.,'From ADO')]")
+    CREATE_SUITE_EMPTY_SUITE_OPT = (By.XPATH, "//a[@id='navbarDropdownMenuLink' and contains(.,'Create "
+                                              "Suite')]/following-sibling::div/a[contains(.,'Empty')]")
+    CREATE_SUITE_FROM_EXIST_SUITE_OPT = (By.XPATH, "//a[@id='navbarDropdownMenuLink' and contains(.,'Create "
+                                                   "Suite')]/following-sibling::div/a[contains(.,'Existing Suite')]")
+    HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
+    SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")
+    LOGOUT_OPT = (By.XPATH, "//a[@href='/logout'] ")
+    """First row data (1st iteration)"""
+    USE_CHKBX = (By.XPATH, "//tr[@class='test_case_row'][1]//input[@class='checked_tc'][1]")
+    ID_VALUE = (By.XPATH, "//tr[@class='test_case_row'][1]/td[@class='tcid']")
+    TEST_CASE_TITLE = (By.XPATH, "//tr[@class='test_case_row'][1]/td[@class='tcid']/following-sibling::td")
+
+
+
+
+
+
+
+
+
+
+
 
 
 
