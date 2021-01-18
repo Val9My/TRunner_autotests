@@ -26,9 +26,9 @@ class AboutPageLocators:
     ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
     AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")  # //a[contains(text(),'Available
     # Suites')]
-    HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")
+    HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")  # //a[@id='navbarDropdownMenuLink']
     SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")  # //a[contains(text(),'Settings')]
-    LOGOUT_OPT = (By.XPATH, "//a[@href='/logout'] ")  # //a[contains(text(),'Logout')]
+    LOGOUT_OPT = (By.XPATH, "//a[contains(text(),'Logout')]")  # //a[@href='/logout']
 
 
 class SettingsPageLocators:
@@ -55,7 +55,7 @@ class SuitesPageLocators:
     TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
     ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
     AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")
-    ABOUT_LNK = (By.XPATH, "//a@class='nav-link'][@href='/about']")
+    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'About')]")
     HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
     SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")
     LOGOUT_OPT = (By.XPATH, "//a[@href='/logout'] ")

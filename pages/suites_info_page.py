@@ -38,3 +38,9 @@ class SuitesPage:
         except TimeoutException as e:
             print(locator, " - element is not seen timeout error", e)
             return False
+
+    def about_btn_click(self):
+        """Click on the 'About' button """
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        about = wait.until(EC.visibility_of_element_located(SuitesPageLocators.ABOUT_LNK))
+        about.click()
