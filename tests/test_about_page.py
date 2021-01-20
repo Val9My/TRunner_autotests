@@ -7,6 +7,28 @@ from pages.about_page import AboutPage
 import pytest
 from utils.constants import LOGIN, PASSWORD
 
+@pytest.mark.navbar
+def test_navbar_is_visible(browser):
+    "Test that navbar is visible"
+    about_page = AboutPage(browser)
+    about_page.load()
+    time.sleep(1)
+    assert about_page.is_element_seen(locators.AboutPageLocators.TRUNNER_LNK)
+
+@pytest.mark.main
+def test_about_us_title(browser):
+    """Test that 'About' page title is seen"""
+    about_page = AboutPage(browser)
+    about_page.load()
+    assert about_page.get_title() == locators.AboutPageLocators.ABOUT_TITLE
+
+@pytest.mark.about1
+def test_trunner_card_is_visible(browser):
+    "Test that trunner card is visible"
+    about_page = AboutPage(browser)
+    about_page.load()
+    time.sleep(1)
+    assert about_page.is_element_seen(locators.AboutPageLocators.TRUNNER_CARD)
 
 @pytest.mark.about
 def test_logout(browser):
@@ -25,3 +47,7 @@ def test_logout(browser):
     about_page.hello_user_click()
     about_page.logout_click()
     assert about_page.get_title() == 'Sign In'
+
+
+
+
