@@ -45,5 +45,17 @@ class AboutPage:
         logout = wait.until(EC.visibility_of_element_located(AboutPageLocators.LOGOUT_OPT))
         logout.click()
 
+    def settings_click(self):
+        "Click on 'Settings' option in 'Hello, User' context menu"
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        settings = wait.until(EC.visibility_of_element_located(AboutPageLocators.SETTINGS_OPT))
+        settings.click()
+
+    def trunner_lnk_click(self):
+        "Click on Trunner_lnk"
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        trunner_lnk = wait.until(EC.visibility_of_element_located(AboutPageLocators.TRUNNER_LNK))
+        trunner_lnk.click()
+
 
 
