@@ -57,5 +57,11 @@ class AboutPage:
         trunner_lnk = wait.until(EC.visibility_of_element_located(AboutPageLocators.TRUNNER_LNK))
         trunner_lnk.click()
 
+    def test_suites_lnk_click(self):
+        "Click on test_suites button from about page"
+        wait= WebDriverWait(self.browser,DEFAULT_WAIT_TIME)
+        suites_lnk=wait.until(EC.visibility_of_element_located(AboutPageLocators.ADD_SUITE_LNK))
+        suites_lnk.click()
+
 
 
