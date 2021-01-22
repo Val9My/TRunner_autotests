@@ -73,7 +73,6 @@ def test_trunner_link_logon_user(browser):
         about_page.hello_user_click() #check if user is logon or not
     except:
         welcome_page = WelcomePage(browser)
-        suites_info_page = SuitesPage(browser)
         welcome_page.load()
         welcome_page.input_text_in_username_tb_in(LOGIN)
         welcome_page.input_text_in_password_tb_in(PASSWORD)
@@ -89,15 +88,37 @@ def test_trunner_link_logon_user(browser):
 def test_trunner_link_logout_user(browser):
     "Test that Trunner_link is clickable and redirect user to the welcome page (if user is logout)"
     about_page = AboutPage(browser)
+    welcome_page = WelcomePage(browser)
+    browser.get(locators.AboutPageLocators.ABOUT_URL)
     try:
         about_page.hello_user_click() #check if user logon
         about_page.logout_click() #user logout
+        welcome_page.about_us_btn_click()
     except:
         pass
     finally:
-        browser.get(locators.AboutPageLocators.ABOUT_URL)
         time.sleep(1)
         about_page.trunner_lnk_click()
         assert browser.current_url == locators.WelcomePageLocators.WELCOME_URL
+
+@pytest.mark.add_suite_lnk
+def test_add_suite_lnk(browser):
+    "Test that Add_suite_lnk is clickable and redirecting user to the suites page"
+    about_page = AboutPage(browser)
+    try:
+        about_page.hello_user_click()  # check if user is logon or not
+    except:
+        welcome_page = WelcomePage(browser)
+        welcome_page.load()
+        welcome_page.input_text_in_username_tb_in(LOGIN)
+        welcome_page.input_text_in_password_tb_in(PASSWORD)
+        welcome_page.sign_in_btn_in_click()
+        time.sleep(1)  # need timer to wait until suites page loading
+    finally:
+        browser.get(locators.AboutPageLocators.ABOUT_URL)
+        time.sleep(1)
+        about_page.test_suites_lnk_click()
+        assert browser.current_url == locators.SuitesPageLocators.SUITES_URL
+
 
 
