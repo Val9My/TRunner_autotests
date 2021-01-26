@@ -39,8 +39,8 @@ class WelcomePage:
     def about_us_btn_click(self):
         """Click on the "ABOUT US" button on the Main Page"""
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        sign_up_button = wait.until(EC.visibility_of_element_located(WelcomePageLocators.ABOUT_US_BTN))
-        sign_up_button.click()
+        about_us_button = wait.until(EC.visibility_of_element_located(WelcomePageLocators.ABOUT_US_BTN))
+        about_us_button.click()
 
     def is_element_seen(self, locator):
         """Check that element seen on page"""
