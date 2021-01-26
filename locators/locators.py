@@ -75,7 +75,9 @@ class SuitesPageLocators:
     NOT_EXECUTED_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[6]")
     CREATED_BY_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[7]")
     CREATED_DATE_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[8]")
-    FAILED_TC_1_1_LNK = (By.XPATH, "//td[@class='subtr hiddenRow']//a[@class='text-dark substat-failed']//parent::div")
+    FAILED_TC_1_1_LNK = (By.XPATH,
+                         "//tr[@class='clickable-row'][1]//following-sibling::tr[1]//a[@class='text-dark "
+                         "substat-failed']/parent::div")
 
 
 class AvailableSuitesPageLocators:
@@ -89,7 +91,6 @@ class AvailableSuitesPageLocators:
 
 
 class TestSuitePageLocators:
-
     TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
     TEST_SUITES_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Test Suites')]")
     SUITE_MANAGER_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Suite Manager')]")

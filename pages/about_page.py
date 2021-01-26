@@ -35,3 +35,5 @@ class AboutPage:
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         logout = wait.until(EC.visibility_of_element_located(AboutPageLocators.LOGOUT_OPT))
         logout.click()
+
+

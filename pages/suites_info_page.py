@@ -1,6 +1,6 @@
 import time
 
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, ElementNotVisibleException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -26,9 +26,16 @@ class SuitesPage:
 
     def failed_1_value_click(self):
         """Click on the "FAILED" value dropdown in the 1st row to see all failed test cases numbers"""
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        failed = wait.until(EC.visibility_of_element_located(SuitesPageLocators.FAILED_1_DPDN))
-        failed.click()
+        try:
+            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            failed_t_c = wait.until(EC.element_to_be_clickable(SuitesPageLocators.FAILED_1_DPDN))
+            try:
+                failed_t_c.click()
+            except ElementNotVisibleException:
+                failed_t_c = wait.until(EC.visibility_of_element_located(SuitesPageLocators.FAILED_1_DPDN))
+                failed_t_c.click()
+        except TimeoutException:
+            print("Failed T-C column not found in suites")
 
     def is_element_seen(self, locator):
         """Check that element seen on page"""
