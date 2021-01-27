@@ -44,6 +44,7 @@ class WelcomePage:
 
     def is_element_seen(self, locator):
         """Check that element seen on page"""
+        self.browser.implicitly_wait(DEFAULT_WAIT_TIME)  # need wait for page refresh (after sliding, action ...)
         try:
             element = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_element_located(locator))
             return True
@@ -88,6 +89,7 @@ class WelcomePage:
         tbx.send_keys(text)
 
     def wait_for_new_page_load(self):
+        """Check that current page URL changes to new"""
         curr_url = WelcomePageLocators.WELCOME_URL
         try:
             WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.url_changes(curr_url))

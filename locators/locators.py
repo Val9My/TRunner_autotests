@@ -6,9 +6,9 @@ class WelcomePageLocators:
     WELCOME_URL = "https://trunner.herokuapp.com/login?next=%2Fsuites"
     ABOUT_US_BTN = (By.XPATH, "//a[contains(text(),'About Us')]")  # //a[@href='/about']
     SIGN_UP_BTN_IN = (By.ID, "sign-up-btn")
-    SIGN_IN_BTN_IN = (By.XPATH, "//form[@class='sign-in-form']//input[@value='Sign In']")
-    USER_NAME_TB_IN = (By.XPATH, "//form[@class='sign-in-form']//input[@name='username']")
-    PASSWORD_TB_IN = (By.XPATH, "//form[@class='sign-in-form']//input[@name='password']")
+    SIGN_IN_BTN_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@value='Sign In']")
+    USER_NAME_TB_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@name='username']")
+    PASSWORD_TB_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@name='password']")
     SIGN_UP_BTN_UP = (By.ID, "signup")
     SIGN_IN_BTN_UP = (By.ID, "sign-in-btn")
     USER_NAME_TB_UP = (By.ID, "username")
