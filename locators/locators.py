@@ -29,7 +29,7 @@ class AboutPageLocators:
     HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")  # //a[@id='navbarDropdownMenuLink']
     SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")  # //a[contains(text(),'Settings')]
     LOGOUT_OPT = (By.XPATH, "//a[contains(text(),'Logout')]")  # //a[@href='/logout']
-    TRUNNER_CARD = (By.XPATH, "//div[@class='pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center']") #//div[@class='pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center'])]
+    TRUNNER_CARD = (By.XPATH, "//div[contains(@class,'pricing-header')]") #//div[contains(@class,'pricing-header')]
 
 class SettingsPageLocators:
     #SETTINGS_URL = "http://127.0.0.1:5000/settings"
