@@ -14,7 +14,7 @@ from utils.constants import DEFAULT_WAIT_TIME
 def browser():
     # driver = webdriver.Chrome(os.environ.get('CHROME_DRIVER_PATH'))
     driver = webdriver.Chrome('chromedriver.exe')  # put chromedriver folder path into PATH
-    driver.implicitly_wait(DEFAULT_WAIT_TIME)
+    #driver.implicitly_wait(DEFAULT_WAIT_TIME)
     driver.maximize_window()
     yield driver
     driver.quit()
@@ -38,3 +38,10 @@ def logout(browser):
     finally:
         pass
 
+@pytest.fixture(scope="function")
+def wait(browser):
+    """ Logout method for each test
+        'Hello,User' options-> 'Logout' will be executed in test's last page"""
+    yield wait
+    driver = browser  # get driver
+    driver.implicitly_wait(DEFAULT_WAIT_TIME)
