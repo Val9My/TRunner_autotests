@@ -2,8 +2,8 @@ import time
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from locators.locators import AboutPageLocators
+from locators.locators import SuiteManagerPageLocators
 from utils.constants import DEFAULT_WAIT_TIME
 
 
@@ -49,9 +49,13 @@ class AboutPage:
 
     def test_suites_lnk_click(self):
         "Click on test_suites button from about page"
-        wait= WebDriverWait(self.browser,DEFAULT_WAIT_TIME)
-        suites_lnk=wait.until(EC.visibility_of_element_located(AboutPageLocators.ADD_SUITE_LNK))
+        wait= WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        suites_lnk= wait.until(EC.visibility_of_element_located(AboutPageLocators.ADD_SUITE_LNK))
         suites_lnk.click()
 
-
+    def manage_suites_lnk_click(self):
+        "Click on Suites Manager button from about page"
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        manage_suits_lnk = wait.until(EC.visibility_of_element_located(SuiteManagerPageLocators.SUITE_MANAGER_LNK))
+        manage_suits_lnk.click()
 
