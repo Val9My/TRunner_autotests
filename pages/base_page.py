@@ -4,13 +4,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class BasePageElement(object):
     """Base page class that is initialized on every page object class."""
 
     def __init__(self, browser):
         self.browser = browser
 
-    def load(self,url):
+    def load(self, url):
         self.browser.get(url)
 
     def is_element_seen(self, locator):

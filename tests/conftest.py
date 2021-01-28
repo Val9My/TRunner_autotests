@@ -40,6 +40,7 @@ def logout(browser):
     finally:
         pass
 
+
 @pytest.fixture(scope="function")
 def login(browser):
     """ Login method for each test
