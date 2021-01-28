@@ -7,7 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.locators import SuitesPageLocators
-from utils.constants import DEFAULT_WAIT_TIME
+from pages.welcome_page import WelcomePage
+from pages.suites_info_page import SuitesPage
+from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
 
 
 @pytest.fixture(scope="session")  #
@@ -37,4 +39,14 @@ def logout(browser):
         print("error occurred", e)
     finally:
         pass
+
+@pytest.fixture(scope="function")
+def login(browser):
+    """ Login method for each test
+            default creds from local file will be set in test's first page"""
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.input_text_in_username_tb_in(LOGIN)
+    welcome_page.input_text_in_password_tb_in(PASSWORD)
+    welcome_page.sign_in_btn_in_click()
 

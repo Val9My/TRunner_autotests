@@ -12,7 +12,7 @@ class BasePageElement(object):
 
     def is_element_seen(self, locator):
         """Check that element seen on page"""
-        self.browser.implicitly_wait(DEFAULT_WAIT_TIME) # need wait for page refresh (after sliding, action ...)
+        #self.browser.implicitly_wait(DEFAULT_WAIT_TIME) # need wait for page refresh (after sliding, action ...)
         try:
             WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_element_located(locator))
             return True
@@ -20,7 +20,7 @@ class BasePageElement(object):
             print(locator, " - element is not seen timeout error", e)
             return False
 
-    def wait_for_new_page_load(self):
+    def wait_new_page_load(self):
         """Check that current page URL changes to new"""
         curr_url = self.browser.current_url # get current URL
         try:
@@ -30,4 +30,7 @@ class BasePageElement(object):
         finally:
             pass
         self.browser.get(self.browser.current_url) # set new URL
+
+
+
 

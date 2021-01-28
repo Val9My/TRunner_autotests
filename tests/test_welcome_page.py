@@ -62,39 +62,19 @@ def test_input_password_and_signin(browser):
 
 
 @pytest.mark.main
-def test_workflow(browser, logout):
+def test_workflow(browser, login, logout):
     """Test smoke workflow"""
-    welcome_page = WelcomePage(browser)
     suites_page = SuitesPage(browser)
     base_page = BasePageElement(browser)
-    welcome_page.load()
-    welcome_page.input_text_in_username_tb_in(LOGIN)
-    welcome_page.input_text_in_password_tb_in(PASSWORD)
-    welcome_page.sign_in_btn_in_click()
-    base_page.wait_for_new_page_load()  # need timer to wait until suites page loading
+    base_page.wait_new_page_load()  # need timer to wait until suites page loading
     suites_page.failed_1_value_click()
     assert base_page.is_element_seen(locators.SuitesPageLocators.FAILED_TC_1_1_LNK)
 
 
 @pytest.mark.main
-def test_sign_in_click(browser, logout):
+def test_sign_in_click_with_login_fixture(browser, login, logout):
     """Test if click "SIGN IN" that 'Suites Info' page opens """
-    welcome_page = WelcomePage(browser)
-    welcome_page.load()
-    welcome_page.input_text_in_username_tb_in(LOGIN)
-    welcome_page.input_text_in_password_tb_in(PASSWORD)
-    welcome_page.sign_in_btn_in_click()
     suites_page = SuitesPage(browser)
     assert suites_page.get_title() == 'Suites Info'
 
 
-@pytest.mark.main
-def test_sign2_in_click(browser, logout):
-    """Test if click "SIGN IN" that 'Suites Info' page opens """
-    welcome_page = WelcomePage(browser)
-    welcome_page.load()
-    welcome_page.input_text_in_username_tb_in(LOGIN)
-    welcome_page.input_text_in_password_tb_in(PASSWORD)
-    welcome_page.sign_in_btn_in_click()
-    suites_info_page = SuitesPage(browser)
-    assert suites_info_page.get_title() == 'Suites Info'
