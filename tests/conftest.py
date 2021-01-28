@@ -5,9 +5,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from locators.locators import SuitesPageLocators
-from utils.constants import DEFAULT_WAIT_TIME
+from pages.about_page import AboutPage
+from pages.welcome_page import WelcomePage
+from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
 
 
 @pytest.fixture(scope="session")  #
@@ -42,6 +43,14 @@ def logout(browser):
 def wait(browser):
     """ Logout method for each test
         'Hello,User' options-> 'Logout' will be executed in test's last page"""
-    yield wait
-    driver = browser  # get driver
+    driver = browser
     driver.implicitly_wait(DEFAULT_WAIT_TIME)
+
+@pytest.fixture(scope="function")
+def login(browser):
+    """ Login method for each test"""
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.input_text_in_username_tb_in(LOGIN)
+    welcome_page.input_text_in_password_tb_in(PASSWORD)
+    welcome_page.sign_in_btn_in_click()
