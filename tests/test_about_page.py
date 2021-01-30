@@ -7,7 +7,7 @@ import pytest
 def test_navbar_is_visible(browser, logout, wait):
     "Test that navbar is visible"
     about_page = BasePageElement(browser)
-    about_page.load(locators.AboutPageLocators.ABOUT_URL)
+    about_page.load()
     assert about_page.is_element_seen(locators.AboutPageLocators.TRUNNER_LNK)
 
 
@@ -23,7 +23,7 @@ def test_about_us_title(browser, logout):
 def test_trunner_card_is_visible(browser, logout):
     "Test that trunner card is visible"
     about_page = BasePageElement(browser)
-    about_page.load(locators.AboutPageLocators.ABOUT_URL)
+    about_page.load()
     assert about_page.is_element_seen(locators.AboutPageLocators.TRUNNER_CARD)
 
 
@@ -31,7 +31,7 @@ def test_trunner_card_is_visible(browser, logout):
 def test_logout(browser, login, wait):
     """Test that 'Sign In' page is seen if select 'Logout' option in 'Hello, User' dropdown"""
     about_page = AboutPage(browser)
-    browser.get(locators.AboutPageLocators.ABOUT_URL)
+    about_page.load()
     about_page.hello_user_click()
     about_page.logout_click()
     assert about_page.get_title() == 'Sign In'
@@ -51,7 +51,7 @@ def test_setting(browser,login, logout, wait):
 def test_trunner_link_logon_user(browser,login, logout, wait):
     "Test that Trunner_link is clickable and redirect user to the Suites(if user is logon)"
     about_page = AboutPage(browser)
-    browser.get(locators.AboutPageLocators.ABOUT_URL)
+    about_page.load()
     about_page.trunner_lnk_click()
     assert browser.current_url == locators.SuitesPageLocators.SUITES_URL
 
@@ -60,7 +60,7 @@ def test_trunner_link_logon_user(browser,login, logout, wait):
 def test_trunner_link_logout_user(browser, wait):
     "Test that Trunner_link is clickable and redirect user to the welcome page (if user is logout)"
     about_page = AboutPage(browser)
-    browser.get(locators.AboutPageLocators.ABOUT_URL)
+    about_page.load()
     about_page.trunner_lnk_click()
     assert browser.current_url == locators.WelcomePageLocators.WELCOME_URL
 

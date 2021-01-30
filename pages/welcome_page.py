@@ -5,10 +5,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import WelcomePageLocators
+from pages.base_page import BasePageElement
 from utils.constants import DEFAULT_WAIT_TIME
 
 
-class WelcomePage:
+class WelcomePage(BasePageElement):
     """
         Main page for Sig In and Sign Up
     """
@@ -41,16 +42,6 @@ class WelcomePage:
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         about_us_button = wait.until(EC.visibility_of_element_located(WelcomePageLocators.ABOUT_US_BTN))
         about_us_button.click()
-
-    def is_element_seen(self, locator):
-        """Check that element seen on page"""
-        self.browser.implicitly_wait(DEFAULT_WAIT_TIME)  # need wait for page refresh (after sliding, action ...)
-        try:
-            element = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_element_located(locator))
-            return True
-        except TimeoutException as e:
-            print(locator, " - element is not seen timeout error", e)
-            return False
 
     def input_text_in_username_tb_in(self, text):
         """Input some text into 'Username' textbox on Sign In page of main page"""

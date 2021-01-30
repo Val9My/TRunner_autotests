@@ -5,10 +5,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import SuitesPageLocators
+from pages.base_page import BasePageElement
 from utils.constants import DEFAULT_WAIT_TIME
 
 
-class SuitesPage:
+class SuitesPage(BasePageElement):
     """
         Suites page for checking test results in test suits
     """
