@@ -17,9 +17,6 @@ class WelcomePage(BasePageElement):
     def __init__(self, browser):
         self.browser = browser
 
-    def load(self):
-        self.browser.get(WelcomePageLocators.WELCOME_URL)
-
     def get_title(self):
         title = self.browser.title
         print(time.strftime("%Y-%m-%d | %H:%M:%S ") + "Main Page title = " + str(title))
