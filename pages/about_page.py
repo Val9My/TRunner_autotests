@@ -1,5 +1,4 @@
 import time
-
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.locators import AboutPageLocators
@@ -15,9 +14,6 @@ class AboutPage(BasePageElement):
 
     def __init__(self, browser):
         self.browser = browser
-
-    def load(self):
-        self.browser.get(AboutPageLocators.ABOUT_URL)
 
     def get_title(self):
         title = self.browser.title
@@ -59,4 +55,5 @@ class AboutPage(BasePageElement):
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         manage_suits_lnk = wait.until(EC.visibility_of_element_located(SuiteManagerPageLocators.SUITE_MANAGER_LNK))
         manage_suits_lnk.click()
+
 
