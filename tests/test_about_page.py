@@ -72,10 +72,27 @@ def test_add_suite_lnk(browser, login, logout):
     about_page.test_suites_lnk_click()
     assert browser.current_url == locators.SuitesPageLocators.SUITES_URL
 
-@pytest.mark.add_suite_lnk
+@pytest.mark.manage_suite_lnk
 def test_manage_suite_lnk(browser, login, logout):
     "Test that Manage_suite_lnk is clickable and redirecting user to the suites manager page if user login"
     about_page = AboutPage(browser)
     about_page.load(locators.AboutPageLocators.ABOUT_URL)
     about_page.manage_suites_lnk_click()
     assert browser.current_url == locators.SuiteManagerPageLocators.SUITE_MANAGER_PAGE_LNK
+
+@pytest.mark.text_card
+def test_card_text(browser,logout):
+    "Check the text on the About page"
+    about_page = AboutPage(browser)
+    about_page.load(locators.AboutPageLocators.ABOUT_URL)
+    card_element=browser.find_element_by_xpath("//p[@class='lead']")
+    assert card_element.text=="An Open Source solution to run test cases independently using Azure DevOps systems."
+
+@pytest.mark.dropdown_options
+def test_dropdown_options(browser,login,logout):
+    "Check the available dropdown settings from the About page"
+    about_page = AboutPage(browser)
+    about_page.load(locators.AboutPageLocators.ABOUT_URL)
+    about_page.hello_user_click()
+    dropdown_elements = [x.text for x in browser.find_elements_by_xpath("//a[@class='dropdown-item']")]
+    assert dropdown_elements[0]=='⚙️  Settings'
