@@ -94,5 +94,14 @@ def test_dropdown_options(browser,login,logout):
     about_page = AboutPage(browser)
     about_page.load(locators.AboutPageLocators.ABOUT_URL)
     about_page.hello_user_click()
-    dropdown_elements = [x.text for x in browser.find_elements_by_xpath("//a[@class='dropdown-item']")]
-    assert dropdown_elements[0]=='⚙️  Settings'
+    dropdown_elements_names = [x.text for x in browser.find_elements_by_xpath("//a[@class='dropdown-item']")]
+    assert dropdown_elements_names[0][-8:]=='Settings' and dropdown_elements[1][-6:]=='Logout'
+
+@pytest.mark.navbar_items_text_size
+
+def test_navbar_items_size(browser,login,logout):
+    "Check that the font-sizes of Test Suite,Suite Manager and About navbar items on the About Page are equal "
+    about_page = AboutPage(browser)
+    about_page.load(locators.AboutPageLocators.ABOUT_URL)
+    navbar_elements_font_size=[x.value_of_css_property('font-size') for x in browser.find_elements_by_xpath("//li[@class='nav-item active']")]
+    assert all(i == navbar_elements_font_size[0] for i in navbar_elements_font_size)
