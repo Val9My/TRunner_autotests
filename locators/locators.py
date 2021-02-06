@@ -36,21 +36,28 @@ class AboutPageLocators:
     LOGOUT_OPT = (By.XPATH, "//a[contains(text(),'Logout')]")  # //a[@href='/logout']
     TRUNNER_CARD = (By.XPATH, "//div[contains(@class,'pricing-header')]") #//div[contains(@class,'pricing-header')]
 
+
 class SettingsPageLocators:
     #SETTINGS_URL = "http://127.0.0.1:5000/settings"
     SETTINGS_URL = "https://trunner.herokuapp.com/settings"
-    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
-    ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
-    AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")  #
-    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/about']")  # //a[contains(text(),'About')]
+    #TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
+    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
+    #ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
+    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
+    #AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")  #
+    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
+    #ABOUT_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/about']")  # //a[contains(text(),'About')]
+    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
     TOKEN_TB = (By.ID, "token")
     NEW_PASSWORD_TB = (By.ID, "newPass")
     CONFIRM_PASSWORD_TB = (By.ID, "newPassConfirm")
     UPDATE_TOKEN_BTN = (By.ID, "save")
     UPDATE_PASSWORD_BTN = (By.ID, "savePassword")
     HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")
-    SETTINGS_DPDN_ITEM = (By.XPATH, "//a[@class='dropdown-item' and contains(text(),'Settings')]")
-    LOGOUT_DPDN_ITEM = (By.XPATH, "//a[@class='dropdown-item' and contains(text(),'Logout')]")
+    #SETTINGS_DPDN_ITEM = (By.XPATH, "//a[@class='dropdown-item' and contains(text(),'Settings')]")
+    SETTINGS_DPDN_ITEM = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
+    #LOGOUT_DPDN_ITEM = (By.XPATH, "//a[@class='dropdown-item' and contains(text(),'Logout')]")
+    LOGOUT_DPDN_ITEM = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
 
 
 

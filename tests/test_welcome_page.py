@@ -6,6 +6,7 @@ from pages.suites_info_page import SuitesPage
 from pages.about_page import AboutPage
 import pytest
 
+
 @pytest.mark.main
 def test_signin_btn_seen_on_signup(browser):
     """Test that 'Sign In' button is seen on "SIGN UP" page """
