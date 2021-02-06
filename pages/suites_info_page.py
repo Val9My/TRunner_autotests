@@ -38,14 +38,6 @@ class SuitesPage(BasePageElement):
         except TimeoutException:
             print("Failed T-C column not found in suites")
 
-    def is_element_seen(self, locator):
-        """Check that element seen on page"""
-        try:
-            element = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_element_located(locator))
-            return True
-        except TimeoutException as e:
-            print(locator, " - element is not seen timeout error", e)
-            return False
 
     def about_btn_click(self):
         """Click on the 'About' button """

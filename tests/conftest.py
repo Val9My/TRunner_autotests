@@ -28,7 +28,7 @@ def logout(browser):
         wait = WebDriverWait(driver, DEFAULT_WAIT_TIME)
         hello_user = wait.until(EC.visibility_of_element_located((By.ID, "navbarDropdownMenuLink")))
         hello_user.click()
-        logout_click = wait.until(EC.visibility_of_element_located((By.XPATH, "//a[@href='/logout']")))
+        logout_click = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".dropdown-item[href='/logout']")))
         logout_click.click()
     except Exception as e:
         print("error occurred", e)

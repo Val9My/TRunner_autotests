@@ -63,7 +63,7 @@ def test_workflow(browser, login, logout):
     assert suites_page.is_element_seen(locators.SuitesPageLocators.FAILED_TC_1_1_LNK)
 
 
-@pytest.mark.main1
+@pytest.mark.main
 def test_sign_in_click_with_login_fixture(browser, login, logout):
     """Test if click "SIGN IN" that 'Suites Info' page opens """
     suites_page = SuitesPage(browser)

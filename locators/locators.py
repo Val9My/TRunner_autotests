@@ -64,32 +64,42 @@ class SettingsPageLocators:
 class SuitesPageLocators:
     SUITES_URL = "https://trunner.herokuapp.com/suites"
     #SUITES_URL = "http://127.0.0.1:5000/suites"
-    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
-    ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
-    AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")
-    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'About')]")
+    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
+    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
+    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
+    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
     HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")
-    LOGOUT_OPT = (By.XPATH, "//a[@href='/logout'] ")
+    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
+    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
     ADD_SUITE_BTN = (By.ID, "addSuite")
-    SELECT_TEST_SUITE_BTN = (By.XPATH, "//button[contains(text(),'Test Suite')]")
-    QUERY_ID_TB = (By.XPATH, "//input[@name='query_id']")
-    TEST_SUITES_CB = (By.ID, "select2-test_suites-wj-container")
-    SUIT_REPORT_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Suite Report')]")
-    EXPORT_TO_ADO_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Export to ADO')]")
-    DELETE_SUITE_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Delete Suite')]")
+    #SUIT_REPORT_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Suite Report')]")
+    SUIT_REPORT_DPDN_ITEM = (By.CSS_SELECTOR, ".custom-menu li[data-action='suite-report']")
+    #EXPORT_TO_ADO_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Export to ADO')]")
+    EXPORT_TO_ADO_DPDN_ITEM = (By.CSS_SELECTOR, ".custom-menu li[data-action='ado-export']")
+    #DELETE_SUITE_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Delete Suite')]")
+    DELETE_SUITE_DPDN_ITEM = (By.CSS_SELECTOR, ".custom-menu li[data-action='delete-suite']")
     """First row data (1st iteration)"""
-    SUITE_1_LNK = (By.XPATH, "//tbody/tr[@class='clickable-row'][1]/td[@class='suite-link']/child::a")
-    TEST_CASES_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='suite-link']/following::p[1]")
-    PASSED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[3]")
-    FAILED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[4]")
-    BLOCKED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[5]")
-    NOT_EXECUTED_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[6]")
-    CREATED_BY_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[7]")
-    CREATED_DATE_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[8]")
-    FAILED_TC_1_1_LNK = (By.XPATH,
-                         "//tr[@class='clickable-row'][1]//following-sibling::tr[1]//a[@class='text-dark "
-                         "substat-failed']/parent::div")
+    #SUITE_1_LNK = (By.XPATH, "//tbody/tr[@class='clickable-row'][1]/td[@class='suite-link']/child::a")
+    SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link") #.clickable-row:first-child td:first-child
+    #TEST_CASES_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='suite-link']/following::p[1]")
+    TEST_CASES_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(2)")
+    #PASSED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[3]")
+    PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] p")
+    #FAILED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[4]")
+    FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] p")
+    #BLOCKED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[5]")
+    BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] p")
+    #NOT_EXECUTED_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[6]")
+    NOT_EXECUTED_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(6)")
+    #CREATED_BY_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[7]")
+    CREATED_BY_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(7)")
+    #CREATED_DATE_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[8]")
+    CREATED_DATE_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:last-child")
+    NUMBER_OF_TEST_CASES = (By.CSS_SELECTOR, "[class='clickable-row']")
+    PASSED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='passed'] a")
+    FAILED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='failed'] a")
+    BLOCKED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
+
 
 
 class AvailableSuitesPageLocators:
