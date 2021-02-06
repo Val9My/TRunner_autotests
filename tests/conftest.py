@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from locators import locators
 from pages.welcome_page import WelcomePage
 from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
 
@@ -42,7 +41,7 @@ def login(browser):
     """ Login method for each test
             default creds from local file will be set in test's first page"""
     welcome_page = WelcomePage(browser)
-    welcome_page.load(locators.WelcomePageLocators.WELCOME_URL)
+    welcome_page.load()
     welcome_page.input_text_in_username_tb_in(LOGIN)
     welcome_page.input_text_in_password_tb_in(PASSWORD)
     welcome_page.sign_in_btn_in_click()

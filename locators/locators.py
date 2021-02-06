@@ -40,7 +40,6 @@ class AboutPageLocators:
 class SettingsPageLocators:
     #SETTINGS_URL = "http://127.0.0.1:5000/settings"
     SETTINGS_URL = "https://trunner.herokuapp.com/settings"
-    #TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
     TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
     #ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
     TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")

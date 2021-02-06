@@ -15,11 +15,9 @@ class SettingsPage(BasePageElement):
     """
 
     def __init__(self, browser):
-        self.browser = browser
+        super().__init__(browser)
 
     def load(self):
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        wait.until(EC.visibility_of_element_located(SettingsPageLocators.SETTINGS_URL))
         self.browser.get(SettingsPageLocators.SETTINGS_URL)
 
     def get_title(self):

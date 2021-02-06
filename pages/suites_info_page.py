@@ -15,7 +15,7 @@ class SuitesPage(BasePageElement):
     """
 
     def __init__(self, browser):
-        self.browser = browser
+        super().__init__(browser)
 
     def load(self):
         self.browser.get(SuitesPageLocators.SUITES_URL)

@@ -15,7 +15,10 @@ class WelcomePage(BasePageElement):
     """
 
     def __init__(self, browser):
-        self.browser = browser
+        super().__init__(browser)
+
+    def load(self):
+        self.browser.get(WelcomePageLocators.WELCOME_URL)
 
     def get_title(self):
         title = self.browser.title
@@ -75,17 +78,6 @@ class WelcomePage(BasePageElement):
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         tbx = wait.until(EC.visibility_of_element_located(WelcomePageLocators.USER_NAME_TB_IN))
         tbx.send_keys(text)
-
-    def wait_for_new_page_load(self):
-        """Check that current page URL changes to new"""
-        curr_url = WelcomePageLocators.WELCOME_URL
-        try:
-            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.url_changes(curr_url))
-        except Exception as e:
-            print("error while waiting for loading new page from welcome page:", e)
-        finally:
-            pass
-        self.browser.get(self.browser.current_url)
 
 
 

@@ -13,7 +13,7 @@ class AboutPage(BasePageElement):
     """
 
     def __init__(self, browser):
-        self.browser = browser
+        super().__init__(browser)
 
     def get_title(self):
         title = self.browser.title
