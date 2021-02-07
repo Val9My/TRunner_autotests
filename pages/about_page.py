@@ -15,6 +15,9 @@ class AboutPage(BasePageElement):
     def __init__(self, browser):
         super().__init__(browser)
 
+    def load(self):
+        self.browser.get(AboutPageLocators.ABOUT_URL)
+
     def get_title(self):
         title = self.browser.title
         print(time.strftime("%Y-%m-%d | %H:%M:%S ") + "Main Page title = " + str(title))

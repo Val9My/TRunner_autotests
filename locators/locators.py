@@ -5,14 +5,14 @@ class WelcomePageLocators:
     #WELCOME_URL = "http://127.0.0.1:5000/login?next=%2F"
     WELCOME_URL = "https://trunner.herokuapp.com/login?next=%2Fsuites"
     #ABOUT_US_BTN = (By.XPATH, "//a[contains(text(),'About Us')]")  # //a[@href='/about']
-    ABOUT_US_BTN = (By.CSS_SELECTOR, "div.content.content-logo a[href='/about']")  # div a
-    SIGN_UP_BTN_IN = (By.ID, "sign-up-btn")
+    ABOUT_US_BTN = (By.CSS_SELECTOR, ".content-logo [href='/about']")  # div a
+    SIGN_UP_BTN_IN = (By.CSS_SELECTOR, "[class='container'] #sign-up-btn")
     #SIGN_IN_BTN_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@value='Sign In']")
-    SIGN_IN_BTN_IN = (By.CSS_SELECTOR, "div[class=container] form.sign-in-form > input")
+    SIGN_IN_BTN_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [type='submit']")
     #USER_NAME_TB_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@name='username']")
-    USER_NAME_TB_IN = (By.CSS_SELECTOR, "div[class=container] form.sign-in-form input[name=username]")
+    USER_NAME_TB_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [name=username]")
     #PASSWORD_TB_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@name='password']")
-    PASSWORD_TB_IN = (By.CSS_SELECTOR, "div[class=container] form.sign-in-form input[name=password]")
+    PASSWORD_TB_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [name=password]")
     SIGN_UP_BTN_UP = (By.ID, "signup")
     SIGN_IN_BTN_UP = (By.ID, "sign-in-btn")
     USER_NAME_TB_UP = (By.ID, "username")
@@ -20,7 +20,7 @@ class WelcomePageLocators:
     INVITE_TB_UP = (By.ID, "invite")
     PASSWORD_TB_UP = (By.ID, "password")
     #INVALID_CRED_ERROR = (By.XPATH, "//div[contains(text(), 'Invalid credentials')]")
-    INVALID_CRED_ERROR = (By.CSS_SELECTOR, "div.notification.is-danger")
+    INVALID_CRED_ERROR = (By.CSS_SELECTOR, ".notification.is-danger")
 
 
 class AboutPageLocators:

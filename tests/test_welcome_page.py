@@ -12,6 +12,7 @@ def test_signin_btn_seen_on_signup(browser):
     """Test that 'Sign In' button is seen on "SIGN UP" page """
     welcome_page = WelcomePage(browser)
     welcome_page.load()
+    welcome_page.wait_new_page_load()
     welcome_page.sign_up_btn_in_click()
     assert welcome_page.is_element_seen(locators.WelcomePageLocators.SIGN_IN_BTN_UP)
 
@@ -55,7 +56,7 @@ def test_input_password_and_signin(browser):
 
 
 @pytest.mark.main
-def test_workflow(browser, login, logout):
+def test_smoke_workflow(browser, login, close):
     """Test smoke workflow"""
     suites_page = SuitesPage(browser)
     suites_page.wait_new_page_load()  # need timer to wait until suites page loading
@@ -64,9 +65,10 @@ def test_workflow(browser, login, logout):
 
 
 @pytest.mark.main
-def test_sign_in_click_with_login_fixture(browser, login, logout):
+def test_sign_in_click_with_login_fixture(browser, login, close):
     """Test if click "SIGN IN" that 'Suites Info' page opens """
     suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
     assert suites_page.get_title() == 'Suites Info'
 
 
