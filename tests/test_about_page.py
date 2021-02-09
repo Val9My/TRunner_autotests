@@ -1,6 +1,5 @@
 from locators import locators
 from pages.about_page import AboutPage
-from pages.base_page import BasePageElement
 import pytest
 
 @pytest.mark.navbar
@@ -98,7 +97,7 @@ def test_dropdown_options(browser, login, close):
     about_page = AboutPage(browser)
     about_page.load()
     about_page.hello_user_click()
-    dropdown_elements_names = [x.text for x in browser.find_elements_by_xpath("//a[@class='dropdown-item']")]
+    dropdown_elements_names = [x.text for x in browser.find_elements(*locators.AboutPageLocators.SETTINGS_OPT_NAMES)]
     assert dropdown_elements_names[0][-8:] == 'Settings' and dropdown_elements_names[1][-6:] == 'Logout'
 
 
@@ -107,5 +106,5 @@ def test_navbar_items_size(browser, login, close):
     "Check that the font-sizes of Test Suite,Suite Manager and About navbar items on the About Page are equal "
     about_page = AboutPage(browser)
     about_page.load()
-    navbar_elements_font_size=[x.value_of_css_property('font-size') for x in browser.find_elements_by_xpath("//li[@class='nav-item active']")]
+    navbar_elements_font_size=[x.value_of_css_property('font-size') for x in browser.find_elements(*locators.AboutPageLocators.NAVBAR)]
     assert all(i == navbar_elements_font_size[0] for i in navbar_elements_font_size)
