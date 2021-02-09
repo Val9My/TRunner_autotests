@@ -27,14 +27,24 @@ class AboutPageLocators:
     #ABOUT_URL = "http://127.0.0.1:5000/about"
     ABOUT_URL = "https://trunner.herokuapp.com/about"
     ABOUT_TITLE = 'About'
-    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
-    ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
+    #TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
+    TRUNNER_LNK =(By.CSS_SELECTOR, "nav a.navbar-brand")
+    #ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
+    ADD_SUITE_LNK=(By.CSS_SELECTOR, "ul li a[href='/suites']")
     AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")  # //a[contains(text(),'Available
     # Suites')]
-    HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")  # //a[@id='navbarDropdownMenuLink']
-    SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")  # //a[contains(text(),'Settings')]
-    LOGOUT_OPT = (By.XPATH, "//a[contains(text(),'Logout')]")  # //a[@href='/logout']
-    TRUNNER_CARD = (By.XPATH, "//div[contains(@class,'pricing-header')]") #//div[contains(@class,'pricing-header')]
+    #HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")  # //a[@id='navbarDropdownMenuLink']
+    HELLO_USER_DPDN=(By.CSS_SELECTOR, "#navbarDropdownMenuLink")
+    #SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")  # //a[contains(text(),'Settings')]
+    SETTINGS_OPT=(By.CSS_SELECTOR, "div a.dropdown-item[href='/settings']")
+    #SETTINGS_OPT_NAMES=(By.XPATH,"//a[@class='dropdown-item']")
+    SETTINGS_OPT_NAMES=(By.CSS_SELECTOR, "a.dropdown-item")
+    #NAVBAR=(By.XPATH, "//li[@class='nav-item active']")
+    NAVBAR=(By.CSS_SELECTOR, "ul>li[class='nav-item active']")
+    #LOGOUT_OPT = (By.XPATH, "//a[contains(text(),'Logout')]")  # //a[@href='/logout']
+    LOGOUT_OPT=(By.CSS_SELECTOR, "a[href='/logout']")
+    #TRUNNER_CARD = (By.XPATH, "//div[contains(@class,'pricing-header')]") #//div[contains(@class,'pricing-header')]
+    TRUNNER_CARD=(By.CSS_SELECTOR, "div.pricing-header")
 
 
 class SettingsPageLocators:
