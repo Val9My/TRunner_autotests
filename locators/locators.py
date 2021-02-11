@@ -4,14 +4,10 @@ from selenium.webdriver.common.by import By
 class WelcomePageLocators:
     #WELCOME_URL = "http://127.0.0.1:5000/login?next=%2F"
     WELCOME_URL = "https://trunner.herokuapp.com/login?next=%2Fsuites"
-    #ABOUT_US_BTN = (By.XPATH, "//a[contains(text(),'About Us')]")  # //a[@href='/about']
-    ABOUT_US_BTN = (By.CSS_SELECTOR, ".content-logo [href='/about']")  # div a
+    ABOUT_US_BTN = (By.CSS_SELECTOR, ".content-logo [href='/about']")
     SIGN_UP_BTN_IN = (By.CSS_SELECTOR, "[class='container'] #sign-up-btn")
-    #SIGN_IN_BTN_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@value='Sign In']")
     SIGN_IN_BTN_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [type='submit']")
-    #USER_NAME_TB_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@name='username']")
     USER_NAME_TB_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [name=username]")
-    #PASSWORD_TB_IN = (By.XPATH, "//div[@class='container']//form[@class='sign-in-form']//input[@name='password']")
     PASSWORD_TB_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [name=password]")
     SIGN_UP_BTN_UP = (By.ID, "signup")
     SIGN_IN_BTN_UP = (By.ID, "sign-in-btn")
@@ -19,7 +15,6 @@ class WelcomePageLocators:
     TOKEN_TB_UP = (By.ID, "token")
     INVITE_TB_UP = (By.ID, "invite")
     PASSWORD_TB_UP = (By.ID, "password")
-    #INVALID_CRED_ERROR = (By.XPATH, "//div[contains(text(), 'Invalid credentials')]")
     INVALID_CRED_ERROR = (By.CSS_SELECTOR, ".notification.is-danger")
 
 
@@ -51,11 +46,8 @@ class SettingsPageLocators:
     #SETTINGS_URL = "http://127.0.0.1:5000/settings"
     SETTINGS_URL = "https://trunner.herokuapp.com/settings"
     TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
-    #ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
     TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
-    #AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")  #
     SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
-    #ABOUT_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/about']")  # //a[contains(text(),'About')]
     ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
     TOKEN_TB = (By.ID, "token")
     NEW_PASSWORD_TB = (By.ID, "newPass")
@@ -63,12 +55,8 @@ class SettingsPageLocators:
     UPDATE_TOKEN_BTN = (By.ID, "save")
     UPDATE_PASSWORD_BTN = (By.ID, "savePassword")
     HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")
-    #SETTINGS_DPDN_ITEM = (By.XPATH, "//a[@class='dropdown-item' and contains(text(),'Settings')]")
     SETTINGS_DPDN_ITEM = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    #LOGOUT_DPDN_ITEM = (By.XPATH, "//a[@class='dropdown-item' and contains(text(),'Logout')]")
     LOGOUT_DPDN_ITEM = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
-
-
 
 
 class SuitesPageLocators:
@@ -82,65 +70,49 @@ class SuitesPageLocators:
     SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
     ADD_SUITE_BTN = (By.ID, "addSuite")
-    #SUIT_REPORT_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Suite Report')]")
     SUIT_REPORT_DPDN_ITEM = (By.CSS_SELECTOR, ".custom-menu li[data-action='suite-report']")
-    #EXPORT_TO_ADO_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Export to ADO')]")
     EXPORT_TO_ADO_DPDN_ITEM = (By.CSS_SELECTOR, ".custom-menu li[data-action='ado-export']")
-    #DELETE_SUITE_DPDN_ITEM = (By.XPATH, "//ul[@class='custom-menu']/li[contains(text(),'Delete Suite')]")
     DELETE_SUITE_DPDN_ITEM = (By.CSS_SELECTOR, ".custom-menu li[data-action='delete-suite']")
+
     """First row data (1st iteration)"""
-    #SUITE_1_LNK = (By.XPATH, "//tbody/tr[@class='clickable-row'][1]/td[@class='suite-link']/child::a")
-    SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link") #.clickable-row:first-child td:first-child
-    #TEST_CASES_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='suite-link']/following::p[1]")
+    SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link")
     TEST_CASES_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(2)")
-    #PASSED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[3]")
     PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] p")
-    #FAILED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[4]")
     FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] p")
-    #BLOCKED_1_DPDN = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[5]")
     BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] p")
-    #NOT_EXECUTED_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[6]")
     NOT_EXECUTED_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(6)")
-    #CREATED_BY_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[7]")
     CREATED_BY_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(7)")
-    #CREATED_DATE_1_VALUE = (By.XPATH, "//tr[@class='clickable-row'][1]/child::td[8]")
     CREATED_DATE_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:last-child")
-    NUMBER_OF_TEST_CASES = (By.CSS_SELECTOR, "[class='clickable-row']")
+    TEST_CASE_COUNT = (By.CSS_SELECTOR, "tbody tr[class=clickable-row]")
     PASSED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='passed'] a")
     FAILED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='failed'] a")
     BLOCKED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
 
 
-
-class AvailableSuitesPageLocators:
-    AVAILABLE_SUITS_URL = "http://127.0.0.1:5000/suitify"
-    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand'][@href='/suites']")
-    ADD_SUITE_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suites']")  # //a[contains(text(),'Add Suite')]
-    AVAILABLE_SUITES_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/suitify']")
-    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link'][@href='/about']")
-    HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
-    SUITE_LINK = (By.XPATH, "//a[@href='/cases/1']")
-
-
 class TestSuitePageLocators:
-    TRUNNER_LNK = (By.XPATH, "//a[@class='navbar-brand']")
-    TEST_SUITES_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Test Suites')]")
-    SUITE_MANAGER_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'Suite Manager')]")
-    ABOUT_LNK = (By.XPATH, "//a[@class='nav-link' and contains(.,'About')]")
-    CURRENT_SUITE_NAME = (By.XPATH, "//a[@class='nav-link' and contains(text(),'Current Suite')]")
+    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
+    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
+    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
+    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
+    CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse  [class='nav-link']")
     HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.XPATH, "//a[@href='/settings']")
-    LOGOUT_OPT = (By.XPATH, "//a[@href='/logout'] ")
+    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
+    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
+
     """First row data (1st iteration)"""
-    TEST_CASE_ID_LNK = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='tcid']")
-    TEST_CASE_NAME = (By.XPATH, "///tr[@class='clickable-row'][1]/td[@class='tcid']/following-sibling::td[1]") # /p
-    TEST_CASE_STATE = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='tcid']/following-sibling::td[2]/p")
-    TESTER_NAME = (By.XPATH, "//tr[@class='clickable-row'][1]/td[@class='tcid']/following-sibling::td[3]//p")
-    """Clickable row active for MB3 options"""
-    ACTIVE_ROW = (By.XPATH, "//tr[@class='clickable-row active']")
-    RUN_TEST_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='run-test']")
-    STATISTICS_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='show-statistics']")
-    ASSIGN_OPT_LNK = (By.XPATH, "//ul[@class='custom-menu-tclist']/li[@data-action='assign-to']")
+    TEST_CASE_ID_LNK = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .tcid a")
+    TEST_CASE_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2) p")
+    TEST_CASE_STATE = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .testCaseState p")
+    TESTER_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .centered p")
+
+    """MB3 options for active row"""
+    ACTIVE_1ST_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2)")
+    RUN_TEST_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist [data-action=run-test] .run_tc_mb3")
+    STATISTICS_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist .show_stat_mb3")
+    ASSIGN_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist [data-action=assign-to] #assign-to-a")
+    ASSIGN_TO_USER_COUNT = (By.CSS_SELECTOR, "body .assign-to-submenu li")
+    ASSIGN_TO_1ST_USER = (By.CSS_SELECTOR, "body .assign-to-submenu .user-to-set:first-child")
+    ASSIGN_TO_LAST_USER = (By.CSS_SELECTOR, "body .assign-to-submenu .user-to-set:last-child")
 
 
 class SuiteManagerPageLocators:
@@ -168,18 +140,12 @@ class SuiteManagerPageLocators:
     ID_VALUE = (By.XPATH, "//tr[@class='test_case_row'][1]/td[@class='tcid']")
     TEST_CASE_TITLE = (By.XPATH, "//tr[@class='test_case_row'][1]/td[@class='tcid']/following-sibling::td")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class RunTestCasePageLocators:
+    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
+    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
+    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
+    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
+    CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse  [class='nav-link']")
+    HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
+    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
+    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
