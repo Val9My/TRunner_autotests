@@ -16,7 +16,7 @@ class AboutPage(BasePageElement):
         super().__init__(browser)
 
     def load(self):
-        self.browser.get(AboutPageLocators.ABOUT_URL)
+        super().load(AboutPageLocators.ABOUT_URL)
 
     def get_title(self):
         title = self.browser.title
