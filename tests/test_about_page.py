@@ -2,6 +2,7 @@ from locators import locators
 from pages.about_page import AboutPage
 import pytest
 
+
 @pytest.mark.navbar
 def test_navbar_is_visible(browser, close):
     "Test that navbar is visible"
@@ -79,7 +80,7 @@ def test_manage_suite_lnk(browser, login, close):
     about_page = AboutPage(browser)
     about_page.load()
     about_page.manage_suites_lnk_click()
-    assert browser.current_url == locators.SuiteManagerPageLocators.SUITE_MANAGER_PAGE_LNK
+    assert browser.current_url == locators.SuiteManagerPageLocators.SUITE_MANAGER_PAGE_URL
 
 
 @pytest.mark.text_card
@@ -87,8 +88,8 @@ def test_card_text(browser, close):
     "Check the text on the About page"
     about_page = AboutPage(browser)
     about_page.load()
-    card_element=browser.find_element_by_xpath("//p[@class='lead']")
-    assert card_element.text=="An Open Source solution to run test cases independently using Azure DevOps systems."
+    card_element = browser.find_element_by_xpath("//p[@class='lead']")
+    assert card_element.text == "An Open Source solution to run test cases independently using Azure DevOps systems."
 
 
 @pytest.mark.dropdown_options
@@ -106,5 +107,6 @@ def test_navbar_items_size(browser, login, close):
     "Check that the font-sizes of Test Suite,Suite Manager and About navbar items on the About Page are equal "
     about_page = AboutPage(browser)
     about_page.load()
-    navbar_elements_font_size=[x.value_of_css_property('font-size') for x in browser.find_elements(*locators.AboutPageLocators.NAVBAR)]
+    navbar_elements_font_size = [x.value_of_css_property('font-size') for x in
+                                 browser.find_elements(*locators.AboutPageLocators.NAVBAR)]
     assert all(i == navbar_elements_font_size[0] for i in navbar_elements_font_size)
