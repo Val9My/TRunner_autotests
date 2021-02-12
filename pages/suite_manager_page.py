@@ -12,7 +12,7 @@ class SuiteManagerPage(BasePageElement):
         super().__init__(browser)
 
     def load(self):
-        super().load(SuiteManagerPageLocators.SUITE_MANAGER_PAGE_LNK)
+        super().load(SuiteManagerPageLocators.SUITE_MANAGER_PAGE_URL)
 
     def trunner_lnk_click(self):
         "Click on Trunner_lnk"
