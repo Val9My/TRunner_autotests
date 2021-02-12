@@ -56,7 +56,7 @@ class AboutPage(BasePageElement):
     def manage_suites_lnk_click(self):
         "Click on Suites Manager button from about page"
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        manage_suits_lnk = wait.until(EC.visibility_of_element_located(SuiteManagerPageLocators.SUITE_MANAGER_LNK))
+        manage_suits_lnk = wait.until(EC.visibility_of_element_located(SuiteManagerPageLocators.SUITES_MANAGER_LNK))
         manage_suits_lnk.click()
 
 
