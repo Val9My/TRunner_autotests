@@ -26,7 +26,7 @@ class AboutPageLocators:
     ADD_SUITE_LNK=(By.CSS_SELECTOR, "ul li a[href='/suites']")
 
     HELLO_USER_DPDN=(By.CSS_SELECTOR, "#navbarDropdownMenuLink")
-    SETTINGS_OPT=(By.CSS_SELECTOR, "div a.dropdown-item[href='/settings']")
+    SETTINGS_OPT=(By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     SETTINGS_OPT_NAMES=(By.CSS_SELECTOR, "a.dropdown-item")
     LOGOUT_OPT=(By.CSS_SELECTOR, "a[href='/logout']")
     NAVBAR=(By.CSS_SELECTOR, "ul>li[class='nav-item active']")
@@ -114,7 +114,7 @@ class TestSuitePageLocators:
 
 
 class SuiteManagerPageLocators:
-    SUITE_MANAGER_PAGE_LNK = "https://trunner.herokuapp.com/suites_manager"
+    SUITE_MANAGER_PAGE_URL = "https://trunner.herokuapp.com/suites_manager"
     TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
     TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
     SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
