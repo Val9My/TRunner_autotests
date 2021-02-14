@@ -144,6 +144,11 @@ class SuiteManagerPageLocators:
     ID_1ST_TC_VALUE = (By.CSS_SELECTOR, ".test_case_row:first-of-type .tcid")
     TEST_CASE_1ST_TITLE = (By.CSS_SELECTOR, ".test_case_row:first-of-type td:last-child")
 
+    """Others rows data"""
+    USE_TC_CHKBX = (By.CSS_SELECTOR, ".test_case_row:nth-of-type(n) .checked_tc")  # n-number in table
+    ID_TC_VALUE = (By.CSS_SELECTOR, ".test_case_row:nth-of-type(n) .tcid")  # n-number in table
+    TEST_CASE_TITLE = (By.CSS_SELECTOR, ".test_case_row:nth-of-type(n) td:last-child")  # n-number in table
+
     """Last row data """
     USE_LAST_TC_CHKBX = (By.CSS_SELECTOR, ".test_case_row:last-of-type .checked_tc")
     ID_LAST_TC_VALUE = (By.CSS_SELECTOR, ".test_case_row:last-of-type .tcid")
