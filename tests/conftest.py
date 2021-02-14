@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from pages.welcome_page import WelcomePage
 from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
@@ -38,10 +39,8 @@ def logout(browser):
     driver.get(browser.current_url)  # load current URL
     try:
         wait = WebDriverWait(driver, DEFAULT_WAIT_TIME)
-        hello_user = wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.HELLO_DPDN))
-        hello_user.click()
-        logout_click = wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.LOGOUT_OPT))
-        logout_click.click()
+        wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.HELLO_DPDN)).click()
+        wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.LOGOUT_OPT)).click()
     except Exception as e:
         print("error occurred", e)
     finally:

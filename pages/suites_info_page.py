@@ -38,9 +38,15 @@ class SuitesPage(BasePageElement):
         except TimeoutException:
             print("Failed T-C column not found in suites")
 
-
     def about_btn_click(self):
         """Click on the 'About' button """
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         about = wait.until(EC.visibility_of_element_located(SuitesPageLocators.ABOUT_LNK))
         about.click()
+
+    def get_user_name_from_hello(self):
+        """ Get username in 'Hello, user' dropdown """
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        user = wait.until(EC.visibility_of_element_located(SuitesPageLocators.HELLO_DPDN)).text.partition(' ')[2]
+        return user
+

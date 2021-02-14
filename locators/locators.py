@@ -25,7 +25,7 @@ class AboutPageLocators:
     TRUNNER_LNK =(By.CSS_SELECTOR, "nav a.navbar-brand")
     ADD_SUITE_LNK=(By.CSS_SELECTOR, "ul li a[href='/suites']")
 
-    HELLO_USER_DPDN=(By.CSS_SELECTOR, "#navbarDropdownMenuLink")
+    HELLO_USER_DPDN=(By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
     SETTINGS_OPT=(By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     SETTINGS_OPT_NAMES=(By.CSS_SELECTOR, "a.dropdown-item")
     LOGOUT_OPT=(By.CSS_SELECTOR, "a[href='/logout']")
@@ -46,7 +46,7 @@ class SettingsPageLocators:
     UPDATE_TOKEN_BTN = (By.ID, "save")
     UPDATE_PASSWORD_BTN = (By.ID, "savePassword")
 
-    HELLO_USER_DPDN = (By.ID, "navbarDropdownMenuLink")
+    HELLO_USER_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
     SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
 
@@ -59,7 +59,7 @@ class SuitesPageLocators:
     SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
     ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
 
-    HELLO_DPDN = (By.ID, "navbarDropdownMenuLink")
+    HELLO_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
     SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
 
@@ -92,7 +92,7 @@ class TestSuitePageLocators:
     STATISTICS_BTN = (By.ID, "statCase")
     CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse [class='nav-link']")
 
-    HELLO_DPDN = (By.CSS_SELECTOR, ".nav-link#navbarDropdownMenuLink")
+    HELLO_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
     SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
 
@@ -184,7 +184,3 @@ class RunTestPageLocators:
     TC_LAST_STEP_FAILED_STATUS = (By.CSS_SELECTOR, "tbody .clickable-row:last-child .selector #failed_label")
     TC_LAST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:last-child [id^=exampleForm]")
     TC_LAST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:last-child [for^=exampleForm]")
-
-    HELLO_DPDN = (By.ID, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")

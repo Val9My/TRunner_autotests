@@ -18,7 +18,7 @@ def test_signin_btn_seen_on_signup(browser):
 
 
 @pytest.mark.main
-def test_username_tbox_hide(browser, logout):
+def test_username_tbox_hide(browser):
     """Test that 'Username' textbox is NOT seen while click "SIGN UP" btn """
     welcome_page = WelcomePage(browser)
     welcome_page.load()
@@ -56,7 +56,7 @@ def test_input_password_and_signin(browser):
 
 
 @pytest.mark.main
-def test_smoke_workflow(browser, login, close):
+def test_smoke_workflow(browser, login, logout):
     """Test smoke workflow"""
     suites_page = SuitesPage(browser)
     suites_page.wait_new_page_load()  # need timer to wait until suites page loading
@@ -65,7 +65,7 @@ def test_smoke_workflow(browser, login, close):
 
 
 @pytest.mark.main
-def test_sign_in_click_with_login_fixture(browser, login, close):
+def test_sign_in_click_with_login_fixture(browser, login, logout):
     """Test if click "SIGN IN" that 'Suites Info' page opens """
     suites_page = SuitesPage(browser)
     suites_page.wait_new_page_load()
