@@ -18,7 +18,7 @@ def test_workflow(browser, login, logout):
     assert suites_page.is_element_seen(locators.SuitesPageLocators.FAILED_TC_1_1_LNK)
 
 
-@pytest.mark.main1
+@pytest.mark.main
 def test_username(browser, login, logout):
     """ Test that username is correct in 'Hello' dropdown """
     suites_page = SuitesPage(browser)

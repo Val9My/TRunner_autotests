@@ -50,3 +50,6 @@ class SuitesPage(BasePageElement):
         user = wait.until(EC.visibility_of_element_located(SuitesPageLocators.HELLO_DPDN)).text.partition(' ')[2]
         return user
 
+
+
+
