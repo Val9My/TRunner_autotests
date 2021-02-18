@@ -14,10 +14,22 @@ def test_trunner_link(browser, login, logout):
 
 @pytest.mark.test_suite_selector_scenario1
 def test_suite_selector_selector_scenario1(browser, login):
-    '''Check selecting third option Nadiia - Test Design from test suites
-    Expected result: first test case id 49256, name Frameworks - Interpretation View'''
+    """Check selecting third option Nadiia - Test Design from test suites
+    Expected result: first test case id 49256, name Frameworks - Interpretation View"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.suites_option_select_by_index(2)
     suites_manager_page.tc_checkbox_option_click(1)
     assert suites_manager_page.get_id_tc_value(1) == 49256 and suites_manager_page.get_tc_title(1)=='Frameworks - Interpretation View'
+
+
+@pytest.mark.test_suite_selector_scenario2
+def test_suite_selector_selector_scenario2 (browser, login):
+    ("Check that on clicking '+Add' opened new modal window 'Add to Test Suite' \n"
+     "and user is able to select checkbox near test case and close modal window")
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.add_modal_window()
+    suites_manager_page.click_checkbox_in_modal_add_window()
+    suites_manager_page.close_add_test_modal_window()
+
