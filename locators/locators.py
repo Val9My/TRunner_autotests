@@ -127,6 +127,10 @@ class SuiteManagerPageLocators:
 
     ADD_CASE_TO_SUITE_BTN = (By.CSS_SELECTOR, ".nav-link[data-target='#addCaseToSuite']")
     DELETE_CASE_FROM_SUITE_BTN = (By.CSS_SELECTOR, ".nav-link#deleteCaseFromSuite")
+    '''add test case to suite modal window'''
+    ADD_TC_BUTTON_MODALW=(By.CSS_SELECTOR, "button#SaveToSuite")
+    CHECKBOX_TC_MODALW=(By.CSS_SELECTOR, ".add_to_suite_checkbox")
+    CLOSE_ADD_TEST_CASE_MODALW=(By.CSS_SELECTOR,"button[aria-label='Close'")
 
     CREATE_SUITE_DPDN = (By.CSS_SELECTOR, ".nav-link.suite-create")
     FROM_ADO_QUERY_OPT = (By.CSS_SELECTOR, ".dropdown-item[data-target='#addFromAdoQuery']")
