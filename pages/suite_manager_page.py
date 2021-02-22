@@ -86,3 +86,24 @@ class SuiteManagerPage(BasePageElement):
         close_button = wait.until(
             EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CLOSE_ADD_TEST_CASE_MODALW))
         close_button.click()
+
+    def click_delete_button(self):
+        "Click on the  button '-Delete'"
+        delete_button = self.browser.find_element(*locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
+        delete_button.click()
+
+    def get_text_from_alert(self):
+        "Getting text from alert dialog"
+        WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.alert_is_present())
+        alert = self.browser.switch_to_alert()
+        alert_text = alert.text
+        return alert_text
+
+    def handling_alert(self):
+        "Alert acceptation"
+        WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.alert_is_present())
+        alert = self.browser.switch_to_alert()
+        alert.accept()
+
+
+
