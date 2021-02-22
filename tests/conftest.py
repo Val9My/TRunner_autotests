@@ -58,3 +58,15 @@ def close(browser):
         print("error occurred", e)
     finally:
         pass
+
+
+@pytest.fixture(params=['1qaz2wsx', '  45f  ',
+                        'qqweqweqweqweqweqweqweqweqweqweqweqweqweqqqweqweqweqweqweqweqweqweqweqweqweqweqweqwe', LOGIN])
+def parametrized_username(request):
+    return request.param
+
+
+@pytest.fixture(params=['', '  45_f', '#%123',
+                        'Aa!@#$%^&*()-_+=`~,.?><|b  PaSSword!@#$%^&*()-_+=`~,.?><'])
+def parametrized_password(request):
+    return request.param
