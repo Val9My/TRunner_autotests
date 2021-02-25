@@ -120,6 +120,9 @@ class SuiteManagerPageLocators:
     SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
     ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
 
+    SEARCH_FIELD=(By.CSS_SELECTOR, "#search_input")
+    FILTRATED_CASES =(By.CSS_SELECTOR, ".test_case_row:not([style='display: none;'])")
+
     SUITE_SELECTOR_DPDN = (By.CSS_SELECTOR, ".form-control#suites-selector")
     SUITES_COUNT_OPT = (By.CSS_SELECTOR, ".form-control#suites-selector .select-option")
     SUITE_1ST_OPT = (By.CSS_SELECTOR, ".form-control#suites-selector .select-option:first-child")
