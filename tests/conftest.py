@@ -70,3 +70,9 @@ def parametrized_username(request):
                         'Aa!@#$%^&*()-_+=`~,.?><|b  PaSSword!@#$%^&*()-_+=`~,.?><'])
 def parametrized_password(request):
     return request.param
+
+
+@pytest.fixture(params=['вав', '  33а_', 'ges_3445',
+                        'f jfhd '])
+def search_test_case(request):
+    return request.param
