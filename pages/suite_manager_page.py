@@ -1,5 +1,6 @@
 import time
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,6 +17,7 @@ class SuiteManagerPage(BasePageElement):
 
     def load(self):
         super().load(SuiteManagerPageLocators.SUITE_MANAGER_PAGE_URL)
+
 
     def trunner_lnk_click(self):
         "Click on Trunner_lnk"
@@ -105,5 +107,8 @@ class SuiteManagerPage(BasePageElement):
         alert = self.browser.switch_to_alert()
         alert.accept()
 
-
-
+    def input_text_in_search_field(self, text):
+        """Input some text into 'Search for test case' textbox on Suite Manager Page"""
+        WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_all_elements_located(SuiteManagerPageLocators.TEST_CASE_TITLE))
+        tbx = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.element_to_be_clickable(SuiteManagerPageLocators.SEARCH_FIELD))
+        tbx.send_keys(text, Keys.RETURN)
