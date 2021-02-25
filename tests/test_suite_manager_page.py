@@ -1,6 +1,9 @@
+
 from locators import locators
 from pages.suite_manager_page import SuiteManagerPage
 import pytest
+
+from utils.constants import SEARCH_FOR_TEST_CASE
 
 
 @pytest.mark.trunner_brand
@@ -20,7 +23,8 @@ def test_suite_selector_selector_scenario1(browser, login,logout):
     suites_manager_page.load()
     suites_manager_page.suites_option_select_by_index(2)
     suites_manager_page.tc_checkbox_option_click(1)
-    assert suites_manager_page.get_id_tc_value(1) == 49256 and suites_manager_page.get_tc_title(1)=='Frameworks - Interpretation View'
+    assert suites_manager_page.get_id_tc_value(1) == 49256\
+           and suites_manager_page.get_tc_title(1)=='Frameworks - Interpretation View'
 
 
 @pytest.mark.add_test_case_modal_window
@@ -51,6 +55,32 @@ def test_handling_alert_on_delete_scenario1 (browser, login,logout):
     assert first_alert_text == "Do you really want to delete following test cases from the suite?\n"\
            and second_alert_text=="Cannot delete the test case. Only managers allowed to remove test cases from suites."
 
+@pytest.mark.search_for_test_case
+def test_search_for_test_case(browser, login, logout):
+    "Checking search field.  From 'Nadiia - Test Design' entering in search field text 'inventory'"
+    "Expected result: four test cases are found"
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE)
+    cases=browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
+    assert len(cases)==4
 
+@pytest.mark.search_for_test_case
+def test_search_for_test_case(browser, login, logout, SEARCH_FOR_TEST_CASE):
+    "Checking search field.  From 'Nadiia - Test Design' entering in search field text 'inventory'"
+    "Expected result: four test cases are found"
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE)
+    cases=browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
+    assert len(cases)==4
 
-
+@pytest.mark.search_for_test_case
+def test_search_for_test_case_parametrized(browser, login, logout, search_test_case):
+    "Checking search field.  From 'Nadiia - Test Design' entering in search field different inappropriate text"
+    "Expected result: no test cases are found"
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.input_text_in_search_field(search_test_case)
+    cases=browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
+    assert len(cases)==0
