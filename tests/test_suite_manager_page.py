@@ -1,3 +1,4 @@
+import time
 
 from locators import locators
 from pages.suite_manager_page import SuiteManagerPage
@@ -66,16 +67,6 @@ def test_search_for_test_case(browser, login, logout):
     assert len(cases)==4
 
 @pytest.mark.search_for_test_case
-def test_search_for_test_case(browser, login, logout, SEARCH_FOR_TEST_CASE):
-    "Checking search field.  From 'Nadiia - Test Design' entering in search field text 'inventory'"
-    "Expected result: four test cases are found"
-    suites_manager_page = SuiteManagerPage(browser)
-    suites_manager_page.load()
-    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE)
-    cases=browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
-    assert len(cases)==4
-
-@pytest.mark.search_for_test_case
 def test_search_for_test_case_parametrized(browser, login, logout, search_test_case):
     "Checking search field.  From 'Nadiia - Test Design' entering in search field different inappropriate text"
     "Expected result: no test cases are found"
@@ -84,3 +75,30 @@ def test_search_for_test_case_parametrized(browser, login, logout, search_test_c
     suites_manager_page.input_text_in_search_field(search_test_case)
     cases=browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
     assert len(cases)==0
+
+@pytest.mark.test_create_suite_dropdown
+def test_create_suite_from_ADO(browser,login,logout):
+    "Smoke test of create suite from ADO query on the suite manager page"
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.click_create_suite_button()
+    suites_manager_page.create_from_ADO_query()
+    suites_manager_page.close_create_from_ADO_query_window()
+
+@pytest.mark.test_create_suite_dropdown
+def test_create_suite_from_empty_suite(browser, login, logout):
+    "Smoke test of create empty from create suite dropdown on the suite manager page"
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.click_create_suite_button()
+    suites_manager_page.create_empty_suite()
+    suites_manager_page.close_create_empty_suite_window()
+
+@pytest.mark.test_create_suite_dropdown
+def test_create_suite_from_existing_suite(browser, login, logout):
+    "Smoke test of copy suite option from create suite dropdown on the suite manager page"
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.click_create_suite_button()
+    suites_manager_page.create_from_existing_suite()
+    suites_manager_page.close_copy_test_suite_window()
