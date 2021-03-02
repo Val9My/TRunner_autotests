@@ -112,3 +112,42 @@ class SuiteManagerPage(BasePageElement):
         WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_all_elements_located(SuiteManagerPageLocators.TEST_CASE_TITLE))
         tbx = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.element_to_be_clickable(SuiteManagerPageLocators.SEARCH_FIELD))
         tbx.send_keys(text, Keys.RETURN)
+
+    def click_create_suite_button(self):
+        "Click on the  button 'Create_suite'"
+        create_suite_button = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.element_to_be_clickable(SuiteManagerPageLocators.CREATE_SUITE_DPDN))
+        self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        create_suite_button.click()
+
+    def create_from_ADO_query(self):
+        "Select option 'Create from ADO_query' in the Create suite dropdown"
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        create_from_ado = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.FROM_ADO_QUERY_OPT))
+        create_from_ado.click()
+
+    def create_empty_suite(self):
+        "Select option 'Empty suite' in the Create suite dropdown"
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        create_empty_suite = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.EMPTY_SUITE_OPT))
+        create_empty_suite.click()
+
+    def create_from_existing_suite(self):
+        "Select option 'From existing suite' in the Create suite dropdown"
+        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        create_from_exist_suite = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.FROM_EXIST_SUITE_OPT))
+        create_from_exist_suite.click()
+
+    def close_create_from_ADO_query_window(self):
+        "Close create from ADO query window"
+        close_icons= self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
+        close_icons[1].click()
+
+    def close_create_empty_suite_window(self):
+        "Close create from ADO query window"
+        close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
+        close_icons[2].click()
+
+    def close_copy_test_suite_window(self):
+        "Close create from ADO query window"
+        close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
+        close_icons[3].click()
