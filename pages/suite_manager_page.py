@@ -138,16 +138,16 @@ class SuiteManagerPage(BasePageElement):
         create_from_exist_suite.click()
 
     def close_create_from_ADO_query_window(self):
-        "Close create from ADO query window"
+        "Close 'Create Test Suite from ADO Query' window"
         close_icons= self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
         close_icons[1].click()
 
     def close_create_empty_suite_window(self):
-        "Close create from ADO query window"
+        "Close 'create Empty suite' window "
         close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
         close_icons[2].click()
 
     def close_copy_test_suite_window(self):
-        "Close create from ADO query window"
+        "Close 'Copy Suite' window"
         close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
         close_icons[3].click()
