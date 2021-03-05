@@ -66,7 +66,7 @@ def test_input_login_password_and_signin(browser, parametrized_username, paramet
     assert welcome_page.is_element_seen(locators.WelcomePageLocators.INVALID_CRED_ERROR)
 
 
-@pytest.mark.main
+@pytest.mark.main1
 def test_smoke_workflow(browser, login, logout):
     """Test smoke workflow"""
     suites_page = SuitesPage(browser)

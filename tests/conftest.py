@@ -7,16 +7,41 @@ from selenium.webdriver.support.wait import WebDriverWait
 from pages.welcome_page import WelcomePage
 from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
 from locators import locators
+from selenium.webdriver.chrome.options import Options
+
+""" Chrome - is a default browser. To run tests on Firefox type:
+pytest -s -v --browser_name=firefox test_.py"""
+def pytest_addoption(parser):
+    parser.addoption('--browser_name', action='store', default="chrome",
+                 help="Choose browser: chrome or firefox")
 
 
-@pytest.fixture(scope="session")  #
-def browser():
-    # driver = webdriver.Chrome(os.environ.get('CHROME_DRIVER_PATH'))
-    driver = webdriver.Chrome('chromedriver.exe')  # put chromedriver folder path into PATH
-    driver.implicitly_wait(DEFAULT_WAIT_TIME)
-    driver.maximize_window()
-    yield driver
-    driver.quit()
+@pytest.fixture(scope="session")
+def browser(request):
+    browser_name = request.config.getoption("browser_name")
+    options = Options()
+    if browser_name == "chrome":
+        print("\nstart chrome browser for test..")
+        browser = webdriver.Chrome(options=options)
+    elif browser_name == "firefox":
+        print("\nstart firefox browser for test..")
+        browser = webdriver.Firefox()
+    else:
+        raise pytest.UsageError("--browser_name should be chrome or firefox")
+    browser.implicitly_wait(DEFAULT_WAIT_TIME)
+    browser.maximize_window()
+    failed_before = request.session.testsfailed  # for screenshots
+    yield browser
+    if request.session.testsfailed != failed_before:  # for screenshots
+        take_screenshot(browser)  # for screenshots
+    print(f"\nquit {browser_name} browser..", )
+    browser.quit()
+
+
+def take_screenshot(browser):
+    screenshots_dir = "D:\\Reports\\Auto_tests"
+    screenshot_file_path = "{}/screenshot.png".format(screenshots_dir)
+    browser.save_screenshot(screenshot_file_path)
 
 
 @pytest.fixture(scope="function")
@@ -35,10 +60,9 @@ def logout(browser):
     """ Logout method for each test
         'Hello,User' options-> 'Logout' will be executed in test's last page"""
     yield logout
-    driver = browser  # get driver
-    driver.get(browser.current_url)  # load current URL
+    browser.get(browser.current_url)  # load current URL _driver
     try:
-        wait = WebDriverWait(driver, DEFAULT_WAIT_TIME)
+        wait = WebDriverWait(browser, DEFAULT_WAIT_TIME)  # driver
         wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.HELLO_DPDN)).click()
         wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.LOGOUT_OPT)).click()
     except Exception as e:
@@ -51,28 +75,36 @@ def logout(browser):
 def close(browser):
     """ Delete cookies method for each test to skip logout"""
     yield close
-    driver = browser  # get driver
     try:
-        driver.delete_all_cookies()
+        browser.delete_all_cookies()
     except Exception as e:
         print("error occurred", e)
     finally:
         pass
 
 
-@pytest.fixture(params=['1qaz2wsx', '  45f  ',
-                        'qqweqweqweqweqweqweqweqweqweqweqweqweqweqqqweqweqweqweqweqweqweqweqweqweqweqweqweqwe', LOGIN])
+""" Read test data from file: 
+Login
+Password
+Search test case
+"""
+with open('test_data/input.txt', 'r') as f:
+    lines = f.read().splitlines()
+PARAMS_LOGIN = str(lines[0])
+PARAMS_PASSWORD = str(lines[1])
+PARAMS_SEARCH_TC = str(lines[2])
+
+
+@pytest.fixture(params=PARAMS_LOGIN.split(','))
 def parametrized_username(request):
     return request.param
 
 
-@pytest.fixture(params=['', '  45_f', '#%123',
-                        'Aa!@#$%^&*()-_+=`~,.?><|b  PaSSword!@#$%^&*()-_+=`~,.?><'])
+@pytest.fixture(params=PARAMS_PASSWORD.split(','))
 def parametrized_password(request):
     return request.param
 
 
-@pytest.fixture(params=['вав', '  33а_', 'ges_3445',
-                        'f jfhd '])
+@pytest.fixture(params=PARAMS_SEARCH_TC.split(','))
 def search_test_case(request):
     return request.param
