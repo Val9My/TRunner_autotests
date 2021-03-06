@@ -28,21 +28,9 @@ class SuitesPage(BasePageElement):
     def failed_1_value_click(self):
         """Click on the "FAILED" value dropdown in the 1st row to see all failed test cases numbers"""
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            failed_t_c = wait.until(EC.element_to_be_clickable(SuitesPageLocators.FAILED_1_DPDN))
-            try:
-                failed_t_c.click()
-            except ElementNotVisibleException:
-                failed_t_c = wait.until(EC.visibility_of_element_located(SuitesPageLocators.FAILED_1_DPDN))
-                failed_t_c.click()
-        except TimeoutException:
-            print("Failed T-C column not found in suites")
-
-    def about_btn_click(self):
-        """Click on the 'About' button """
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        about = wait.until(EC.visibility_of_element_located(SuitesPageLocators.ABOUT_LNK))
-        about.click()
+            self.visibility_element_click(SuitesPageLocators.FAILED_1_DPDN)
+        except Exception as e:
+            print("Failed T-C column not found in suites", e)
 
     def get_user_name_from_hello(self):
         """ Get username in 'Hello, user' dropdown """

@@ -18,31 +18,30 @@ class SuiteManagerPage(BasePageElement):
     def load(self):
         super().load(SuiteManagerPageLocators.SUITE_MANAGER_PAGE_URL)
 
-
-    def trunner_lnk_click(self):
-        "Click on Trunner_lnk"
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        trunner_lnk = wait.until(EC.visibility_of_element_located(locators.SuiteManagerPageLocators.TRUNNER_LNK))
-        trunner_lnk.click()
+    #trunner_lnk_click(self):
 
     def suites_option_select_by_index(self, n):
-        "Check that user is able to select suites from option selector, where n-number of option"
+        """Check that user is able to select suites from option selector, where n-number of option"""
         suite_selector_drp = Select(self.browser.find_element(*locators.SuiteManagerPageLocators.SUITE_SELECTOR_DPDN))
         suite_selector_drp.select_by_index(n)
         time.sleep(10)
 
     def suites_option_select_by_visible_text(self, element_text):
-        "Check that user is able to select suites from option selector, where text-name of option"
+        """Check that user is able to select suites from option selector, where text-name of option"""
         suite_selector_drp = Select(self.browser.find_element(*locators.SuiteManagerPageLocators.SUITE_SELECTOR_DPDN))
         suite_selector_drp.select_by_visible_text(element_text)
         time.sleep(10)
 
     def tc_checkbox_option_click(self, n):
-        "Click on TC checkbox from dropdown"
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        tc_checkbox = wait.until(EC.visibility_of_element_located(
-            (By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row")))
-        tc_checkbox.click()
+        """Click on TC checkbox from dropdown"""
+        try:
+            self.visibility_element_click((By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row"))
+        except Exception as e:
+            print("Error while click TC checkbox from dropdown:", e)
+        #wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        #tc_checkbox = wait.until(EC.visibility_of_element_located(
+        #    (By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row")))
+        #tc_checkbox.click()
 
     def get_id_tc_value(self, n):
         "Get id of test case"
@@ -52,29 +51,34 @@ class SuiteManagerPage(BasePageElement):
         return int(id.text)
 
     def get_tc_title(self, n):
-        "Get test case title"
+        """Get test case title"""
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         tc_title = wait.until(EC.visibility_of_element_located(
             (By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") td:last-child")))
         return tc_title.text
 
     def add_modal_window(self):
-        "Opening modal 'Add to Suite' window by clicking on +Add button"
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        add_lnk = wait.until(EC.visibility_of_element_located(locators.SuiteManagerPageLocators.ADD_CASE_TO_SUITE_BTN))
-        add_lnk.click()
+        """Opening modal 'Add to Suite' window by clicking on +Add button"""
+        try:
+            self.visibility_element_click(locators.SuiteManagerPageLocators.ADD_CASE_TO_SUITE_BTN)
+        except Exception as e:
+            print("Error while click 'Add Test Cases' button:", e)
 
     def get_tc_title_in_modal_add_window(self):
-        "Get test case name in modal window 'Add to Suite'"
+        """Get test case name in modal window 'Add to Suite'"""
         wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
         test_case_name = wait.until(EC.visibility_of_element_located(
             (By.CSS_SELECTOR, "tbody>tr>td:nth-of-type(" + str(n) + ")")))
         return test_case_name.text
 
     def click_add_button(self):
-        "Click on  button 'Add Test Cases' in modal window 'Add to Suite'"
-        add_button = self.browser.find_element(*locators.SuiteManagerPageLocators.ADD_TC_BUTTON_MODALW)
-        add_button.click()
+        """Click on 'Add Test Cases' button  in modal window 'Add to Suite'"""
+        try:
+            self.visibility_element_click(locators.SuiteManagerPageLocators.ADD_TC_BUTTON_MODALW)
+        except Exception as e:
+            print("Error while click 'Add Test Cases' button:", e)
+        #add_button = self.browser.find_element(*locators.SuiteManagerPageLocators.ADD_TC_BUTTON_MODALW)
+        #add_button.click()
 
     def click_checkbox_in_modal_add_window(self):
         "Select checkbox of test cases in 'Add Test Cases' modal window"
@@ -90,19 +94,23 @@ class SuiteManagerPage(BasePageElement):
         close_button.click()
 
     def click_delete_button(self):
-        "Click on the  button '-Delete'"
-        delete_button = self.browser.find_element(*locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
-        delete_button.click()
+        """Click on the '-Delete' button """
+        try:
+            self.visibility_element_click(locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
+        except Exception as e:
+            print("Error while click '-Delete' button:", e)
+        #delete_button = self.browser.find_element(*locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
+        #delete_button.click()
 
     def get_text_from_alert(self):
-        "Getting text from alert dialog"
+        """Getting text from alert dialog"""
         WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.alert_is_present())
         alert = self.browser.switch_to_alert()
         alert_text = alert.text
         return alert_text
 
     def handling_alert(self):
-        "Alert acceptation"
+        """Alert acceptation"""
         WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.alert_is_present())
         alert = self.browser.switch_to_alert()
         alert.accept()
@@ -114,30 +122,33 @@ class SuiteManagerPage(BasePageElement):
         tbx.send_keys(text, Keys.RETURN)
 
     def click_create_suite_button(self):
-        "Click on the  button 'Create_suite'"
+        """Click on the  button 'Create_suite'"""
         create_suite_button = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.element_to_be_clickable(SuiteManagerPageLocators.CREATE_SUITE_DPDN))
         self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         create_suite_button.click()
 
-    def create_from_ADO_query(self):
-        "Select option 'Create from ADO_query' in the Create suite dropdown"
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        create_from_ado = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.FROM_ADO_QUERY_OPT))
-        create_from_ado.click()
+    def create_from_ado_query(self):
+        """Select option 'Create from ADO_query' in the Create suite dropdown"""
+        try:
+            self.visibility_element_click(locators.SuiteManagerPageLocators.FROM_ADO_QUERY_OPT)
+        except Exception as e:
+            print("Error while select option 'Create from ADO_query' in the Create suite dropdown:", e)
 
     def create_empty_suite(self):
-        "Select option 'Empty suite' in the Create suite dropdown"
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        create_empty_suite = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.EMPTY_SUITE_OPT))
-        create_empty_suite.click()
+        """Select option 'Empty suite' in the Create suite dropdown"""
+        try:
+            self.visibility_element_click(locators.SuiteManagerPageLocators.EMPTY_SUITE_OPT)
+        except Exception as e:
+            print("Error while select option 'Empty suite' in the Create suite dropdown:", e)
 
     def create_from_existing_suite(self):
-        "Select option 'From existing suite' in the Create suite dropdown"
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        create_from_exist_suite = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.FROM_EXIST_SUITE_OPT))
-        create_from_exist_suite.click()
+        """Select option 'From existing suite' in the Create suite dropdown"""
+        try:
+            self.visibility_element_click(locators.SuiteManagerPageLocators.FROM_EXIST_SUITE_OPT)
+        except Exception as e:
+            print("Error while select option 'From existing suite' in the Create suite dropdown:", e)
 
-    def close_create_from_ADO_query_window(self):
+    def close_create_from_ado_query_window(self):
         "Close 'Create Test Suite from ADO Query' window"
         close_icons= self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
         close_icons[1].click()

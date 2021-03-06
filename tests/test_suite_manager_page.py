@@ -17,7 +17,7 @@ def test_trunner_link(browser, login, logout):
 
 
 @pytest.mark.test_suite_selector_scenario1
-def test_suite_selector_selector_scenario1(browser, login,logout):
+def test_suite_selector_selector_scenario1(browser, login, logout):
     """Check selecting third option Nadiia - Test Design from test suites
     Expected result: first test case id 49256, name Frameworks - Interpretation View"""
     suites_manager_page = SuiteManagerPage(browser)
@@ -29,10 +29,10 @@ def test_suite_selector_selector_scenario1(browser, login,logout):
 
 
 @pytest.mark.add_test_case_modal_window
-def test_suite_add_test_case_modal_window_scenario1 (browser, login,logout):
-    ("Check that on clicking '+Add' opened new modal window 'Add to Test Suite' \n"
+def test_suite_add_test_case_modal_window_scenario1(browser, login, logout):
+    """Check that on clicking '+Add' opened new modal window 'Add to Test Suite' \n"
      "and user is able to select checkbox near test case and close modal window without adding new test cases"
-     "Expected result: first test case id 50012, name Inventory: Inventory tree items restored with no active editor and Inventory view in docked and undocked state")
+     "Expected result: first test case id 50012, name Inventory: Inventory tree items restored with no active editor and Inventory view in docked and undocked state"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.add_modal_window()
@@ -43,9 +43,9 @@ def test_suite_add_test_case_modal_window_scenario1 (browser, login,logout):
 
 
 @pytest.mark.handling_alert
-def test_handling_alert_on_delete_scenario1 (browser, login,logout):
-    ("Check that by clicking on '-Delete' appears 2 alerts"
-     "Expected result: only managers allowed to delete test cases from suites")
+def test_handling_alert_on_delete_scenario1(browser, login, logout):
+    """Check that by clicking on '-Delete' appears 2 alerts
+     Expected result: only managers allowed to delete test cases from suites"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.click_delete_button()
@@ -56,38 +56,41 @@ def test_handling_alert_on_delete_scenario1 (browser, login,logout):
     assert first_alert_text == "Do you really want to delete following test cases from the suite?\n"\
            and second_alert_text == "Cannot delete the test case. Only managers allowed to remove test cases from suites."
 
+
 @pytest.mark.search_for_test_case
 def test_search_for_test_case(browser, login, logout):
-    "Checking search field.  From 'Nadiia - Test Design' entering in search field text 'inventory'"
-    "Expected result: four test cases are found"
+    """Checking search field.  From 'Nadiia - Test Design' entering in search field text 'inventory'"
+    "Expected result: four test cases are found"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE)
     cases = browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
     assert len(cases) == 4
 
+
 @pytest.mark.search_for_test_case
 def test_search_for_test_case_parametrized(browser, login, logout, search_test_case):
-    "Checking search field.  From 'Nadiia - Test Design' entering in search field different inappropriate text"
-    "Expected result: no test cases are found"
+    """Checking search field.  From 'Nadiia - Test Design' entering in search field different inappropriate text"
+    "Expected result: no test cases are found"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.input_text_in_search_field(search_test_case)
     cases = browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
     assert len(cases) == 0
 
+
 @pytest.mark.test_create_suite_dropdown
-def test_create_suite_from_ADO(browser,login,logout):
-    "Smoke test of create suite from ADO query on the suite manager page"
+def test_create_suite_from_ado(browser, login, logout):
+    """Smoke test of create suite from ADO query on the suite manager page"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.click_create_suite_button()
-    suites_manager_page.create_from_ADO_query()
-    suites_manager_page.close_create_from_ADO_query_window()
+    suites_manager_page.create_from_ado_query()
+    suites_manager_page.close_create_from_ado_query_window()
 
 @pytest.mark.test_create_suite_dropdown
 def test_create_suite_from_empty_suite(browser, login, logout):
-    "Smoke test of create empty from create suite dropdown on the suite manager page"
+    """Smoke test of create empty from create suite dropdown on the suite manager page"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.click_create_suite_button()
@@ -96,7 +99,7 @@ def test_create_suite_from_empty_suite(browser, login, logout):
 
 @pytest.mark.test_create_suite_dropdown
 def test_create_suite_from_existing_suite(browser, login, logout):
-    "Smoke test of copy suite option from create suite dropdown on the suite manager page"
+    """Smoke test of copy suite option from create suite dropdown on the suite manager page"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
     suites_manager_page.click_create_suite_button()

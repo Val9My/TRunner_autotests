@@ -1,6 +1,22 @@
 from selenium.webdriver.common.by import By
 
 
+class BasePageLocators:
+    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
+
+    NAVBAR = (By.CSS_SELECTOR, ".navbar-nav")
+    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
+    SUITE_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")
+    ABOUT_URL = "https://trunner.herokuapp.com/about"
+    ABOUT_TITLE = 'About'
+    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
+
+    HELLO_USER_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
+    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
+    SETTINGS_OPT_NAMES = (By.CSS_SELECTOR, "a.dropdown-item") #?
+    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
+
+
 class WelcomePageLocators:
     #WELCOME_URL = "http://127.0.0.1:5000/login?next=%2F"
     WELCOME_URL = "https://trunner.herokuapp.com/login?next=%2Fsuites"
@@ -36,32 +52,17 @@ class AboutPageLocators:
 class SettingsPageLocators:
     #SETTINGS_URL = "http://127.0.0.1:5000/settings"
     SETTINGS_URL = "https://trunner.herokuapp.com/settings"
-    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
-    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
-    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
-    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
+
     TOKEN_TB = (By.ID, "token")
     NEW_PASSWORD_TB = (By.ID, "newPass")
     CONFIRM_PASSWORD_TB = (By.ID, "newPassConfirm")
     UPDATE_TOKEN_BTN = (By.ID, "save")
     UPDATE_PASSWORD_BTN = (By.ID, "savePassword")
 
-    HELLO_USER_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
-
 
 class SuitesPageLocators:
     SUITES_URL = "https://trunner.herokuapp.com/suites"
     #SUITES_URL = "http://127.0.0.1:5000/suites"
-    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
-    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
-    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
-    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
-
-    HELLO_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
 
     ADD_SUITE_BTN = (By.ID, "addSuite")
     SUITE_REPORT_OPT = (By.CSS_SELECTOR, ".custom-menu li[data-action='suite-report']")
@@ -84,17 +85,9 @@ class SuitesPageLocators:
 
 
 class TestSuitePageLocators:
-    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
-    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
-    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
-    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
     RUN_TEST_BTN = (By.ID, "runCase")
     STATISTICS_BTN = (By.ID, "statCase")
     CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse [class='nav-link']")
-
-    HELLO_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
 
     """First row data (1st iteration)"""
     CASE_ID_LNK = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .tcid a")
@@ -115,10 +108,6 @@ class TestSuitePageLocators:
 
 class SuiteManagerPageLocators:
     SUITE_MANAGER_PAGE_URL = "https://trunner.herokuapp.com/suites_manager"
-    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
-    TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
-    SUITES_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")  #
-    ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
 
     SEARCH_FIELD=(By.CSS_SELECTOR, "#search_input")
     FILTRATED_CASES =(By.CSS_SELECTOR, ".test_case_row:not([style='display: none;'])")
@@ -140,10 +129,6 @@ class SuiteManagerPageLocators:
     EMPTY_SUITE_OPT = (By.CSS_SELECTOR, ".dropdown-item[data-target='#createEmptySuite']")
     FROM_EXIST_SUITE_OPT = (By.CSS_SELECTOR, ".dropdown-item[data-target='#copyFromExistingSuite']")
 
-    HELLO_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
-    SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
-
     TC_COUNT = (By.CSS_SELECTOR, ".table .test_case_row")
 
     """First row data """
@@ -163,7 +148,6 @@ class SuiteManagerPageLocators:
 
 
 class RunTestPageLocators:
-    TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
     SAVE_BTN = (By.CSS_SELECTOR, ".test_case_row:first-of-type .tcid")
     SAVE_AND_CLOSE_BTN = (By.CSS_SELECTOR, ".nav-link#saveResultClose")
     REPORT_BUG_BTN = (By.CSS_SELECTOR, ".nav-link[href$='create/bug']")
