@@ -9,8 +9,7 @@ from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
 from locators import locators
 from selenium.webdriver.chrome.options import Options
 
-""" Chrome - is a default browser. To run tests on Firefox type:
-pytest -s -v --browser_name=firefox test_.py"""
+
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default="chrome",
                  help="Choose browser: chrome or firefox")

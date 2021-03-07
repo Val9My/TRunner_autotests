@@ -18,8 +18,6 @@ class SuiteManagerPage(BasePageElement):
     def load(self):
         super().load(SuiteManagerPageLocators.SUITE_MANAGER_PAGE_URL)
 
-    #trunner_lnk_click(self):
-
     def suites_option_select_by_index(self, n):
         """Check that user is able to select suites from option selector, where n-number of option"""
         suite_selector_drp = Select(self.browser.find_element(*locators.SuiteManagerPageLocators.SUITE_SELECTOR_DPDN))
@@ -35,13 +33,9 @@ class SuiteManagerPage(BasePageElement):
     def tc_checkbox_option_click(self, n):
         """Click on TC checkbox from dropdown"""
         try:
-            self.visibility_element_click((By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row"))
+            self.visible_element_click((By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row"))
         except Exception as e:
             print("Error while click TC checkbox from dropdown:", e)
-        #wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        #tc_checkbox = wait.until(EC.visibility_of_element_located(
-        #    (By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row")))
-        #tc_checkbox.click()
 
     def get_id_tc_value(self, n):
         "Get id of test case"
@@ -60,7 +54,7 @@ class SuiteManagerPage(BasePageElement):
     def add_modal_window(self):
         """Opening modal 'Add to Suite' window by clicking on +Add button"""
         try:
-            self.visibility_element_click(locators.SuiteManagerPageLocators.ADD_CASE_TO_SUITE_BTN)
+            self.visible_element_click(locators.SuiteManagerPageLocators.ADD_CASE_TO_SUITE_BTN)
         except Exception as e:
             print("Error while click 'Add Test Cases' button:", e)
 
@@ -74,11 +68,9 @@ class SuiteManagerPage(BasePageElement):
     def click_add_button(self):
         """Click on 'Add Test Cases' button  in modal window 'Add to Suite'"""
         try:
-            self.visibility_element_click(locators.SuiteManagerPageLocators.ADD_TC_BUTTON_MODALW)
+            self.visible_element_click(locators.SuiteManagerPageLocators.ADD_TC_BUTTON_MODALW)
         except Exception as e:
             print("Error while click 'Add Test Cases' button:", e)
-        #add_button = self.browser.find_element(*locators.SuiteManagerPageLocators.ADD_TC_BUTTON_MODALW)
-        #add_button.click()
 
     def click_checkbox_in_modal_add_window(self):
         "Select checkbox of test cases in 'Add Test Cases' modal window"
@@ -96,11 +88,9 @@ class SuiteManagerPage(BasePageElement):
     def click_delete_button(self):
         """Click on the '-Delete' button """
         try:
-            self.visibility_element_click(locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
+            self.visible_element_click(locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
         except Exception as e:
             print("Error while click '-Delete' button:", e)
-        #delete_button = self.browser.find_element(*locators.SuiteManagerPageLocators.DELETE_CASE_FROM_SUITE_BTN)
-        #delete_button.click()
 
     def get_text_from_alert(self):
         """Getting text from alert dialog"""
@@ -130,21 +120,21 @@ class SuiteManagerPage(BasePageElement):
     def create_from_ado_query(self):
         """Select option 'Create from ADO_query' in the Create suite dropdown"""
         try:
-            self.visibility_element_click(locators.SuiteManagerPageLocators.FROM_ADO_QUERY_OPT)
+            self.visible_element_click(locators.SuiteManagerPageLocators.FROM_ADO_QUERY_OPT)
         except Exception as e:
             print("Error while select option 'Create from ADO_query' in the Create suite dropdown:", e)
 
     def create_empty_suite(self):
         """Select option 'Empty suite' in the Create suite dropdown"""
         try:
-            self.visibility_element_click(locators.SuiteManagerPageLocators.EMPTY_SUITE_OPT)
+            self.visible_element_click(locators.SuiteManagerPageLocators.EMPTY_SUITE_OPT)
         except Exception as e:
             print("Error while select option 'Empty suite' in the Create suite dropdown:", e)
 
     def create_from_existing_suite(self):
         """Select option 'From existing suite' in the Create suite dropdown"""
         try:
-            self.visibility_element_click(locators.SuiteManagerPageLocators.FROM_EXIST_SUITE_OPT)
+            self.visible_element_click(locators.SuiteManagerPageLocators.FROM_EXIST_SUITE_OPT)
         except Exception as e:
             print("Error while select option 'From existing suite' in the Create suite dropdown:", e)
 
