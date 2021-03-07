@@ -63,8 +63,8 @@ def logout(browser):
     browser.get(browser.current_url)  # load current URL _driver
     try:
         wait = WebDriverWait(browser, DEFAULT_WAIT_TIME)  # driver
-        wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.HELLO_DPDN)).click()
-        wait.until(EC.visibility_of_element_located(locators.SuitesPageLocators.LOGOUT_OPT)).click()
+        wait.until(EC.visibility_of_element_located(locators.BasePageLocators.HELLO_USER_DPDN)).click()
+        wait.until(EC.visibility_of_element_located(locators.BasePageLocators.LOGOUT_OPT)).click()
     except Exception as e:
         print("error occurred", e)
     finally:
