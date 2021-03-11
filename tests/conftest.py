@@ -8,6 +8,8 @@ from pages.welcome_page import WelcomePage
 from utils.constants import DEFAULT_WAIT_TIME, LOGIN, PASSWORD
 from locators import locators
 from selenium.webdriver.chrome.options import Options
+import psycopg2
+from utils.constants import *
 
 
 def pytest_addoption(parser):
@@ -80,6 +82,26 @@ def close(browser):
         print("error occurred", e)
     finally:
         pass
+
+
+@pytest.fixture(scope="function")
+def delete_temp_user():
+    """ Delete temp user from DB and update 'Invite Code'"""
+    yield close
+    con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
+    cur = con.cursor()
+    try:
+        cur.execute('DELETE FROM "user" WHERE username = %s', (TEMP_USER,))
+        print(f"\nTemp User {TEMP_USER} deleted. Total deleted rows:{cur.rowcount}")
+        cur.execute('UPDATE "INVITE_INFO" SET "ACTIVATED"=null WHERE "ID"=%s;', [36])
+        print("Invite code updated")
+    except Exception as e:
+        print("error occurred", e)
+    con.commit()
+    cur.close()
+    # close DB connection
+    con.close()
+    print("Database closed successfully")
 
 
 """ Read test data from file: 

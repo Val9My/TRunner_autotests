@@ -5,6 +5,7 @@ from pages.welcome_page import WelcomePage
 from pages.suites_info_page import SuitesPage
 from pages.about_page import AboutPage
 import pytest
+from utils.constants import *
 
 
 @pytest.mark.main
@@ -66,13 +67,13 @@ def test_input_login_password_and_signin(browser, parametrized_username, paramet
     assert welcome_page.is_element_seen(locators.WelcomePageLocators.INVALID_CRED_ERROR)
 
 
-@pytest.mark.main1
+@pytest.mark.main
 def test_smoke_workflow(browser, login, logout):
     """Test smoke workflow"""
     suites_page = SuitesPage(browser)
     suites_page.wait_new_page_load()  # need timer to wait until suites page loading
     suites_page.failed_1_value_click()
-    assert suites_page.is_element_seen(locators.SuitesPageLocators.FAILED_TC_1_1_LNK)
+    assert suites_page.is_element_seen(locators.SuitesPageLocators.FAILED_TC_1_1_LNK), "No filed test cases in 1st row"
 
 
 @pytest.mark.main
@@ -80,4 +81,21 @@ def test_sign_in_click_with_login_fixture(browser, login, logout):
     """Test if click "SIGN IN" that 'Suites Info' page opens """
     suites_page = SuitesPage(browser)
     suites_page.wait_new_page_load()
-    assert suites_page.get_title() == 'Suites Info', "Username=Valerii"
+    assert suites_page.get_title() == 'Suites Info', "Should open Test Suites page"
+
+
+@pytest.mark.main
+def test_sign_up_workflow_for_new_user(browser, delete_temp_user):
+    """Test 'Sign Up' workflow for new user (Temp User) """
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.sign_up_btn_in_click()
+    welcome_page.input_text_in_username_tb_up(TEMP_USER)
+    welcome_page.input_text_in_ado_token_tb_up(TEMP_TOKEN)
+    welcome_page.input_text_in_invite_code_tb_up(INV_CODE)
+    welcome_page.input_text_in_password_tb_up(TEMP_PASSW)
+    welcome_page.sign_up_btn_up_click()
+    welcome_page.input_text_in_username_tb_in(TEMP_USER)
+    welcome_page.input_text_in_password_tb_in(TEMP_PASSW)
+    welcome_page.sign_in_btn_in_click()
+    assert welcome_page.get_title() == 'Suites Info', "Should open Test Suites page"

@@ -140,7 +140,7 @@ class SuiteManagerPage(BasePageElement):
 
     def close_create_from_ado_query_window(self):
         "Close 'Create Test Suite from ADO Query' window"
-        close_icons= self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
+        close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
         close_icons[1].click()
 
     def close_create_empty_suite_window(self):

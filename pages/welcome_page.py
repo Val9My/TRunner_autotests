@@ -1,5 +1,4 @@
 import time
-
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
@@ -7,6 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import WelcomePageLocators
 from pages.base_page import BasePageElement
 from utils.constants import DEFAULT_WAIT_TIME
+import psycopg2
+from utils.constants import *
 
 
 class WelcomePage(BasePageElement):
@@ -36,6 +37,13 @@ class WelcomePage(BasePageElement):
         """ Click on the 'SIGN UP' button on the Main Page"""
         try:
             self.visible_element_click(WelcomePageLocators.SIGN_UP_BTN_IN)
+        except Exception as e:
+            print("Error while click 'SIGN UP' button:", e)
+
+    def sign_up_btn_up_click(self):
+        """ Click on the 'SIGN UP' button on the Main Page"""
+        try:
+            self.visible_element_click(WelcomePageLocators.SIGN_UP_BTN_UP)
         except Exception as e:
             print("Error while click 'SIGN UP' button:", e)
 
@@ -87,6 +95,10 @@ class WelcomePage(BasePageElement):
             self.visible_element_send_text(WelcomePageLocators.TOKEN_TB_UP, text)
         except Exception as e:
             print("Error while input text into 'ADO token' textbox on 'Sign Up' page:", e)
+
+
+
+
 
 
 
