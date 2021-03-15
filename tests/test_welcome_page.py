@@ -9,7 +9,7 @@ from utils.constants import *
 
 
 @pytest.mark.main
-def test_signin_btn_seen_on_signup(browser):
+def test_sign_in_btn_seen_on_signup(browser):
     """Test that 'Sign In' button is seen on "SIGN UP" page """
     welcome_page = WelcomePage(browser)
     welcome_page.load()
@@ -33,11 +33,11 @@ def test_about_us_page_is_open(browser):
     welcome_page = WelcomePage(browser)
     welcome_page.load()
     welcome_page.about_us_btn_click()
-    assert welcome_page.get_title() == locators.AboutPageLocators.ABOUT_TITLE
+    assert welcome_page.get_title() == locators.BasePageLocators.ABOUT_TITLE
 
 
 @pytest.mark.main
-def test_input_username_and_signin(browser, parametrized_username):
+def test_input_username_and_sign_in(browser, parametrized_username):
     """Test that error is seen after input only 'Username' and Enter """
     welcome_page = WelcomePage(browser)
     welcome_page.load()
@@ -47,7 +47,7 @@ def test_input_username_and_signin(browser, parametrized_username):
 
 
 @pytest.mark.main
-def test_input_password_and_signin(browser, parametrized_password):
+def test_input_password_and_sign_in(browser, parametrized_password):
     """Test that error is seen after input only 'Password' and Enter """
     welcome_page = WelcomePage(browser)
     welcome_page.load()
@@ -57,13 +57,14 @@ def test_input_password_and_signin(browser, parametrized_password):
 
 
 @pytest.mark.main
-def test_input_login_password_and_signin(browser, parametrized_username, parametrized_password):
+def test_input_login_password_and_sign_in(browser, parametrized_username, parametrized_password):
     """Test that error is seen after input invalid "Username' and 'Password' and Enter """
     welcome_page = WelcomePage(browser)
     welcome_page.load()
     welcome_page.input_text_in_username_tb_in(parametrized_username)
     welcome_page.input_text_in_password_tb_in(parametrized_password)
     welcome_page.sign_in_btn_in_click()
+    time.sleep(1)
     assert welcome_page.is_element_seen(locators.WelcomePageLocators.INVALID_CRED_ERROR)
 
 
@@ -85,6 +86,76 @@ def test_sign_in_click_with_login_fixture(browser, login, logout):
 
 
 @pytest.mark.main
+def test_trunner_card_seen_in_sign_up(browser):
+    """Test 'TRunner' logo and link seen on 'Sign Up' page """
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.sign_up_btn_in_click()
+    assert welcome_page.is_element_seen(locators.WelcomePageLocators.TRUNNER_UP_LNK), \
+        "Should be seen 'TRunner logo and link'"
+
+
+@pytest.mark.main
+def test_alert_sign_up_click_with_username(browser, parametrized_username, close):
+    """Test click 'Sign Up' button with only Username input in 'Sign Up' page"""
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.sign_up_btn_in_click()
+    welcome_page.input_text_in_username_tb_up(parametrized_username)
+    welcome_page.sign_up_btn_up_click()
+    alert_text = welcome_page.get_text_from_alert()
+    welcome_page.handling_alert()
+    assert alert_text == 'Invalid Invite Code. Please, double check it and try again.',\
+        "Should pops up alert window"
+
+
+@pytest.mark.main
+def test_alert_sign_up_click_with_username_and_ado_token(browser, parametrized_username, close):
+    """Test click 'Sign Up' button with 'Username' and 'ADO Token' input in 'Sign Up' page"""
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.sign_up_btn_in_click()
+    welcome_page.input_text_in_username_tb_up(parametrized_username)
+    welcome_page.input_text_in_ado_token_tb_up(parametrized_username)
+    welcome_page.sign_up_btn_up_click()
+    alert_text = welcome_page.get_text_from_alert()
+    welcome_page.handling_alert()
+    assert alert_text == 'Invalid Invite Code. Please, double check it and try again.', "Should pops up alert window"
+
+
+@pytest.mark.main
+def test_alert_sign_up_click_with_username_and_ado_token_and_invite_code(browser, parametrized_username, close):
+    """Test click 'Sign Up' button with 'Username' and 'ADO Token' and 'Invite Code' input in 'Sign Up' page"""
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.sign_up_btn_in_click()
+    welcome_page.input_text_in_username_tb_up(parametrized_username)
+    welcome_page.input_text_in_ado_token_tb_up(parametrized_username)
+    welcome_page.input_text_in_invite_code_tb_up(parametrized_username)
+    welcome_page.sign_up_btn_up_click()
+    alert_text = welcome_page.get_text_from_alert()
+    welcome_page.handling_alert()
+    assert alert_text == 'Invalid Invite Code. Please, double check it and try again.', "Should pops up alert window"
+
+
+@pytest.mark.main
+def test_alert_sign_up_click_with_username__ado_token__invite_code__password(browser, parametrized_username, close):
+    """Test click 'Sign Up' button with 'Username' and 'ADO Token' and 'Invite Code' and 'Password' in 'Sign Up' page"""
+    welcome_page = WelcomePage(browser)
+    welcome_page.load()
+    welcome_page.sign_up_btn_in_click()
+    welcome_page.input_text_in_username_tb_up(parametrized_username)
+    welcome_page.input_text_in_ado_token_tb_up(parametrized_username)
+    welcome_page.input_text_in_invite_code_tb_up(parametrized_username)
+    welcome_page.input_text_in_password_tb_up(TEMP_PASSW)
+    welcome_page.sign_up_btn_up_click()
+    alert_text = welcome_page.get_text_from_alert()
+    welcome_page.handling_alert()
+    assert alert_text == 'Invalid Invite Code. Please, double check it and try again.', "Should pops up alert window"
+
+
+@pytest.mark.main
+@pytest.mark.temp_user
 def test_sign_up_workflow_for_new_user(browser, delete_temp_user):
     """Test 'Sign Up' workflow for new user (Temp User) """
     welcome_page = WelcomePage(browser)
@@ -98,4 +169,6 @@ def test_sign_up_workflow_for_new_user(browser, delete_temp_user):
     welcome_page.input_text_in_username_tb_in(TEMP_USER)
     welcome_page.input_text_in_password_tb_in(TEMP_PASSW)
     welcome_page.sign_in_btn_in_click()
-    assert welcome_page.get_title() == 'Suites Info', "Should open Test Suites page"
+    assert welcome_page.get_user_name_from_hello() == 'TempUser', "Should be temp user 'TempUser'"
+
+

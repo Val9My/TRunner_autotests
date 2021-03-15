@@ -5,6 +5,8 @@ class BasePageLocators:
     TRUNNER_LNK = (By.CSS_SELECTOR, ".navbar-brand")
 
     NAVBAR = (By.CSS_SELECTOR, ".navbar-nav")
+
+    TRUNNER_CARD = (By.CSS_SELECTOR, "div.pricing-header")
     TEST_SUITES_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites']")
     SUITE_MANAGER_LNK = (By.CSS_SELECTOR, ".nav-link[href='/suites_manager']")
     ABOUT_URL = "https://trunner.herokuapp.com/about"
@@ -20,33 +22,27 @@ class BasePageLocators:
 class WelcomePageLocators:
     #WELCOME_URL = "http://127.0.0.1:5000/login?next=%2F"
     WELCOME_URL = "https://trunner.herokuapp.com/login?next=%2Fsuites"
+    TRUNNER_UP_LNK = (By.CSS_SELECTOR, ".right-panel .content p:first-child")
     ABOUT_US_BTN = (By.CSS_SELECTOR, ".content-logo [href='/about']")
     SIGN_UP_BTN_IN = (By.CSS_SELECTOR, "[class='container'] #sign-up-btn")
     SIGN_IN_BTN_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [type='submit']")
     USER_NAME_TB_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [name=username]")
     PASSWORD_TB_IN = (By.CSS_SELECTOR, "[class='container'] .sign-in-form [name=password]")
-    SIGN_UP_BTN_UP = (By.ID, "signup")
+    SIGN_UP_BTN_UP = (By.CSS_SELECTOR, ".btn#signup")
     SIGN_IN_BTN_UP = (By.ID, "sign-in-btn")
     USER_NAME_TB_UP = (By.ID, "username")
     TOKEN_TB_UP = (By.ID, "token")
     INVITE_TB_UP = (By.ID, "invite")
     PASSWORD_TB_UP = (By.ID, "password")
     INVALID_CRED_ERROR = (By.CSS_SELECTOR, ".notification.is-danger")
+    SIGN_UP_FORM = (By.CLASS_NAME, "sign-up-form")
 
 
 class AboutPageLocators:
     #ABOUT_URL = "http://127.0.0.1:5000/about"
     ABOUT_URL = "https://trunner.herokuapp.com/about"
-    ABOUT_TITLE = 'About'
-    TRUNNER_LNK =(By.CSS_SELECTOR, "nav a.navbar-brand")
-    ADD_SUITE_LNK=(By.CSS_SELECTOR, "ul li a[href='/suites']")
-
-    HELLO_USER_DPDN=(By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
-    SETTINGS_OPT=(By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
-    SETTINGS_OPT_NAMES=(By.CSS_SELECTOR, "a.dropdown-item")
-    LOGOUT_OPT=(By.CSS_SELECTOR, "a[href='/logout']")
-    NAVBAR=(By.CSS_SELECTOR, "ul>li[class='nav-item active']")
-    TRUNNER_CARD=(By.CSS_SELECTOR, "div.pricing-header")
+    ADD_SUITE_LNK = (By.CSS_SELECTOR, "ul li a[href='/suites']")
+    NAVBAR = (By.CSS_SELECTOR, "ul>li[class='nav-item active']")
 
 
 class SettingsPageLocators:

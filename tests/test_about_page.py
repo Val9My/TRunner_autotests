@@ -24,7 +24,7 @@ def test_trunner_card_is_visible(browser, close):
     """Test that trunner card is visible"""
     about_page = AboutPage(browser)
     about_page.load()
-    assert about_page.is_element_seen(locators.AboutPageLocators.TRUNNER_CARD)
+    assert about_page.is_element_seen(locators.BasePageLocators.TRUNNER_CARD)
 
 
 @pytest.mark.about
