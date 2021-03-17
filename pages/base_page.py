@@ -34,6 +34,19 @@ class BasePageElement(object):
         except Exception as e:
             print(locator, " in 'visible_element_click' - An Exception occurred:", e)
 
+    def visible_element_mb3_click(self, locator):
+        """ Method to click MB3 on element when it get visible"""
+        try:
+            chain = ActionChains(self.browser)
+            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            element = wait.until(EC.element_to_be_clickable(locator))
+            # element = wait.until(EC.visibility_of_element_located(element))
+            chain.context_click(element).perform()
+        except TimeoutException:
+            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(locator, " in 'visible_element_click' - An Exception occurred:", e)
+
     def visible_element_send_text(self, locator, text):
         """ Method to input text in element when it get visible"""
         try:
@@ -49,7 +62,8 @@ class BasePageElement(object):
         try:
             wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
             element = wait.until(EC.visibility_of_element_located(locator))
-            return element.get_attribute("value")
+            return element.text
+            #return element.get_attribute('value')
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:

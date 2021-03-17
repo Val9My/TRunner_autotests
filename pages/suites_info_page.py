@@ -30,6 +30,25 @@ class SuitesPage(BasePageElement):
         """Click on the "FAILED" value dropdown in the 1st row to see all failed test cases numbers"""
         self.visible_element_click(SuitesPageLocators.FAILED_1_DPDN)
 
+    def calculate_test_cases_value_as_sum_of_test_cases(self):
+        """Calculate number of test cases in test suite as sum of test cases in 1st row suite
+            TEST_CASES_VALUE = PASSED_1_DPDN + FAILED_1_DPDN + BLOCKED_1_DPDN + NOT_EXECUTED_1_VALUE"""
+        passed = int(self.visible_element_get_value(SuitesPageLocators.PASSED_1_DPDN))
+        failed = int(self.visible_element_get_value(SuitesPageLocators.FAILED_1_DPDN))
+        blocked = int(self.visible_element_get_value(SuitesPageLocators.BLOCKED_1_DPDN))
+        not_executed = int(self.visible_element_get_value(SuitesPageLocators.NOT_EXECUTED_1_VALUE))
+        t_c_sum_value = passed + failed + blocked + not_executed
+        return t_c_sum_value
+
+
+
+
+
+
+
+
+
+
 
 
 

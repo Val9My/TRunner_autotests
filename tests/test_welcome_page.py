@@ -64,10 +64,10 @@ def test_input_login_password_and_sign_in(browser, parametrized_username, parame
     welcome_page.input_text_in_username_tb_in(parametrized_username)
     welcome_page.input_text_in_password_tb_in(parametrized_password)
     welcome_page.sign_in_btn_in_click()
-    time.sleep(1)
     assert welcome_page.is_element_seen(locators.WelcomePageLocators.INVALID_CRED_ERROR)
 
 
+@pytest.mark.regression
 @pytest.mark.main
 def test_smoke_workflow(browser, login, logout):
     """Test smoke workflow"""
@@ -97,7 +97,7 @@ def test_trunner_card_seen_in_sign_up(browser):
 
 @pytest.mark.main
 def test_alert_sign_up_click_with_username(browser, parametrized_username, close):
-    """Test click 'Sign Up' button with only Username input in 'Sign Up' page"""
+    """Test click 'Sign Up' button with only 'Username' input in 'Sign Up' page"""
     welcome_page = WelcomePage(browser)
     welcome_page.load()
     welcome_page.sign_up_btn_in_click()
@@ -111,7 +111,7 @@ def test_alert_sign_up_click_with_username(browser, parametrized_username, close
 
 @pytest.mark.main
 def test_alert_sign_up_click_with_username_and_ado_token(browser, parametrized_username, close):
-    """Test click 'Sign Up' button with 'Username' and 'ADO Token' input in 'Sign Up' page"""
+    """Test click 'Sign Up' button with 'Username' + 'ADO Token' input in 'Sign Up' page"""
     welcome_page = WelcomePage(browser)
     welcome_page.load()
     welcome_page.sign_up_btn_in_click()

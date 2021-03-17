@@ -65,16 +65,18 @@ class SuiteManagerPage(BasePageElement):
 
     def click_checkbox_in_modal_add_window(self):
         """Select checkbox of test cases in 'Add Test Cases' modal window"""
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        new = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CHECKBOX_TC_MODALW))
-        new.click()
+        self.visible_element_click(locators.SuiteManagerPageLocators.CHECKBOX_TC_MODALW)
+        # wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        # new = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CHECKBOX_TC_MODALW))
+        # new.click()
 
     def close_add_test_modal_window(self):
         """Close 'Add to Suite' modal window"""
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        close_button = wait.until(
-            EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CLOSE_ADD_TEST_CASE_MODALW))
-        close_button.click()
+        self.visible_element_click(locators.SuiteManagerPageLocators.CLOSE_ADD_TEST_CASE_MODALW)
+        #wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+        #close_button = wait.until(
+        #    EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CLOSE_ADD_TEST_CASE_MODALW))
+        #close_button.click()
 
     def click_delete_button(self):
         """Click on the '-Delete' button """

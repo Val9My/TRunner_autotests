@@ -66,11 +66,12 @@ class SuitesPageLocators:
     DELETE_SUITE_OPT = (By.CSS_SELECTOR, ".custom-menu li[data-action='delete-suite']")
 
     """First row data (1st iteration)"""
+    FIRST_ROW = (By.CSS_SELECTOR, ".clickable-row:first-child")
     SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link")
     TEST_CASES_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(2)")
-    PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] p")
-    FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] p")
-    BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] p")
+    PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] ")  # p
+    FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] ")  # p
+    BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] ")  # p
     NOT_EXECUTED_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(6)")
     CREATED_BY_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(7)")
     CREATED_DATE_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:last-child")
