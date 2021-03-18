@@ -88,6 +88,12 @@ class SuiteManagerPage(BasePageElement):
         tbx = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.element_to_be_clickable(SuiteManagerPageLocators.SEARCH_FIELD))
         tbx.send_keys(text, Keys.RETURN)
 
+    def backspace_in_search_field(self):
+        """Clear text in 'Search for test case' textbox on Suite Manager Page"""
+        tbx = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(
+            EC.element_to_be_clickable(SuiteManagerPageLocators.SEARCH_FIELD))
+        tbx.send_keys(Keys.BACKSPACE)
+
     def click_create_suite_button(self):
         """Click on the  button 'Create_suite'"""
         create_suite_button = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.element_to_be_clickable(SuiteManagerPageLocators.CREATE_SUITE_DPDN))
@@ -120,3 +126,4 @@ class SuiteManagerPage(BasePageElement):
         """Close 'Copy Suite' window"""
         close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
         close_icons[3].click()
+
