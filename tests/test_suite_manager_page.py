@@ -1,10 +1,8 @@
 import time
-
 from locators import locators
 from pages.suite_manager_page import SuiteManagerPage
 import pytest
-
-from utils.constants import SEARCH_FOR_TEST_CASE
+from utils.constants import *
 
 
 @pytest.mark.trunner_brand
@@ -16,8 +14,8 @@ def test_trunner_link(browser, login, logout):
     assert browser.current_url == locators.SuitesPageLocators.SUITES_URL
 
 
-@pytest.mark.test_suite_selector_scenario1
-def test_suite_selector_selector_scenario1(browser, login, logout):
+@pytest.mark.test_suite_selector
+def test_suite_selector_scenario1(browser, login, logout):
     """Check selecting third option Nadiia - Test Design from test suites
     Expected result: first test case id 49256, name Frameworks - Interpretation View"""
     suites_manager_page = SuiteManagerPage(browser)
@@ -27,6 +25,27 @@ def test_suite_selector_selector_scenario1(browser, login, logout):
     assert suites_manager_page.get_id_tc_value(1) == 49256\
            and suites_manager_page.get_tc_title(1) == 'Frameworks - Interpretation View'
 
+@pytest.mark.test_suite_selector
+def test_suite_selector_scenario2(browser, login, logout):
+    """Check selecting fourth option Kulpat-Linux-20.6.5 from test suites
+    Expected result: first test case id 49303, name Shortcut keys for Pseudo Wells Interpretation View in Map Editor."""
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.suites_option_select_by_index(3)
+    suites_manager_page.tc_checkbox_option_click(1)
+    assert suites_manager_page.get_id_tc_value(1) == 49303\
+           and suites_manager_page.get_tc_title(1) == 'Shortcut keys for Pseudo Wells Interpretation View in Map Editor.'
+
+@pytest.mark.test_suite_selector
+def test_suite_selector_scenario3(browser, login, logout):
+    """Check selecting 6th option Kiran-Windows-20.6.4 from test suites
+    Expected result: first test case id 49307, name Shortcut keys for Vertical Image Interpretation View in Section Editor."""
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.suites_option_select_by_index(5)
+    suites_manager_page.tc_checkbox_option_click(1)
+    assert suites_manager_page.get_id_tc_value(1) == 49307 \
+            and suites_manager_page.get_tc_title(1) == 'Shortcut keys for Vertical Image Interpretation View in Section Editor.'
 
 @pytest.mark.add_test_case_modal_window
 def test_suite_add_test_case_modal_window_scenario1(browser, login, logout):
@@ -58,15 +77,38 @@ def test_handling_alert_on_delete_scenario1(browser, login, logout):
 
 
 @pytest.mark.search_for_test_case
-def test_search_for_test_case(browser, login, logout):
+def test_search_for_test_case_scenario1(browser, login, logout):
     """Checking search field.  From 'Nadiia - Test Design' entering in search field text 'inventory'"
     "Expected result: four test cases are found"""
     suites_manager_page = SuiteManagerPage(browser)
     suites_manager_page.load()
-    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE)
+    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE1)
     cases = browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
     assert len(cases) == 4
 
+@pytest.mark.search_for_test_case
+def test_search_for_test_case_scenario2(browser, login, logout):
+    """Checking search field.  From 'Kiran-Windows-20.6.4' entering in search field text 'short',then clear text."
+    "Expected result: six test cases are found"""
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.suites_option_select_by_index(5)
+    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE2)
+    for i in range(len(SEARCH_FOR_TEST_CASE2)):
+        suites_manager_page.backspace_in_search_field()
+    cases = browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
+    assert len(cases) == 6
+
+@pytest.mark.search_for_test_case
+def test_search_for_test_case_scenario3(browser, login, logout):
+    """Checking search field.  From 'Kiran-Windows-20.6.4' entering in search field text 'short'."
+    "Expected result: two test cases are found"""
+    suites_manager_page = SuiteManagerPage(browser)
+    suites_manager_page.load()
+    suites_manager_page.suites_option_select_by_index(5)
+    suites_manager_page.input_text_in_search_field(SEARCH_FOR_TEST_CASE2)
+    cases = browser.find_elements(*locators.SuiteManagerPageLocators.FILTRATED_CASES)
+    assert len(cases) == 2
 
 @pytest.mark.search_for_test_case
 def test_search_for_test_case_parametrized(browser, login, logout, search_test_case):
