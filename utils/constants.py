@@ -16,4 +16,5 @@ TEMP_PASSW = str(lines[9])
 TEMP_TOKEN = str(lines[10])
 TEMP_ROLE = str(lines[11])
 
-SEARCH_FOR_TEST_CASE = "inventory"
+SEARCH_FOR_TEST_CASE1 = "inventory"
+SEARCH_FOR_TEST_CASE2='short'
