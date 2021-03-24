@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -10,6 +12,7 @@ from locators import locators
 from selenium.webdriver.chrome.options import Options
 import psycopg2
 from utils.constants import *
+import  time
 
 
 def pytest_addoption(parser):
@@ -40,8 +43,10 @@ def browser(request):
 
 
 def take_screenshot(browser):
-    screenshots_dir = "D:\\Reports\\Auto_tests"
-    screenshot_file_path = "{}/screenshot.png".format(screenshots_dir)
+    screenshots_dir = "D:\\Reports\\Auto_tests\\"
+    test_case_name = os.environ.get('PYTEST_CURRENT_TEST').split(':')[-1].split(' ')[0]
+    screenshot_time_id = test_case_name + "_" + time.strftime("%Y-%m-%d-%H-%M-%S")
+    screenshot_file_path = screenshots_dir + screenshot_time_id + ".png"
     browser.save_screenshot(screenshot_file_path)
 
 

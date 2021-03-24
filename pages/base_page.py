@@ -57,13 +57,23 @@ class BasePageElement(object):
         except Exception as e:
             print(locator, " in 'visible_element_send_text' - An Exception occurred:", e)
 
-    def visible_element_get_value(self, locator):
+    def visible_element_get_text(self, locator):
         """ Method to get text from element when it get visible"""
         try:
             wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
             element = wait.until(EC.visibility_of_element_located(locator))
             return element.text
-            #return element.get_attribute('value')
+        except TimeoutException:
+            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(locator, " in 'visible_element_get_value' - An Exception occurred:", e)
+
+    def visible_element_get_value(self, locator):
+        """ Method to get 'value' from element when it get visible"""
+        try:
+            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            element = wait.until(EC.visibility_of_element_located(locator))
+            return element.get_attribute('value')
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:

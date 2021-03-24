@@ -25,6 +25,7 @@ def test_suite_selector_scenario1(browser, login, logout):
     assert suites_manager_page.get_id_tc_value(1) == 49256\
            and suites_manager_page.get_tc_title(1) == 'Frameworks - Interpretation View'
 
+
 @pytest.mark.test_suite_selector
 def test_suite_selector_scenario2(browser, login, logout):
     """Check selecting fourth option Kulpat-Linux-20.6.5 from test suites

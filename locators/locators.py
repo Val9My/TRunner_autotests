@@ -81,7 +81,8 @@ class SuitesPageLocators:
     BLOCKED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
 
 
-class TestSuitePageLocators:
+class CasesPageLocators:
+    CASES_LNK = "https://trunner.herokuapp.com/cases/26" # 26 - suite number
     RUN_TEST_BTN = (By.ID, "runCase")
     STATISTICS_BTN = (By.ID, "statCase")
     CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse [class='nav-link']")

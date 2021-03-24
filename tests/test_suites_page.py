@@ -1,11 +1,9 @@
 import time
-
 from locators import locators
 from pages.welcome_page import WelcomePage
 from pages.suites_info_page import SuitesPage
 from locators.locators import SuitesPageLocators
 import pytest
-
 from utils.constants import LOGIN, PASSWORD
 
 
@@ -32,12 +30,12 @@ def test_cases_value_as_sum_of_test_cases_1st_row(browser, login, logout):
     """Test that "Test Cases" value is equal to sum of test cases in 1st row suite
         TEST_CASES_VALUE = PASSED_1_DPDN + FAILED_1_DPDN + BLOCKED_1_DPDN + NOT_EXECUTED_1_VALUE"""
     suites_page = SuitesPage(browser)
-    t_c_value = int(suites_page.visible_element_get_value(SuitesPageLocators.TEST_CASES_VALUE))
+    t_c_value = int(suites_page.visible_element_get_text(SuitesPageLocators.TEST_CASES_VALUE))
     sum_value = suites_page.calculate_test_cases_value_as_sum_of_test_cases()
     assert t_c_value == sum_value, "'Test Case' value in 1st row suite"
 
 
-@pytest.mark.main1
+@pytest.mark.main
 def test_1st_row_suite_mb3_click(browser, login, logout):
     """Click MB3 on 1st row suite to see context menu"""
     suites_page = SuitesPage(browser)
