@@ -1,25 +1,46 @@
 import pytest
+import time
 from locators.locators import RunTestPageLocators
 from pages.base_page import BasePageElement
 from locators.locators import SuitesPageLocators
+from pages.cases_page import CasesPage
 from pages.suites_info_page import SuitesPage
 from pages.run_test_page import RunTestPage
 
 
-@pytest.mark.main
-def test_open_run_test_page_for_1st_test(browser, login, logout):
+def open_run_test_page_for_1st_test(browser):
     suites_page = SuitesPage(browser)
     suites_page.wait_new_page_load()
-    suites_page.test_suites_lnk_click()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    cases_page.run_test_btn_click()
+    cases_page.wait_new_page_load()
 
 
 @pytest.mark.main
-def test_run_1st_case(browser, login, logout):
+def test_back_to_suite_click(browser, login, logout):
+    """Test that 'Cases' page opened after 'Back to Suite' icon in 'Run' page"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    case_title = cases_page.get_title()
+    cases_page.run_test_btn_click()
+    cases_page.wait_new_page_load()
     run_test_page = RunTestPage(browser)
-    run_test_page.load("https://trunner.herokuapp.com/run/26/754")
+    run_test_page.back_to_suite_btn_click()
     run_test_page.wait_new_page_load()
-    run_test_page.get_test_case_name()
-    title = run_test_page.get_test_case_name()
-    status = run_test_page.get_test_status()
+    assert run_test_page.get_title() == case_title, "Should be 'Cases' page"
 
+
+@pytest.mark.main1
+def test_info_icon_click(browser, login, logout):
+    """Test that options seen if click 'Info' icon"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.info_icon_click()
 

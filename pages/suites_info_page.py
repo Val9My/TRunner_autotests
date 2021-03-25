@@ -23,7 +23,7 @@ class SuitesPage(BasePageElement):
 
     def get_title(self):
         title = self.browser.title
-        print(time.strftime("%Y-%m-%d | %H:%M:%S ") + "Suites Page title = " + str(title))
+        #print(time.strftime("%Y-%m-%d | %H:%M:%S ") + "Suites Page title = " + str(title))
         return title
 
     def failed_1_value_click(self):

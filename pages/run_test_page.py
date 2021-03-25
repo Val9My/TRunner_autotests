@@ -35,7 +35,7 @@ class RunTestPage(BasePageElement):
 
     def info_icon_click(self):
         """Click on 'I' icon on 'Run Test' page"""
-        self.visible_element_click(RunTestPageLocators.REPORT_BUG_BTN)
+        self.visible_element_click(RunTestPageLocators.INFO_ICON)
 
     def test_status_dpdn_click(self):
         """Click on test case status dropdown on 'Run Test' page"""
