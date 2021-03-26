@@ -19,6 +19,7 @@ def open_run_test_page_for_1st_test(browser):
     cases_page.wait_new_page_load()
 
 
+@pytest.mark.smoke
 @pytest.mark.main
 def test_back_to_suite_click(browser, login, logout):
     """Test that 'Cases' page opened after 'Back to Suite' icon in 'Run' page"""
@@ -37,10 +38,13 @@ def test_back_to_suite_click(browser, login, logout):
     assert run_test_page.get_title() == case_title, "Should be 'Cases' page"
 
 
-@pytest.mark.main1
+@pytest.mark.main
 def test_info_icon_click(browser, login, logout):
-    """Test that options seen if click 'Info' icon"""
+    """Test that seen options for popups 'Info' icon options are the same as in 'Info' icon text """
     open_run_test_page_for_1st_test(browser)
     run_test_page = RunTestPage(browser)
     run_test_page.info_icon_click()
+    text = run_test_page.info_icon_get_text()
+    tooltip_text = run_test_page.info_tooltip_get_text()
+    assert text == tooltip_text
 
