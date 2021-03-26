@@ -150,6 +150,7 @@ class RunTestPageLocators:
     SAVE_AND_CLOSE_BTN = (By.CSS_SELECTOR, ".nav-link#saveResultClose")
     REPORT_BUG_BTN = (By.CSS_SELECTOR, ".nav-link[href$='create/bug']")
     INFO_ICON = (By.CSS_SELECTOR, ".nav-link .help-icon")
+    INFO_TOOLTIP = (By.CSS_SELECTOR, "div.bs-popover-left")
     BACK_TO_SUITE_BTN = (By.CSS_SELECTOR, ".nav-link#backToSuite")
 
     TC_TITLE = (By.CSS_SELECTOR, ".col-md-10")

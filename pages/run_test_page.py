@@ -14,7 +14,7 @@ class RunTestPage(BasePageElement):
     def get_title(self):
         """Return title of the page"""
         title = self.browser.title
-        #print(f"Run Test Page title = {str(title)}")
+        # print(f"Run Test Page title = {str(title)}")
         return title
 
     def save_btn_click(self):
@@ -37,6 +37,25 @@ class RunTestPage(BasePageElement):
         """Click on 'I' icon on 'Run Test' page"""
         self.visible_element_click(RunTestPageLocators.INFO_ICON)
 
+    def info_icon_get_text(self):
+        """Get text from 'I' info icon"""
+        i_text = self.find_element(RunTestPageLocators.INFO_ICON).get_attribute('data-content')
+        i_text = i_text.replace("<br />", "")
+        i_text = i_text.replace("  ", "")
+        i_text = i_text.replace("�️", "\n�")
+        return i_text
+
+    def info_tooltip_get_text(self):
+        """Get text from popover 'I' icon tooltip"""
+        popover_text = self.find_element(RunTestPageLocators.INFO_TOOLTIP).text
+        return popover_text
+
+
+
+
+    def info_icon_tooltip_is_visible(self):
+        self.is_element_seen(RunTestPageLocators.INFO_TOOLTIP)
+
     def test_status_dpdn_click(self):
         """Click on test case status dropdown on 'Run Test' page"""
         self.visible_element_click(RunTestPageLocators.TC_STATUS_DPDN)
@@ -58,6 +77,3 @@ class RunTestPage(BasePageElement):
     def failed_btn_1_step_click(self):
         """Click on 'Failed' button for the 1st step on 'Run Test' page"""
         self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_FAILED_STATUS)
-
-
-

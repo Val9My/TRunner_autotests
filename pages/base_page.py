@@ -22,11 +22,23 @@ class BasePageElement(object):
         print(time.strftime("%Y-%m-%d | %H:%M:%S ") + "Page title = " + str(title))
         return title
 
-    def visible_element_click(self, locator):
-        """ Method to click on element when it get visible"""
+    def find_element(self, locator):
+        """Method to find visible element"""
         try:
             wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
             element = wait.until(EC.element_to_be_clickable(locator))
+            return element
+        except TimeoutException:
+            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(locator, " in 'find_element' - An Exception occurred:", e)
+
+    def visible_element_click(self, locator):
+        """ Method to click on element when it get visible"""
+        try:
+            #wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            #element = wait.until(EC.element_to_be_clickable(locator))
+            element = self.find_element(locator)
             # element = wait.until(EC.visibility_of_element_located(element))
             element.click()
         except TimeoutException:
@@ -38,8 +50,7 @@ class BasePageElement(object):
         """ Method to click MB3 on element when it get visible"""
         try:
             chain = ActionChains(self.browser)
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            element = wait.until(EC.element_to_be_clickable(locator))
+            element = self.find_element(locator)
             # element = wait.until(EC.visibility_of_element_located(element))
             chain.context_click(element).perform()
         except TimeoutException:
@@ -50,8 +61,7 @@ class BasePageElement(object):
     def visible_element_send_text(self, locator, text):
         """ Method to input text in element when it get visible"""
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            wait.until(EC.visibility_of_element_located(locator)).send_keys(text)
+            self.find_element(locator).send_keys(text)
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
@@ -60,8 +70,7 @@ class BasePageElement(object):
     def visible_element_get_text(self, locator):
         """ Method to get text from element when it get visible"""
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            element = wait.until(EC.visibility_of_element_located(locator))
+            element = self.find_element(locator)
             return element.text
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
@@ -71,8 +80,7 @@ class BasePageElement(object):
     def visible_element_get_value(self, locator):
         """ Method to get 'value' from element when it get visible"""
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            element = wait.until(EC.visibility_of_element_located(locator))
+            element = self.find_element(locator)
             return element.get_attribute('value')
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
@@ -110,8 +118,8 @@ class BasePageElement(object):
     def get_user_name_from_hello(self):
         """ Get username in 'Hello, user' dropdown """
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            user = wait.until(EC.visibility_of_element_located(BasePageLocators.HELLO_USER_DPDN)).text.partition(' ')[2]
+
+            user = self.find_element(BasePageLocators.HELLO_USER_DPDN).text.partition(' ')[2]
             return user
         except TimeoutException:
             print(f" 'Hello, user' dropdown not found after {DEFAULT_WAIT_TIME} seconds")
