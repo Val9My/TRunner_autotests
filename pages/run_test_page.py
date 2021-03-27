@@ -50,19 +50,19 @@ class RunTestPage(BasePageElement):
         popover_text = self.find_element(RunTestPageLocators.INFO_TOOLTIP).text
         return popover_text
 
-
-
-
     def info_icon_tooltip_is_visible(self):
         self.is_element_seen(RunTestPageLocators.INFO_TOOLTIP)
 
-    def test_status_dpdn_click(self):
+    def step_1_double_click(self):
+        self.visible_element_double_click(RunTestPageLocators.TC_1ST_STEP_ROW)
+
+    def case_status_dpdn_click(self):
         """Click on test case status dropdown on 'Run Test' page"""
         self.visible_element_click(RunTestPageLocators.TC_STATUS_DPDN)
 
-    def get_test_status(self):
+    def get_case_status(self):
         """Get the Status of test case"""
-        status = self.visible_element_get_value(RunTestPageLocators.TC_STATUS_OPT)
+        status = self.visible_element_get_text(RunTestPageLocators.TC_STATUS_OPT)
         return status
 
     def get_test_case_name(self):
@@ -70,10 +70,17 @@ class RunTestPage(BasePageElement):
         name = self.visible_element_get_text(RunTestPageLocators.TC_TITLE)
         return name
 
+    def is_saved_message_seen(self):
+        """Check that 'SAVED' message popup"""
+        if self.is_element_seen(RunTestPageLocators.SAVED_MESSAGE):
+            return True
+        else:
+            print("'SAVED' message not pop up")
+
     def passed_btn_1_step_click(self):
         """Click on 'Passed' button for the 1st step on 'Run Test' page"""
-        self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_PASSED_STATUS)
+        self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_PASSED_BTN)
 
     def failed_btn_1_step_click(self):
         """Click on 'Failed' button for the 1st step on 'Run Test' page"""
-        self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_FAILED_STATUS)
+        self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_FAILED_BTN)

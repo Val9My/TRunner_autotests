@@ -1,5 +1,7 @@
+from selenium.webdriver.support.expected_conditions import staleness_of
+
 from utils.constants import DEFAULT_WAIT_TIME
-from selenium.common.exceptions import TimeoutException, ElementNotVisibleException
+from selenium.common.exceptions import TimeoutException, ElementNotVisibleException, StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -27,6 +29,7 @@ class BasePageElement(object):
         try:
             wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
             element = wait.until(EC.element_to_be_clickable(locator))
+            # element = wait.until(EC.visibility_of_element_located(element))
             return element
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
@@ -36,10 +39,7 @@ class BasePageElement(object):
     def visible_element_click(self, locator):
         """ Method to click on element when it get visible"""
         try:
-            #wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            #element = wait.until(EC.element_to_be_clickable(locator))
             element = self.find_element(locator)
-            # element = wait.until(EC.visibility_of_element_located(element))
             element.click()
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
@@ -56,7 +56,18 @@ class BasePageElement(object):
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_click' - An Exception occurred:", e)
+            print(locator, " in 'visible_element_mb3_click' - An Exception occurred:", e)
+
+    def visible_element_double_click(self, locator):
+        """ Method to click MB3 on element when it get visible"""
+        try:
+            chain = ActionChains(self.browser)
+            element = self.find_element(locator)
+            chain.double_click(element).perform()
+        except TimeoutException:
+            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(locator, " in 'visible_element_double_click' - An Exception occurred:", e)
 
     def visible_element_send_text(self, locator, text):
         """ Method to input text in element when it get visible"""
@@ -160,11 +171,15 @@ class BasePageElement(object):
 
     def wait_new_page_load(self):
         """ Check that current page URL changes to new """
+        #curr_url = self.browser.find_element_by_tag_name('html')
         curr_url = self.browser.current_url  # get current URL
         try:
-            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.url_changes(curr_url))
-        except Exception as e:
-            print("error while waiting for loading new page:", e)
+            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(staleness_of(curr_url))  # (EC.url_changes(curr_url))
+        #except Exception as e:
+            #print(" Just loading new page:", e)
+        except AttributeError:
+            #print(" Just loading new page.....")
+            pass
         finally:
             pass
         self.browser.get(self.browser.current_url)  # set new URL

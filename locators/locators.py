@@ -146,7 +146,7 @@ class SuiteManagerPageLocators:
 
 
 class RunTestPageLocators:
-    SAVE_BTN = (By.CSS_SELECTOR, ".test_case_row:first-of-type .tcid")
+    SAVE_BTN = (By.CSS_SELECTOR, ".nav-link#saveResult")
     SAVE_AND_CLOSE_BTN = (By.CSS_SELECTOR, ".nav-link#saveResultClose")
     REPORT_BUG_BTN = (By.CSS_SELECTOR, ".nav-link[href$='create/bug']")
     INFO_ICON = (By.CSS_SELECTOR, ".nav-link .help-icon")
@@ -154,6 +154,8 @@ class RunTestPageLocators:
     BACK_TO_SUITE_BTN = (By.CSS_SELECTOR, ".nav-link#backToSuite")
 
     TC_TITLE = (By.CSS_SELECTOR, ".col-md-10")
+
+    SAVED_MESSAGE = (By.CSS_SELECTOR, "#saveSuccess.inner")
 
     TC_STATUS_DPDN = (By.CSS_SELECTOR, ".col-md-2 #testStatus")
     TC_STATUS_OPT = (By.CSS_SELECTOR, ".col-md-2 #testStatus option:first-child")
@@ -167,8 +169,8 @@ class RunTestPageLocators:
     TC_1ST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:first-child")
     TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
     TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
-    TC_1ST_STEP_PASSED_STATUS = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
-    TC_1ST_STEP_FAILED_STATUS = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
+    TC_1ST_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
+    TC_1ST_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
     TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
     TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
 

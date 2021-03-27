@@ -1,5 +1,5 @@
 
-DEFAULT_WAIT_TIME = 10
+DEFAULT_WAIT_TIME = 15
 
 with open('D:/credls.txt', 'r') as f:
     lines = f.read().splitlines()
