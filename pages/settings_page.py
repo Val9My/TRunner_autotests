@@ -1,12 +1,6 @@
 import time
-
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import SettingsPageLocators
 from pages.base_page import BasePageElement
-from utils.constants import DEFAULT_WAIT_TIME
 
 
 class SettingsPage(BasePageElement):
@@ -25,3 +19,12 @@ class SettingsPage(BasePageElement):
         print(time.strftime("%Y-%m-%d | %H:%M:%S ") + "Settings Page title = " + str(title))
         return title
 
+    def update_token_btn_click(self):
+        """Click on 'Update token' button on 'Settings' page"""
+        self.visible_element_click(SettingsPageLocators.UPDATE_TOKEN_BTN)
+
+    def update_password_btn_click(self):
+        """Click on 'Update password' button on 'Settings' page"""
+        self.visible_element_click(SettingsPageLocators.UPDATE_PASSWORD_BTN)
+
+    
