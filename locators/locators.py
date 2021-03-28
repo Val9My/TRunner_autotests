@@ -54,7 +54,8 @@ class SettingsPageLocators:
     CONFIRM_PASSWORD_TB = (By.ID, "newPassConfirm")
     UPDATE_TOKEN_BTN = (By.ID, "save")
     UPDATE_PASSWORD_BTN = (By.ID, "savePassword")
-
+    SAVE_FAILED = (By.ID, "saveFailed")
+    SAVE_SUCCESS = (By.ID, "saveSuccess")
 
 class SuitesPageLocators:
     SUITES_URL = "https://trunner.herokuapp.com/suites"
