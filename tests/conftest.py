@@ -72,7 +72,7 @@ def logout(browser):
         wait.until(EC.visibility_of_element_located(locators.BasePageLocators.HELLO_USER_DPDN)).click()
         wait.until(EC.visibility_of_element_located(locators.BasePageLocators.LOGOUT_OPT)).click()
     except Exception as e:
-        print("error occurred", e)
+        print("error occurred in logout", e)
     finally:
         pass
 

@@ -16,7 +16,11 @@ def test_run_1st_case(browser, login, logout):
     cases_page.click_first_case()
     cases_page.run_test_btn_click()
     run_test_page = RunTestPage(browser)
-    assert run_test_page.get_title() == run_test_page.get_test_case_name()
+    run_test_page.wait_new_page_load()
+    run_title = run_test_page.get_title()
+    run_case_name = run_test_page.get_test_case_name()
+    assert run_title == run_case_name, "Should be 'Run' page"
+    run_test_page.back_to_suite_btn_click()
 
 
 
