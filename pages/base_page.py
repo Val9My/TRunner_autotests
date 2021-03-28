@@ -161,7 +161,10 @@ class BasePageElement(object):
             pass
         self.browser.get(self.browser.current_url)  # set new URL
 
-
-
+    def input_text_in_field(self, locator, text):
+        """Input some text in fields"""
+        tbx = WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(
+                EC.element_to_be_clickable(locator))
+        tbx.send_keys(text, Keys.RETURN)
 
 
