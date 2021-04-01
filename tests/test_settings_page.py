@@ -38,3 +38,12 @@ def test_password_match(browser,login,logout):
     settings_page.update_password_btn_click()
     assert settings_page.is_element_seen(SettingsPageLocators.SAVE_SUCCESS) and \
            settings_page.visible_element_get_text(SettingsPageLocators.SAVE_SUCCESS)=="Saved"
+
+
+@pytest.mark.title
+def test_title_info(browser,login,logout):
+    """Check that title is displayed and it is consistent"""
+    settings_page = SettingsPage(browser)
+    settings_page.load()
+    text = settings_page.visible_element_get_text(SettingsPageLocators.SETTINGS_TITLE)
+    assert text=="KYahorlytska's profile settings"
