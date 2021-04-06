@@ -82,16 +82,18 @@ class BasePageElement(object):
         """ Method to get text from element when it get visible"""
         try:
             element = self.find_element(locator)
+            print("Text =", element.text)
             return element.text
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_get_value' - An Exception occurred:", e)
+            print(locator, " in 'visible_element_get_text' - An Exception occurred:", e)
 
     def visible_element_get_value(self, locator):
         """ Method to get 'value' from element when it get visible"""
         try:
             element = self.find_element(locator)
+            print('Value =', element.get_attribute('value'))
             return element.get_attribute('value')
         except TimeoutException:
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")

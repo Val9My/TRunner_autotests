@@ -32,3 +32,9 @@ class CasesPage(BasePageElement):
         """Get 1st test case title"""
         name = self.visible_element_get_text(CasesPageLocators.CASE_NAME)
         return name
+
+    def get_first_case_tester_name(self):
+        """Get 1st test case tester name"""
+        name = self.visible_element_get_text(CasesPageLocators.TESTER_NAME)
+        return name
+

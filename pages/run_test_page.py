@@ -62,7 +62,8 @@ class RunTestPage(BasePageElement):
 
     def get_case_status(self):
         """Get the Status of test case"""
-        status = self.visible_element_get_text(RunTestPageLocators.TC_STATUS_OPT)
+        status = self.visible_element_get_value(RunTestPageLocators.TC_STATUS_OPT)
+        print("STATUS =", status)
         return status
 
     def get_test_case_name(self):
