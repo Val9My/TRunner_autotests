@@ -79,7 +79,7 @@ class BasePageElement(object):
             print(locator, " in 'visible_element_send_text' - An Exception occurred:", e)
 
     def visible_element_get_text(self, locator):
-        """ Method to get text from element when it get visible"""
+        """ Method to get 'text' from element when it get visible"""
         try:
             element = self.find_element(locator)
             print("Text =", element.text)
@@ -99,6 +99,17 @@ class BasePageElement(object):
             print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
             print(locator, " in 'visible_element_get_value' - An Exception occurred:", e)
+
+    def visible_element_get_class(self, locator):
+        """ Method to get 'class' value from element when it get visible"""
+        try:
+            element = self.find_element(locator)
+            print("Class =", element.get_attribute('class'))
+            return element.get_attribute('class')
+        except TimeoutException:
+            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(locator, " in 'visible_element_get_class' - An Exception occurred:", e)
 
     def trunner_lnk_click(self):
         """ Click on 'TRunner' link"""

@@ -35,6 +35,11 @@ class CasesPage(BasePageElement):
 
     def get_first_case_tester_name(self):
         """Get 1st test case tester name"""
-        name = self.visible_element_get_text(CasesPageLocators.TESTER_NAME)
-        return name
+        tester_name = self.visible_element_get_text(CasesPageLocators.TESTER_NAME)
+        return tester_name
+
+    def get_first_case_status(self):
+        """Get 1st test case tester name"""
+        case_status = self.visible_element_get_text(CasesPageLocators.CASE_STATE)
+        return case_status
 
