@@ -1,8 +1,52 @@
 import pytest
+
+from locators import locators
 from locators.locators import SettingsPageLocators
 from pages.settings_page import SettingsPage
-from utils.constants import TEMP_TOKEN, DB_PASSWORD, TEMP_PASSW, PASSWORD
+from utils.constants import TEMP_TOKEN, DB_PASSWORD, TEMP_PASSW, PASSWORD, LOGIN
 
+
+@pytest.mark.navbar
+def test_username(browser, login, logout):
+    """ Test that username is correct in 'Hello' dropdown """
+    settings_page = SettingsPage(browser)
+    settings_page.load()
+    username = settings_page.get_user_name_from_hello()
+    assert username == LOGIN
+
+@pytest.mark.navbar
+def test_trunner_link_logon_user(browser, login, close):
+    """Test that Trunner_link is clickable and redirect user to the Suites(if user is logon)"""
+    settings_page = SettingsPage(browser)
+    settings_page.load()
+    settings_page.trunner_lnk_click()
+    assert browser.current_url == locators.SuitesPageLocators.SUITES_URL
+
+
+@pytest.mark.navbar
+def test_add_suite_lnk(browser, login, close):
+    """Test that Add_suite_lnk is clickable and redirecting user to the suites page if user login"""
+    settings_page = SettingsPage(browser)
+    settings_page.load()
+    settings_page.test_suites_lnk_click()
+    assert browser.current_url == locators.SuitesPageLocators.SUITES_URL
+
+
+@pytest.mark.navbar
+def test_manage_suite_lnk(browser, login, close):
+    """Test that Manage_suite_lnk is clickable and redirecting user to the suites manager page if user login"""
+    settings_page = SettingsPage(browser)
+    settings_page.load()
+    settings_page.suite_manager_lnk_click()
+    assert browser.current_url == locators.SuiteManagerPageLocators.SUITE_MANAGER_PAGE_URL
+
+@pytest.mark.navbar
+def test_username(browser, login, logout):
+    """ Test that username is correct in 'Hello' dropdown """
+    settings_page = SettingsPage(browser)
+    settings_page.load()
+    username = settings_page.get_user_name_from_hello()
+    assert username == LOGIN
 
 @pytest.mark.token_input_test
 def test_incorrect_token(browser,login,logout):
