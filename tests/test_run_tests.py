@@ -93,7 +93,7 @@ def test_report_bug(browser, login, close):
     """Test after 'Report a bug' button click in 'Run' page - 'ADO' page opened"""
     open_run_test_page_for_1st_test(browser)
     run_test_page = RunTestPage(browser)
-    run_title = run_test_page.get_title()
+    #run_title = run_test_page.get_title()
     run_test_page.report_a_bug_btn_click()
     run_test_page.wait_new_page_load()
     page_title = run_test_page.get_title()
@@ -146,17 +146,195 @@ def test_check_saved_message_seen_after_save_btn_click(browser, login, logout):
     run_test_page.back_to_suite_btn_click()
 
 
-@pytest.mark.todo
-def test_failed_case_status_seen_if_fail_step(browser, login, logout):
+@pytest.mark.main
+def test_click_passed_btn_is_active_for_1st_step(browser, login, logout):
+    """Check that 'Passed' button is active and focus after click"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.passed_btn_1_step_click()
+    assert 'focus active' in run_test_page.visible_element_get_class(RunTestPageLocators.TC_1ST_STEP_PASSED_BTN), \
+        " 'focus active' should be in class"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_click_passed_btn_is_active_for_1st_step_after_save(browser, login, logout):
+    """Check that 'Passed' button is active after click and save"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.passed_btn_1_step_click()
+    run_test_page.save_btn_click()
+    passed_class = run_test_page.visible_element_get_class(RunTestPageLocators.TC_1ST_STEP_PASSED_BTN)
+    status = run_test_page.get_case_status()
+    assert 'active' in passed_class and 'focus' not in passed_class\
+        and status == '✅  Passed', \
+        " only 'active' should be in class"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_click_failed_btn_is_active_for_1st_step(browser, login, logout):
+    """Check that 'Failed' button is active and focus after click"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.failed_btn_1_step_click()
+    failed_class = run_test_page.visible_element_get_class(RunTestPageLocators.TC_1ST_STEP_FAILED_BTN)
+    assert 'focus active' in failed_class, " 'focus active' should be in class"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_case_status_failed_if_click_fail_step_and_save(browser, login, logout):
     """Check that 'Failed' test case status seen after 'Fail' button clicked for 1st step"""
     open_run_test_page_for_1st_test(browser)
     run_test_page = RunTestPage(browser)
     run_test_page.failed_btn_1_step_click()
     run_test_page.save_btn_click()
-    time.sleep(5)
     status = run_test_page.get_case_status()
-    assert status == '❌', "Status should be 'Failed' for test case"
+    failed_class = run_test_page.visible_element_get_class(RunTestPageLocators.TC_1ST_STEP_FAILED_BTN)
+    assert 'active' in failed_class and 'focus' not in failed_class\
+        and status == '❌  Failed', "Status should be 'Failed' for test case"
     run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_set_case_status_blocked(browser, login, logout):
+    """Set 'Blocked' test case status"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.set_case_status('blocked')
+    status = run_test_page.get_case_status()
+    assert status == '🚫  Blocked', "Status should be 'Blocked' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_set_case_status_blocked_and_save_close(browser, login, logout):
+    """Set 'Blocked' test case status and save and open case status on 'Cases' page"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.set_case_status('blocked')
+    run_test_page.save_btn_click()
+    status = run_test_page.get_case_status()
+    run_test_page.back_to_suite_btn_click()
+    run_test_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    case_status = cases_page.get_first_case_status()
+    assert status == '🚫  Blocked'\
+        and status == case_status, "Status should be 'Blocked' for test case"
+
+
+@pytest.mark.main
+def test_set_case_status_pause(browser, login, logout):
+    """Set 'Pause' test case status"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.set_case_status('pause')
+    status = run_test_page.get_case_status()
+    assert status == '⏸  Pause', "Status should be 'Pause' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_set_case_status_pause_and_save_close(browser, login, logout):
+    """Set 'Pause' test case status and save and check case status on 'Cases' page"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.set_case_status('pause')
+    run_test_page.save_btn_click()
+    status = run_test_page.get_case_status()
+    run_test_page.back_to_suite_btn_click()
+    run_test_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    case_status = cases_page.get_first_case_status()
+    assert status == '⏸  Pause' \
+        and status == case_status, "Status should be 'Pause' for test case"
+
+
+@pytest.mark.main
+def test_set_case_status_passed(browser, login, logout):
+    """Set 'Passed' test case status"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.failed_btn_1_step_click()
+    run_test_page.set_case_status('passed')
+    status = run_test_page.get_case_status()
+    assert status == '✅  Passed', "Status should be 'Passed' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_set_case_status_passed_and_save_close(browser, login, logout):
+    """Set 'Passed' test case status and save and check case status on 'Cases' page"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.failed_btn_1_step_click()
+    run_test_page.set_case_status('passed')
+    run_test_page.save_btn_click()
+    status = run_test_page.get_case_status()
+    run_test_page.back_to_suite_btn_click()
+    run_test_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    case_status = cases_page.get_first_case_status()
+    assert status == '✅  Passed' \
+        and status == case_status, "Status should be 'Pause' for test case"
+
+
+@pytest.mark.main
+def test_set_case_status_failed(browser, login, logout):
+    """Set 'Failed' test case status"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.passed_btn_1_step_click()
+    run_test_page.set_case_status('failed')
+    status = run_test_page.get_case_status()
+    assert status == '❌  Failed', "Status should be 'Failed' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_set_case_status_failed_and_save_close(browser, login, logout):
+    """Set 'Failed' test case status and save and check case status on 'Cases' page"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.passed_btn_1_step_click()
+    run_test_page.set_case_status('failed')
+    run_test_page.save_btn_click()
+    status = run_test_page.get_case_status()
+    run_test_page.back_to_suite_btn_click()
+    run_test_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    case_status = cases_page.get_first_case_status()
+    assert status == '❌  Failed' \
+        and status == case_status, "Status should be 'Failed' for test case"
+
+
+@pytest.mark.main
+def test_case_status_should_changed_if_fail_step(browser, login, logout):
+    """Check that case status changed to 'Failed' if failed one step"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.passed_btn_1_step_click()
+    run_test_page.failed_btn_1_step_click()
+    status = run_test_page.get_case_status()
+    assert status == '❌  Failed', "Status should be 'Failed' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

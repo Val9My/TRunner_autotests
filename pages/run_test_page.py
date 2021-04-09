@@ -1,6 +1,8 @@
 from locators.locators import RunTestPageLocators
 from pages.base_page import BasePageElement
 from utils.constants import DEFAULT_WAIT_TIME
+from selenium.webdriver.support.ui import Select
+
 
 
 class RunTestPage(BasePageElement):
@@ -61,10 +63,15 @@ class RunTestPage(BasePageElement):
         self.visible_element_click(RunTestPageLocators.TC_STATUS_DPDN)
 
     def get_case_status(self):
-        """Get the Status of test case"""
-        status = self.visible_element_get_value(RunTestPageLocators.TC_STATUS_OPT)
-        print("STATUS =", status)
-        return status
+        """Get the 'Status' of test case"""
+        select = Select(self.find_element(RunTestPageLocators.TC_STATUS_DPDN))
+        selected_option = select.first_selected_option
+        return selected_option.text
+
+    def set_case_status(self, status):
+        """Set the 'Status' of test case"""
+        select = Select(self.find_element(RunTestPageLocators.TC_STATUS_DPDN))
+        selected_option = select.select_by_value(status)
 
     def get_test_case_name(self):
         """Get the test case title from 'Run Test' page"""
