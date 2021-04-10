@@ -321,6 +321,39 @@ def test_case_status_should_changed_if_fail_step(browser, login, logout):
     run_test_page.back_to_suite_btn_click()
 
 
+@pytest.mark.main
+def test_click_all_passed_buttons_case_status_passed(browser, login, logout):
+    """Check that case status is 'Passed' if click all 'Passed' buttons"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.click_all_passed_btns()
+    status = run_test_page.get_case_status()
+    assert status == '✅  Passed', "Status should be 'Passed' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_click_all_failed_buttons_case_status_failed(browser, login, logout):
+    """Check that case status is 'Failed' if click all 'Failed' buttons"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.click_all_failed_btns()
+    status = run_test_page.get_case_status()
+    assert status == '❌  Failed', "Status should be 'Passed' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
+@pytest.mark.main
+def test_click_random_failed_button_case_status_failed(browser, login, logout):
+    """Check that case status is 'Failed' if click random 'Fail' button"""
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.click_random_failed_btn()
+    status = run_test_page.get_case_status()
+    assert status == '❌  Failed', "Status should be 'Passed' for test case"
+    run_test_page.back_to_suite_btn_click()
+
+
 
 
 

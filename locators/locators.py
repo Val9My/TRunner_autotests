@@ -167,6 +167,8 @@ class RunTestPageLocators:
     TC_PAUSED_OPT = (By.CSS_SELECTOR, ".col-md-2 #testStatus [value=paused]")
 
     TC_STEPS_COUNT = (By.CSS_SELECTOR, "tbody .clickable-row")
+    TC_ALL_PASSED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
+    TC_ALL_FAILED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
     TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
     TC_1ST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:first-child")
     TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")

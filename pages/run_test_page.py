@@ -1,7 +1,13 @@
+import random
+
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+
 from locators.locators import RunTestPageLocators
 from pages.base_page import BasePageElement
 from utils.constants import DEFAULT_WAIT_TIME
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -92,3 +98,25 @@ class RunTestPage(BasePageElement):
     def failed_btn_1_step_click(self):
         """Click on 'Failed' button for the 1st step on 'Run Test' page"""
         self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_FAILED_BTN)
+
+    def click_all_passed_btns(self):
+        """Click 'Passed' buttons one by one"""
+        self.click_several_buttons(RunTestPageLocators.TC_ALL_PASSED_BTNS)
+
+    def click_all_failed_btns(self):
+        """Click 'Failed' buttons one by one"""
+        self.click_several_buttons(RunTestPageLocators.TC_ALL_FAILED_BTNS)
+
+    def click_random_failed_btn(self):
+        """Click random 'Failed' button"""
+        try:
+            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            buttons = wait.until(EC.presence_of_all_elements_located(RunTestPageLocators.TC_ALL_FAILED_BTNS))
+            print("Buttons count= ", len(buttons))
+            n = random.randint(0, len(buttons))
+            buttons[n].click()
+            print(f"Button {n} clicked")
+        except TimeoutException:
+            print(buttons, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(buttons, " in 'click_random_failed_btn' - An Exception occurred:", e)

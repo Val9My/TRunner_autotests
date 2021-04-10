@@ -203,4 +203,17 @@ class BasePageElement(object):
                 EC.element_to_be_clickable(locator))
         tbx.send_keys(text, Keys.RETURN)
 
+    def click_several_buttons(self, locator):
+        """Click several buttons one by one"""
+        try:
+            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            buttons = wait.until(EC.presence_of_all_elements_located(locator))
+            #print("Buttons count= ", len(buttons))
+            for button in buttons:
+                button.click()
+        except TimeoutException:
+            print(buttons, f" not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(buttons, " in 'click_several_buttons' - An Exception occurred:", e)
+
 
