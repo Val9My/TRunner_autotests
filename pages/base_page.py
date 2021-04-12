@@ -216,4 +216,10 @@ class BasePageElement(object):
         except Exception as e:
             print(buttons, " in 'click_several_buttons' - An Exception occurred:", e)
 
+    def forward(self):
+        """To move forward in browser history"""
+        self.browser.forward()
 
+    def backward(self):
+        """To move backward in browser history"""
+        self.browser.back()
