@@ -88,4 +88,4 @@ def test_title_info(browser,login,logout):
     settings_page = SettingsPage(browser)
     settings_page.load()
     text = settings_page.visible_element_get_text(SettingsPageLocators.SETTINGS_TITLE)
-    assert text=="KYahorlytska's profile settings"
+    assert text==LOGIN+"'s profile settings"
