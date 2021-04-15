@@ -32,31 +32,26 @@ class BasePageElement(object):
             # element = wait.until(EC.visibility_of_element_located(element))
             return element
         except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
+            print(f"Locator {locator} not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'find_element' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'find_element' - An Exception occurred:", e)
 
     def visible_element_click(self, locator):
         """ Method to click on element when it get visible"""
         try:
             element = self.find_element(locator)
             element.click()
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_click' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_click' - An Exception occurred:", e)
 
     def visible_element_mb3_click(self, locator):
         """ Method to click MB3 on element when it get visible"""
         try:
             chain = ActionChains(self.browser)
             element = self.find_element(locator)
-            # element = wait.until(EC.visibility_of_element_located(element))
             chain.context_click(element).perform()
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_mb3_click' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_mb3_click' - An Exception occurred:", e)
 
     def visible_element_double_click(self, locator):
         """ Method to click MB3 on element when it get visible"""
@@ -64,19 +59,15 @@ class BasePageElement(object):
             chain = ActionChains(self.browser)
             element = self.find_element(locator)
             chain.double_click(element).perform()
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_double_click' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_double_click' - An Exception occurred:", e)
 
     def visible_element_send_text(self, locator, text):
         """ Method to input text in element when it get visible"""
         try:
             self.find_element(locator).send_keys(text)
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_send_text' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_send_text' - An Exception occurred:", e)
 
     def visible_element_get_text(self, locator):
         """ Method to get 'text' from element when it get visible"""
@@ -84,10 +75,8 @@ class BasePageElement(object):
             element = self.find_element(locator)
             print("Text =", element.text)
             return element.text
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_get_text' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_get_text' - An Exception occurred:", e)
 
     def visible_element_get_value(self, locator):
         """ Method to get 'value' from element when it get visible"""
@@ -95,10 +84,8 @@ class BasePageElement(object):
             element = self.find_element(locator)
             print('Value =', element.get_attribute('value'))
             return element.get_attribute('value')
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_get_value' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_get_value' - An Exception occurred:", e)
 
     def visible_element_get_class(self, locator):
         """ Method to get 'class' value from element when it get visible"""
@@ -106,10 +93,8 @@ class BasePageElement(object):
             element = self.find_element(locator)
             print("Class =", element.get_attribute('class'))
             return element.get_attribute('class')
-        except TimeoutException:
-            print(locator, f" not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(locator, " in 'visible_element_get_class' - An Exception occurred:", e)
+            print(f"Locator {locator} in 'visible_element_get_class' - An Exception occurred:", e)
 
     def trunner_lnk_click(self):
         """ Click on 'TRunner' link"""
@@ -142,11 +127,8 @@ class BasePageElement(object):
     def get_user_name_from_hello(self):
         """ Get username in 'Hello, user' dropdown """
         try:
-
             user = self.find_element(BasePageLocators.HELLO_USER_DPDN).text.partition(' ')[2]
             return user
-        except TimeoutException:
-            print(f" 'Hello, user' dropdown not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
             print(" In 'get_user_name_from_hello' - An Exception occurred:", e)
 
@@ -205,6 +187,7 @@ class BasePageElement(object):
 
     def click_several_buttons(self, locator):
         """Click several buttons one by one"""
+        buttons = None
         try:
             wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
             buttons = wait.until(EC.presence_of_all_elements_located(locator))
@@ -212,9 +195,9 @@ class BasePageElement(object):
             for button in buttons:
                 button.click()
         except TimeoutException:
-            print(buttons, f" not found after {DEFAULT_WAIT_TIME} seconds")
+            print(f"Buttons {buttons} not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(buttons, " in 'click_several_buttons' - An Exception occurred:", e)
+            print(f"Buttons {buttons} in 'click_several_buttons' - An Exception occurred:", e)
 
     def forward(self):
         """To move forward in browser history"""

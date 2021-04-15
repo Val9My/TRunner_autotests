@@ -10,7 +10,6 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
 class RunTestPage(BasePageElement):
     """
         Run page for running test cases (+ edit and create new bug options)
@@ -74,11 +73,6 @@ class RunTestPage(BasePageElement):
         selected_option = select.first_selected_option
         return selected_option.text
 
-    def set_case_status(self, status):
-        """Set the 'Status' of test case"""
-        select = Select(self.find_element(RunTestPageLocators.TC_STATUS_DPDN))
-        selected_option = select.select_by_value(status)
-
     def get_test_case_name(self):
         """Get the test case title from 'Run Test' page"""
         name = self.visible_element_get_text(RunTestPageLocators.TC_TITLE)
@@ -90,6 +84,7 @@ class RunTestPage(BasePageElement):
             return True
         else:
             print("'SAVED' message not pop up")
+            return False
 
     def passed_btn_1_step_click(self):
         """Click on 'Passed' button for the 1st step on 'Run Test' page"""
@@ -117,6 +112,6 @@ class RunTestPage(BasePageElement):
             buttons[n].click()
             print(f"Button {n} clicked")
         except TimeoutException:
-            print(buttons, f" not found after {DEFAULT_WAIT_TIME} seconds")
+            print(f"Buttons not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
-            print(buttons, " in 'click_random_failed_btn' - An Exception occurred:", e)
+            print("Buttons in 'click_random_failed_btn' - An Exception occurred:", e)

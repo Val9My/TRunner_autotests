@@ -28,6 +28,13 @@ class CasesPage(BasePageElement):
         """Click on first case to select"""
         self.visible_element_click(CasesPageLocators.ACTIVE_1ST_ROW)
 
+    def click_mb3_first_case(self):
+        """Click MB3 on first case to select"""
+        self.visible_element_mb3_click(CasesPageLocators.ACTIVE_1ST_ROW)
+
+    def click_run_test_option(self):
+        self.visible_element_click(CasesPageLocators.RUN_TEST_OPT_LNK)
+
     def get_first_case_name(self):
         """Get 1st test case title"""
         name = self.visible_element_get_text(CasesPageLocators.CASE_NAME)

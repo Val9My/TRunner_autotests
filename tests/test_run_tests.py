@@ -20,6 +20,24 @@ def open_run_test_page_for_1st_test(browser):
     cases_page.wait_new_page_load()
 
 
+@pytest.mark.main
+def test_case_name(browser, login, logout):
+    """Test that test case name the same as opened in 'Cases' page"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    case_title = cases_page.get_first_case_name()
+    cases_page.click_first_case()
+    cases_page.click_mb3_first_case()
+    cases_page.click_run_test_option()
+    cases_page.wait_new_page_load()
+    run_test_page = RunTestPage(browser)
+    case_name = run_test_page.get_test_case_name()
+    assert case_name == case_title, "Should be test case name"
+
+
 @pytest.mark.smoke
 @pytest.mark.main
 def test_back_to_suite_click(browser, login, logout):
@@ -29,8 +47,8 @@ def test_back_to_suite_click(browser, login, logout):
     suites_page.suite_1st_link_click()
     suites_page.wait_new_page_load()
     cases_page = CasesPage(browser)
-    cases_page.click_first_case()
     case_title = cases_page.get_title()
+    cases_page.click_first_case()
     cases_page.run_test_btn_click()
     cases_page.wait_new_page_load()
     run_test_page = RunTestPage(browser)

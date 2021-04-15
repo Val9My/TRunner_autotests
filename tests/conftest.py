@@ -24,6 +24,11 @@ def pytest_addoption(parser):
 def browser(request):
     browser_name = request.config.getoption("browser_name")
     options = Options()
+#    options.add_argument('--headless')
+#    options.add_argument('--enable-javascript')
+#    options.add_argument('--disable-gpu')
+#   #options.add_argument('--window-size=2560x2160') # Set display resolution
+#    options.add_argument('--window-size=3840x2160')
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         browser = webdriver.Chrome(options=options)

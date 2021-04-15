@@ -13,7 +13,7 @@ class BasePageLocators:
     ABOUT_TITLE = 'About'
     ABOUT_LNK = (By.CSS_SELECTOR, ".nav-link[href='/about']")
 
-    HELLO_USER_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")
+    HELLO_USER_DPDN = (By.CSS_SELECTOR, "[class='nav-link dropdown-toggle']#navbarDropdownMenuLink")  #
     SETTINGS_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/settings']")
     SETTINGS_OPT_NAMES = (By.CSS_SELECTOR, "a.dropdown-item") #?
     LOGOUT_OPT = (By.CSS_SELECTOR, ".dropdown-item[href='/logout']")
@@ -97,7 +97,7 @@ class CasesPageLocators:
 
     """MB3 options for active row"""
     ACTIVE_1ST_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2)")
-    RUN_TEST_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist [data-action=run-test] .run_tc_mb3")
+    RUN_TEST_OPT_LNK = (By.CSS_SELECTOR, "body .run_tc_mb3") #body .custom-menu-tclist [data-action=run-test] .run_tc_mb3")
     STATISTICS_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist .show_stat_mb3")
 
     ASSIGN_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist [data-action=assign-to] #assign-to-a")
