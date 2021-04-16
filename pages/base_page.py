@@ -78,6 +78,14 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_text' - An Exception occurred:", e)
 
+    def visible_element_clear_text(self, locator):
+        """ Method to delete text from textbox when it get visible"""
+        try:
+            element = self.find_element(locator)
+            element.clear()
+        except Exception as e:
+            print(f"Locator {locator} in 'visible_element_click' - An Exception occurred:", e)
+
     def visible_element_get_value(self, locator):
         """ Method to get 'value' from element when it get visible"""
         try:

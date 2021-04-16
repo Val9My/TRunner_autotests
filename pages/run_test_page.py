@@ -73,6 +73,11 @@ class RunTestPage(BasePageElement):
         selected_option = select.first_selected_option
         return selected_option.text
 
+    def set_case_status(self, status):
+        """Select the 'Status' of test case"""
+        select = Select(self.find_element(RunTestPageLocators.TC_STATUS_DPDN))
+        select.select_by_value(status)
+
     def get_test_case_name(self):
         """Get the test case title from 'Run Test' page"""
         name = self.visible_element_get_text(RunTestPageLocators.TC_TITLE)
@@ -115,3 +120,5 @@ class RunTestPage(BasePageElement):
             print(f"Buttons not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
             print("Buttons in 'click_random_failed_btn' - An Exception occurred:", e)
+
+

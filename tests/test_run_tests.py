@@ -141,6 +141,35 @@ def test_comment_seen_after_double_click_on_1st_step(browser, login, logout):
 
 
 @pytest.mark.main
+def test_add_comment_saved(browser, login, logout):
+    """Test that comment added in Comment block and seen after reopen """
+    tc_1st_comment_locator = RunTestPageLocators.TC_1ST_STEP_COMMENT_TB
+    open_run_test_page_for_1st_test(browser)
+    run_test_page = RunTestPage(browser)
+    run_test_page.step_1_double_click()
+    comment_text = run_test_page.visible_element_get_text(tc_1st_comment_locator)
+    run_test_page.visible_element_send_text(tc_1st_comment_locator, " New Added Comment")
+    run_test_page.failed_btn_1_step_click()
+    run_test_page.passed_btn_1_step_click()
+    run_test_page.save_and_close_btn_click()
+    run_test_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.wait_new_page_load()
+    cases_page.click_first_case()
+    cases_page.click_mb3_first_case()
+    cases_page.click_run_test_option()
+    run_test_page.step_1_double_click()
+    new_comment_text = run_test_page.visible_element_get_text(tc_1st_comment_locator)
+    assert new_comment_text == comment_text + ' New Added Comment', "Comment text should be seen in the end"
+    run_test_page.visible_element_clear_text(tc_1st_comment_locator) # clear added text
+    run_test_page.visible_element_send_text(tc_1st_comment_locator, comment_text)
+    run_test_page.failed_btn_1_step_click()
+    run_test_page.passed_btn_1_step_click()
+    run_test_page.save_and_close_btn_click()
+    cases_page.wait_new_page_load()
+
+
+@pytest.mark.main
 def test_check_opened_test_case_status(browser, login, logout):
     """Check test case status in dropdown"""
     open_run_test_page_for_1st_test(browser)
