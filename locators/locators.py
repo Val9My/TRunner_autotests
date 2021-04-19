@@ -89,11 +89,20 @@ class CasesPageLocators:
     STATISTICS_BTN = (By.ID, "statCase")
     CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse [class='nav-link']")
 
+    "Statistics table information"
+    STATTABLE=(By.ID, "statTable")
+    STATTABLE_SUITE=(By.CSS_SELECTOR, "tr.failure-row td:nth-child(1)")
+    STATTABLE_RUN_BY = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(2)")
+    STATTABLE_RESULT = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(3)")
+    STATTABLE_DURATION = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(4)")
+    STATTABLE_DATE = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(5)")
+
     """First row data (1st iteration)"""
     CASE_ID_LNK = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .tcid a")
     CASE_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2) p")
     CASE_STATE = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .testCaseState p")
     TESTER_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .centered p")
+
 
     """MB3 options for active row"""
     ACTIVE_1ST_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2)")
