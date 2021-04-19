@@ -1,3 +1,5 @@
+from selenium.webdriver.common.by import By
+
 from locators.locators import CasesPageLocators
 from pages.base_page import BasePageElement
 from utils.constants import DEFAULT_WAIT_TIME
@@ -50,3 +52,26 @@ class CasesPage(BasePageElement):
         case_status = self.visible_element_get_text(CasesPageLocators.CASE_STATE)
         return case_status
 
+    def click_statistics_option(self):
+        statistics= self.visible_element_click(CasesPageLocators.STATISTICS_BTN)
+        return statistics
+
+    def get_nth_case_id(self,n):
+        """Get nth test case id"""
+        id = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .tcid a"))
+        return id
+
+    def get_nth_case_name(self,n):
+        """Get nth test case name"""
+        name = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") td:nth-child(2) p"))
+        return name
+
+    def get_nth_case_tester_name(self,n):
+        """Get nth test case tester name"""
+        tester_name = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .centered p"))
+        return tester_name
+
+    def get_nth_case_status(self,n):
+        """Get nth test case status"""
+        case_status = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child("+ str(n)+ ") .testCaseState p"))
+        return case_status
