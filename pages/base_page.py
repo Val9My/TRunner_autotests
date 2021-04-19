@@ -214,3 +214,25 @@ class BasePageElement(object):
     def backward(self):
         """To move backward in browser history"""
         self.browser.back()
+
+    def get_element_location(self,locator):
+        """Method for getting element location on WebPage"""
+        try:
+            element = self.find_element(locator)
+            return element.location
+        except Exception as e:
+            print(f"Locator {locator} in 'get_element_location' - An Exception occurred:", e)
+
+    def get_element_size(self,locator):
+        """Method for getting element size on WebPage"""
+        try:
+            element = self.find_element(locator)
+            return element.size
+        except Exception as e:
+            print(f"Locator {locator} in 'get_element_size' - An Exception occurred:", e)
+
+    def get_css_property(self,locator,property):
+        element = self.find_element(locator)
+        element_property = element.value_of_css_property(property)
+        return element_property
+
