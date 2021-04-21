@@ -231,8 +231,24 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'get_element_size' - An Exception occurred:", e)
 
-    def get_css_property(self,locator,property):
+    def get_css_property(self, locator, property):
+        """Method for getting css styles of WebElement"""
         element = self.find_element(locator)
         element_property = element.value_of_css_property(property)
         return element_property
 
+    def move_mouse_on_element(self,locator):
+        """Method to move mouse on element"""
+        action = ActionChains(self.browser)
+        element = self.find_element(locator)  # or your another selector here
+        action.move_to_element(element)
+        action.perform()
+
+    def move_mouse_by_offset(self, locator, x, y):
+        """Method to move mouse by offset (x-to the right, y to the bottom) """
+        action = ActionChains(self.browser)
+        element = self.find_element(locator)
+        action.move_to_element(element)
+        action.perform()
+        action.move_by_offset(x,y)
+        action.perform()
