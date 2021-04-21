@@ -106,10 +106,12 @@ class CasesPageLocators:
 
     """MB3 options for active row"""
     ACTIVE_1ST_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2)")
+    CLICKABLE_ROW = (By.CSS_SELECTOR, "tbody .clickable-row")
     RUN_TEST_OPT_LNK = (By.CSS_SELECTOR, "body .run_tc_mb3") #body .custom-menu-tclist [data-action=run-test] .run_tc_mb3")
     STATISTICS_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist .show_stat_mb3")
 
     ASSIGN_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist [data-action=assign-to] #assign-to-a")
+    ASSIGN_SUB_MENU = (By.CSS_SELECTOR, "ul.assign-to-submenu")
     ASSIGN_TO_USER_COUNT = (By.CSS_SELECTOR, "body .assign-to-submenu li")
     ASSIGN_TO_1ST_USER = (By.CSS_SELECTOR, "body .assign-to-submenu .user-to-set:first-child")
     ASSIGN_TO_LAST_USER = (By.CSS_SELECTOR, "body .assign-to-submenu .user-to-set:last-child")
