@@ -193,3 +193,70 @@ def test_cases_info_scenario4(browser, login, logout):
     assert second_case_id=="49145" and \
            second_case_name=="Memory Threshold Warning Dialogue in DSG" and \
            second_case_tester_name=="Nadiia" and second_case_status=="❌  Failed"
+
+@pytest.mark.cases
+def test_cases_background_color_scenario1(browser, login, logout):
+    """"Verify that if cases row is clicked its background color should be grayed out"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    background_color = cases_page.get_css_property(locators.CasesPageLocators.CLICKABLE_ROW, 'background-color')
+    assert background_color=="rgba(221, 221, 221, 1)"
+
+@pytest.mark.cases
+def test_cases_background_color_scenario2(browser, login, logout):
+    """"Verify that if cases row has not been clicked its background color should be whited out"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    background_color = cases_page.get_css_property(locators.CasesPageLocators.CLICKABLE_ROW, 'background-color')
+    assert background_color=="rgba(0, 0, 0, 0)"
+
+@pytest.mark.cases
+def test_cases_assign_option_scenario1(browser, login, logout):
+    """"Verify that if move mouse to the Assign option, list of testers is seen"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    cases_page.click_mb3_first_case()
+    cases_page.move_mouse_on_element(locators.CasesPageLocators.ASSIGN_OPT_LNK)
+    assert cases_page.is_element_seen(locators.CasesPageLocators.ASSIGN_SUB_MENU)
+
+@pytest.mark.cases
+def test_cases_assign_option_scenario2(browser, login, logout):
+    """"Verify that if move mouse to the Assign option and then re-clicking in another position relatively, the list of tester should not be seen"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    cases_page.click_mb3_first_case()
+    cases_page.move_mouse_on_element(locators.CasesPageLocators.ASSIGN_OPT_LNK)
+    cases_page.click_first_case()
+    assert not cases_page.is_element_seen(locators.CasesPageLocators.ASSIGN_SUB_MENU) #defect: the list of testers is still seen
+
+
+@pytest.mark.cases
+def test_cases_assign_option_scenario3(browser, login, logout):
+    """"Verify re-assignment tester for test case"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    cases_page.click_mb3_first_case()
+    cases_page.move_mouse_on_element(locators.CasesPageLocators.ASSIGN_OPT_LNK)
+    assignment_tester=cases_page.visible_element_get_text(locators.CasesPageLocators.ASSIGN_TO_1ST_USER)
+    cases_page.visible_element_click(locators.CasesPageLocators.ASSIGN_TO_1ST_USER)
+    first_case_tester = cases_page.get_nth_case_tester_name(1)
+    assert assignment_tester == first_case_tester #defect: unable to change tester
