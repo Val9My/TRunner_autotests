@@ -73,7 +73,7 @@ class BasePageElement(object):
         """ Method to get 'text' from element when it get visible"""
         try:
             element = self.find_element(locator)
-            print("Text =", element.text)
+            print("Get Text =", element.text)
             return element.text
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_text' - An Exception occurred:", e)
@@ -90,7 +90,7 @@ class BasePageElement(object):
         """ Method to get 'value' from element when it get visible"""
         try:
             element = self.find_element(locator)
-            print('Value =', element.get_attribute('value'))
+            print('Get Value =', element.get_attribute('value'))
             return element.get_attribute('value')
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_value' - An Exception occurred:", e)
@@ -99,7 +99,7 @@ class BasePageElement(object):
         """ Method to get 'class' value from element when it get visible"""
         try:
             element = self.find_element(locator)
-            print("Class =", element.get_attribute('class'))
+            print("Get Class =", element.get_attribute('class'))
             return element.get_attribute('class')
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_class' - An Exception occurred:", e)

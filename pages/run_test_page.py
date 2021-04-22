@@ -1,6 +1,8 @@
 import random
 
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.locators import RunTestPageLocators
@@ -120,5 +122,15 @@ class RunTestPage(BasePageElement):
             print(f"Buttons not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
             print("Buttons in 'click_random_failed_btn' - An Exception occurred:", e)
+
+    def step_alt_click(self, locator):
+        """ Method to start editing of test case step (ALT+MB1 click on step)"""
+        try:
+            chain = ActionChains(self.browser)
+            element = self.find_element(locator)
+            chain.key_down(Keys.ALT).click(element).key_up(Keys.ALT).perform()
+        except Exception as e:
+            print(f"Locator {locator} in 'visible_element_send_text' - An Exception occurred:", e)
+
 
 
