@@ -44,6 +44,23 @@ def test_statistics_option_is_seen(browser, login, logout):
     assert cases_page.is_element_seen(locators.CasesPageLocators.STATISTICS_BTN)
 
 @pytest.mark.cases
+def test_cases_dropdown(browser,login,logout):
+    """Check that the font sizes are the same in the dropdown custom options menu"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_first_case()
+    cases_page.click_mb3_first_case()
+    font_sizes=[cases_page.get_css_property(locators.CasesPageLocators.RUN_TEST_OPT_LNK,"font-size"),\
+             cases_page.get_css_property(locators.CasesPageLocators.STATISTICS_OPT_LNK,"font-size"), \
+             cases_page.get_css_property(locators.CasesPageLocators.ASSIGN_OPT_LNK,"font-size")]
+    assert font_sizes==['14px', '14px', '14px']
+
+
+
+@pytest.mark.cases
 def test_statistics_table_location_and_size(browser, login, logout):
     """Check that Statistics table is opening  in the correct size and position"""
     suites_page = SuitesPage(browser)
@@ -260,3 +277,4 @@ def test_cases_assign_option_scenario3(browser, login, logout):
     cases_page.visible_element_click(locators.CasesPageLocators.ASSIGN_TO_1ST_USER)
     first_case_tester = cases_page.get_nth_case_tester_name(1)
     assert assignment_tester == first_case_tester #defect: unable to change tester
+
