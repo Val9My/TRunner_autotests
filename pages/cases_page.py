@@ -55,6 +55,10 @@ class CasesPage(BasePageElement):
         statistics = self.visible_element_click(CasesPageLocators.STATISTICS_BTN)
         return statistics
 
+    def click_nth_case(self):
+        """Click on nth case to select"""
+        self.visible_element_click((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .td:nth-child(2)"))
+
     def get_nth_case_id(self, n):
         """Get nth test case id"""
         id = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .tcid a"))
