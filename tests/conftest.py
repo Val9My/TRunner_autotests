@@ -27,7 +27,7 @@ def browser(request):
 #    options.add_argument('--headless')
 #    options.add_argument('--enable-javascript')
 #    options.add_argument('--disable-gpu')
-#   #options.add_argument('--window-size=2560x2160') # Set display resolution
+   #options.add_argument('--window-size=2560x2160') # Set display resolution
 #    options.add_argument('--window-size=3840x2160')
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
