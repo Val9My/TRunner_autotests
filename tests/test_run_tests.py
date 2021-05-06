@@ -143,14 +143,15 @@ class TestRunPage(object):
         cases_page.wait_new_page_load()
 
     @pytest.mark.run
+    @pytest.mark.integration
     def test_add_comment_saved(self, browser, login, logout):
         """Test that comment added in Comment block and seen after reopen """
         comment_locator = RunTestPageLocators.TC_N_STEP_COMMENT_TB
         self.open_run_test_page_for_1st_test(browser)
         run_test_page = RunTestPage(browser)
         run_test_page.step_1_double_click()
-        comment_text = run_test_page.visible_nth_element_get_text(comment_locator, 0)
-        run_test_page.visible_nth_element_send_text(comment_locator, 0, " New Added Comment")
+        comment_text = run_test_page.visible_element_get_text(comment_locator, 0)
+        run_test_page.visible_element_send_text(comment_locator, " New Added Comment",  0)
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()
@@ -161,28 +162,29 @@ class TestRunPage(object):
         cases_page.click_mb3_first_case()
         cases_page.click_run_test_option()
         run_test_page.step_1_double_click()
-        new_comment_text = run_test_page.visible_nth_element_get_text(comment_locator, 0)
+        new_comment_text = run_test_page.visible_element_get_text(comment_locator, 0)
         assert new_comment_text == comment_text + ' New Added Comment', "Comment text should be seen in the end"
-        run_test_page.visible_nth_element_clear_text(comment_locator, 0)  # clear added text
-        run_test_page.visible_nth_element_send_text(comment_locator, 0, comment_text)
+        run_test_page.visible_element_clear_text(comment_locator, 0)  # clear added text
+        run_test_page.visible_element_send_text(comment_locator, comment_text, 0)
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()
         cases_page.wait_new_page_load()
 
     @pytest.mark.run
+    @pytest.mark.integration
     def test_edit_step_description_saved(self, browser, login, logout):
         """Test that step description edit is saved and seen after reopen """
         step_description_locator = RunTestPageLocators.TC_N_STEP_DESCRIPTION
         self.open_run_test_page_for_1st_test(browser)
         run_test_page = RunTestPage(browser)
         run_test_page.step_1_double_click()
-        step_description = run_test_page.visible_nth_element_get_text(step_description_locator, 0)
-        run_test_page.visible_nth_element_click(step_description_locator, 0)
-        run_test_page.nth_step_alt_click(step_description_locator, 0)
-        run_test_page.nth_step_alt_click(step_description_locator, 0)
-        run_test_page.visible_nth_element_send_text(step_description_locator, 0, " New Added Description")
-        run_test_page.visible_nth_element_double_click(RunTestPageLocators.TC_1ST_STEP_DESCRIPTION, 0)  # to exit editing mode
+        step_description = run_test_page.visible_element_get_text(step_description_locator)
+        run_test_page.visible_element_click(step_description_locator)
+        run_test_page.step_alt_click(step_description_locator)
+        run_test_page.step_alt_click(step_description_locator)
+        run_test_page.visible_element_send_text(step_description_locator, " New Added Description")
+        run_test_page.visible_element_double_click(RunTestPageLocators.TC_1ST_STEP_DESCRIPTION)  # to exit editing mode
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()
@@ -192,15 +194,15 @@ class TestRunPage(object):
         cases_page.click_first_case()
         cases_page.click_mb3_first_case()
         cases_page.click_run_test_option()
-        new_description_text = run_test_page.visible_nth_element_get_text(step_description_locator, 0)
+        new_description_text = run_test_page.visible_element_get_text(step_description_locator)
         assert new_description_text == step_description + ' New Added Description', \
             "Added Description should be seen in the end"
-        run_test_page.nth_step_alt_click(step_description_locator, 0)
-        run_test_page.nth_step_alt_click(step_description_locator, 0)
-        run_test_page.visible_nth_element_clear_text(step_description_locator, 0)  # clear text
-        run_test_page.visible_nth_element_send_text(step_description_locator, 0,
-                                                    step_description)  # paste original text
-        run_test_page.visible_nth_element_double_click(step_description_locator, 0)  # exit editing
+        run_test_page.step_alt_click(step_description_locator)
+        run_test_page.step_alt_click(step_description_locator)
+        run_test_page.visible_element_clear_text(step_description_locator)  # clear text
+        run_test_page.visible_element_send_text(step_description_locator,
+                                                step_description)  # paste original text
+        run_test_page.visible_element_double_click(step_description_locator)  # exit editing
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()
@@ -213,12 +215,12 @@ class TestRunPage(object):
         self.open_run_test_page_for_1st_test(browser)
         run_test_page = RunTestPage(browser)
         run_test_page.step_1_double_click()
-        step_result = run_test_page.visible_nth_element_get_text(tc_1_step_result_locator, 0)
-        run_test_page.visible_nth_element_click(tc_1_step_result_locator, 0)
-        run_test_page.nth_step_alt_click(tc_1_step_result_locator, 0)
-        run_test_page.nth_step_alt_click(tc_1_step_result_locator, 0)
-        run_test_page.visible_nth_element_send_text(tc_1_step_result_locator, 0, " New Added Result")
-        run_test_page.visible_nth_element_double_click(tc_1_step_result_locator, 0)  # to exit editing mode
+        step_result = run_test_page.visible_element_get_text(tc_1_step_result_locator, 0)
+        run_test_page.visible_element_click(tc_1_step_result_locator, 0)
+        run_test_page.step_alt_click(tc_1_step_result_locator, 0)
+        run_test_page.step_alt_click(tc_1_step_result_locator, 0)
+        run_test_page.visible_element_send_text(tc_1_step_result_locator, " New Added Result", 0)
+        run_test_page.visible_element_double_click(tc_1_step_result_locator, 0)  # to exit editing mode
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()
@@ -228,14 +230,14 @@ class TestRunPage(object):
         cases_page.click_first_case()
         cases_page.click_mb3_first_case()
         cases_page.click_run_test_option()
-        new_description_text = run_test_page.visible_nth_element_get_text(tc_1_step_result_locator, 0)
+        new_description_text = run_test_page.visible_element_get_text(tc_1_step_result_locator, 0)
         assert new_description_text == step_result + ' New Added Result', \
             "Added Result should be seen in the end"
-        run_test_page.nth_step_alt_click(tc_1_step_result_locator, 0)
-        run_test_page.nth_step_alt_click(tc_1_step_result_locator, 0)
-        run_test_page.visible_nth_element_clear_text(tc_1_step_result_locator, 0)  # clear added text
-        run_test_page.visible_nth_element_send_text(tc_1_step_result_locator, 0,  step_result)
-        run_test_page.visible_nth_element_double_click(tc_1_step_result_locator, 0)
+        run_test_page.step_alt_click(tc_1_step_result_locator, 0)
+        run_test_page.step_alt_click(tc_1_step_result_locator, 0)
+        run_test_page.visible_element_clear_text(tc_1_step_result_locator, 0)  # clear added text
+        run_test_page.visible_element_send_text(tc_1_step_result_locator, step_result, 0)
+        run_test_page.visible_element_double_click(tc_1_step_result_locator, 0)
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()
@@ -277,7 +279,7 @@ class TestRunPage(object):
         run_test_page.passed_btn_1_step_click()
         print("BACKGROUND COLOR =", background_color)
         # background_color == 'rgba(250, 253, 250, 1)' and
-        assert 'focus active' in run_test_page.visible_nth_element_get_class(passed_btn, 0) and \
+        assert 'focus active' in run_test_page.visible_element_get_class(passed_btn, 0) and \
                color == '#212529', \
             " 'focus active' should be in class and button color = green"
         run_test_page.back_to_suite_btn_click()
@@ -289,12 +291,12 @@ class TestRunPage(object):
         run_test_page = RunTestPage(browser)
         n = run_test_page.click_random_failed_btn()
         print("n=", n)
-        random_failed = run_test_page.find_elements(RunTestPageLocators.TC_ALL_FAILED_BTNS)[n]
+        random_failed = RunTestPageLocators.TC_N_FAILED_BTNS
         print("Random failed = ", random_failed)
-        black_font = Color.from_string(random_failed.value_of_css_property("color")).hex
+        black_font = Color.from_string(run_test_page.find_elements(random_failed)[n].value_of_css_property("color")).hex
         print("Black font = ", black_font)
-        run_test_page.move_mouse_on_nth_element(random_failed)
-        new_color = Color.from_string(random_failed.value_of_css_property("color")).hex
+        run_test_page.move_mouse_on_element(random_failed, 0)
+        new_color = Color.from_string(run_test_page.find_elements(random_failed)[n].value_of_css_property("color")).hex
         assert new_color == '#fdfdfd'  # black_font == '#212529' and
         run_test_page.back_to_suite_btn_click()
 
@@ -305,7 +307,7 @@ class TestRunPage(object):
         run_test_page = RunTestPage(browser)
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_btn_click()
-        passed_class = run_test_page.visible_nth_element_get_class(RunTestPageLocators.TC_N_STEP_PASSED_BTN, 0)
+        passed_class = run_test_page.visible_element_get_class(RunTestPageLocators.TC_N_STEP_PASSED_BTN, 0)
         status = run_test_page.get_case_status()
         assert 'active' in passed_class and 'focus' not in passed_class \
                and status == '✅  Passed', \
@@ -318,7 +320,7 @@ class TestRunPage(object):
         self.open_run_test_page_for_1st_test(browser)
         run_test_page = RunTestPage(browser)
         run_test_page.failed_btn_1_step_click()
-        failed_class = run_test_page.visible_nth_element_get_class(RunTestPageLocators.TC_N_STEP_FAILED_BTN, 0)
+        failed_class = run_test_page.visible_element_get_class(RunTestPageLocators.TC_N_STEP_FAILED_BTN, 0)
         assert 'focus active' in failed_class, " 'focus active' should be in class"
         run_test_page.back_to_suite_btn_click()
 
@@ -330,7 +332,7 @@ class TestRunPage(object):
         run_test_page.failed_btn_1_step_click()
         run_test_page.save_btn_click()
         status = run_test_page.get_case_status()
-        failed_class = run_test_page.visible_nth_element_get_class(RunTestPageLocators.TC_N_STEP_FAILED_BTN, 0)
+        failed_class = run_test_page.visible_element_get_class(RunTestPageLocators.TC_N_STEP_FAILED_BTN, 0)
         assert 'active' in failed_class and 'focus' not in failed_class \
                and status == '❌  Failed', "Status should be 'Failed' for test case"
         run_test_page.back_to_suite_btn_click()

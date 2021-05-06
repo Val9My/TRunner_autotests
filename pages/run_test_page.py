@@ -63,7 +63,7 @@ class RunTestPage(BasePageElement):
         self.is_element_seen(RunTestPageLocators.INFO_TOOLTIP)
 
     def step_1_double_click(self):
-        self.visible_nth_element_double_click(RunTestPageLocators.TC_N_STEP_ROW, 0)
+        self.visible_element_double_click(RunTestPageLocators.TC_N_STEP_ROW, 0)
 
     def case_status_dpdn_click(self):
         """Click on test case status dropdown on 'Run Test' page"""
@@ -95,11 +95,11 @@ class RunTestPage(BasePageElement):
 
     def passed_btn_1_step_click(self):
         """Click on 'Passed' button for the 1st step on 'Run Test' page"""
-        self.visible_nth_element_click(RunTestPageLocators.TC_N_PASSED_BTNS, 0)
+        self.visible_element_click(RunTestPageLocators.TC_N_PASSED_BTNS, 0)
 
     def failed_btn_1_step_click(self):
         """Click on 'Failed' button for the 1st step on 'Run Test' page"""
-        self.visible_nth_element_click(RunTestPageLocators.TC_N_FAILED_BTNS, 0)
+        self.visible_element_click(RunTestPageLocators.TC_N_FAILED_BTNS, 0)
 
     def click_all_passed_btns(self):
         """Click 'Passed' buttons one by one"""
@@ -123,29 +123,15 @@ class RunTestPage(BasePageElement):
         except Exception as e:
             print("Buttons in 'click_random_failed_btn' - An Exception occurred:", e)
 
-    def step_alt_click(self, locator):
-        """ Method to start editing of test case step (ALT+MB1 click on step)"""
-        try:
-            chain = ActionChains(self.browser)
-            element = self.find_element(locator)
-            chain.key_down(Keys.ALT).click(element).key_up(Keys.ALT).perform()
-        except Exception as e:
-            print(f"Locator {locator} in 'visible_element_send_text' - An Exception occurred:", e)
-
-    def nth_step_alt_click(self, locators, n):
-        """ Method to start editing of test case 'nth' step (ALT+MB1 click on step)"""
+    def step_alt_click(self, locators, n=0):
+        """ Method to start editing of test case step or 'nth' step (ALT+MB1 click on step)"""
         try:
             chain = ActionChains(self.browser)
             elements = self.find_elements(locators)
             chain.key_down(Keys.ALT).click(elements[n]).key_up(Keys.ALT).perform()
         except Exception as e:
-            print(f"Locators {locators} in 'nth_step_alt_click' - An Exception occurred:", e)
+            print(f"Locators {locators} in 'step_alt_click' - An Exception occurred:", e)
 
-    def move_mouse_on_nth_element(self, element):
-        """Method to move mouse on nth element"""
-        action = ActionChains(self.browser)
-        action.move_to_element(element)
-        action.perform()
 
 
 
