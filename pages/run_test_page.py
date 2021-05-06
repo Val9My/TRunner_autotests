@@ -63,7 +63,7 @@ class RunTestPage(BasePageElement):
         self.is_element_seen(RunTestPageLocators.INFO_TOOLTIP)
 
     def step_1_double_click(self):
-        self.visible_element_double_click(RunTestPageLocators.TC_1ST_STEP_ROW)
+        self.visible_nth_element_double_click(RunTestPageLocators.TC_N_STEP_ROW, 0)
 
     def case_status_dpdn_click(self):
         """Click on test case status dropdown on 'Run Test' page"""
@@ -95,29 +95,29 @@ class RunTestPage(BasePageElement):
 
     def passed_btn_1_step_click(self):
         """Click on 'Passed' button for the 1st step on 'Run Test' page"""
-        self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_PASSED_BTN)
+        self.visible_nth_element_click(RunTestPageLocators.TC_N_PASSED_BTNS, 0)
 
     def failed_btn_1_step_click(self):
         """Click on 'Failed' button for the 1st step on 'Run Test' page"""
-        self.visible_element_click(RunTestPageLocators.TC_1ST_STEP_FAILED_BTN)
+        self.visible_nth_element_click(RunTestPageLocators.TC_N_FAILED_BTNS, 0)
 
     def click_all_passed_btns(self):
         """Click 'Passed' buttons one by one"""
-        self.click_several_buttons(RunTestPageLocators.TC_ALL_PASSED_BTNS)
+        self.click_several_buttons(RunTestPageLocators.TC_N_PASSED_BTNS)
 
     def click_all_failed_btns(self):
         """Click 'Failed' buttons one by one"""
-        self.click_several_buttons(RunTestPageLocators.TC_ALL_FAILED_BTNS)
+        self.click_several_buttons(RunTestPageLocators.TC_N_FAILED_BTNS)
 
     def click_random_failed_btn(self):
         """Click random 'Failed' button"""
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            buttons = wait.until(EC.presence_of_all_elements_located(RunTestPageLocators.TC_ALL_FAILED_BTNS))
+            buttons = self.find_elements(RunTestPageLocators.TC_N_FAILED_BTNS)
             print("Buttons count= ", len(buttons))
             n = random.randint(0, len(buttons))
             buttons[n].click()
             print(f"Button {n} clicked")
+            return n
         except TimeoutException:
             print(f"Buttons not found after {DEFAULT_WAIT_TIME} seconds")
         except Exception as e:
@@ -131,6 +131,21 @@ class RunTestPage(BasePageElement):
             chain.key_down(Keys.ALT).click(element).key_up(Keys.ALT).perform()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_send_text' - An Exception occurred:", e)
+
+    def nth_step_alt_click(self, locators, n):
+        """ Method to start editing of test case 'nth' step (ALT+MB1 click on step)"""
+        try:
+            chain = ActionChains(self.browser)
+            elements = self.find_elements(locators)
+            chain.key_down(Keys.ALT).click(elements[n]).key_up(Keys.ALT).perform()
+        except Exception as e:
+            print(f"Locators {locators} in 'nth_step_alt_click' - An Exception occurred:", e)
+
+    def move_mouse_on_nth_element(self, element):
+        """Method to move mouse on nth element"""
+        action = ActionChains(self.browser)
+        action.move_to_element(element)
+        action.perform()
 
 
 

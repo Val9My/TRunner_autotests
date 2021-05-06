@@ -56,7 +56,8 @@ class SettingsPageLocators:
     UPDATE_PASSWORD_BTN = (By.ID, "savePassword")
     SAVE_FAILED = (By.ID, "saveFailed")
     SAVE_SUCCESS = (By.ID, "saveSuccess")
-    SETTINGS_TITLE = (By.CSS_SELECTOR,"h2.title")
+    SETTINGS_TITLE = (By.CSS_SELECTOR, "h2.title")
+
 
 class SuitesPageLocators:
     SUITES_URL = "https://trunner.herokuapp.com/suites"
@@ -68,19 +69,33 @@ class SuitesPageLocators:
     DELETE_SUITE_OPT = (By.CSS_SELECTOR, ".custom-menu li[data-action='delete-suite']")
 
     """First row data (1st iteration)"""
-    FIRST_ROW = (By.CSS_SELECTOR, ".clickable-row:first-child")
-    SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link")
-    TEST_CASES_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(2)")
-    PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] ")  # p
-    FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] ")  # p
-    BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] ")  # p
-    NOT_EXECUTED_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(6)")
-    CREATED_BY_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(7)")
-    CREATED_DATE_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:last-child")
-    TEST_CASE_COUNT = (By.CSS_SELECTOR, "tbody tr[class=clickable-row]")
-    PASSED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='passed'] a")
-    FAILED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='failed'] a")
-    BLOCKED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
+#    FIRST_ROW = (By.CSS_SELECTOR, ".clickable-row:first-child")
+#    SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link")
+#   TEST_CASES_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(2)")
+#    PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] ")  # p
+#    FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] ")  # p
+#    BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] ")  # p
+#    NOT_EXECUTED_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(6)")
+#    CREATED_BY_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(7)")
+#    CREATED_DATE_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:last-child")
+#    TEST_CASE_COUNT = (By.CSS_SELECTOR, "tbody tr[class=clickable-row]")
+#    PASSED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='passed'] a")
+#    FAILED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='failed'] a")
+#    BLOCKED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
+
+    """Links on lists of elements"""
+    N_ROW = (By.CSS_SELECTOR, "tbody [class='clickable-row']")
+    SUITE_N_LNK = (By.CSS_SELECTOR, ".clickable-row .suite-link")
+    TEST_CASES_N_VALUE = (By.CSS_SELECTOR, ".clickable-row td:nth-of-type(2)")
+    FAILED_N_DPDN = (By.CSS_SELECTOR, ".clickable-row [data-target^='#failed']")
+    PASSED_N_DPDN = (By.CSS_SELECTOR, ".clickable-row [data-target^='#passed']")
+    BLOCKED_N_DPDN = (By.CSS_SELECTOR, ".clickable-row [data-target^='#blocked']")
+    NOT_EXECUTED_N_VALUE = (By.CSS_SELECTOR, ".clickable-row td:nth-of-type(6)")
+    CREATED_BY_N_VALUE = (By.CSS_SELECTOR, ".clickable-row td:nth-of-type(7)")
+    CREATED_DATE_N_VALUE = (By.CSS_SELECTOR, ".clickable-row td:last-child")
+    PASSED_HIDDEN_N_LNK = (By.CSS_SELECTOR, ".hiddenRow [id^='passed'] a")
+    FAILED_HIDDEN_N_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='failed'] a")
+    BLOCKED_HIDDEN_N_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
 
 
 class CasesPageLocators:
@@ -178,15 +193,21 @@ class RunTestPageLocators:
     TC_PAUSED_OPT = (By.CSS_SELECTOR, ".col-md-2 #testStatus [value=paused]")
 
     TC_STEPS_COUNT = (By.CSS_SELECTOR, "tbody .clickable-row")
-    TC_ALL_PASSED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
-    TC_ALL_FAILED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
-    TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
+    TC_N_PASSED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
+    TC_N_FAILED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
+    TC_N_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
+#    TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
     TC_1ST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:first-child")
+    TC_N_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row .action")
     TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
-    TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
-    TC_1ST_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
-    TC_1ST_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
+    TC_N_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row .expected")
+#    TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
+    TC_N_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
+#    TC_1ST_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
+#    TC_1ST_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
+    TC_N_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
     TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
+    TC_N_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row [id^=exampleForm]")
     TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
 
     TC_LAST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:last-child td:first-child")

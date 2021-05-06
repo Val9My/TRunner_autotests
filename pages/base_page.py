@@ -36,6 +36,17 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'find_element' - An Exception occurred:", e)
 
+    def find_elements(self, locators):
+        """Method to find visible element"""
+        try:
+            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
+            elements = wait.until(EC.presence_of_all_elements_located(locators))
+            return elements
+        except TimeoutException:
+            print(f"Locators {locators} not found after {DEFAULT_WAIT_TIME} seconds")
+        except Exception as e:
+            print(f"Locators {locators} in 'find_elements' - An Exception occurred:", e)
+
     def visible_element_click(self, locator):
         """ Method to click on element when it get visible"""
         try:
@@ -43,6 +54,14 @@ class BasePageElement(object):
             element.click()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_click' - An Exception occurred:", e)
+
+    def visible_nth_element_click(self, locators, n):
+        """ Method to click on 'nth' element from list of elements when it get visible"""
+        try:
+            elements = self.find_elements(locators)
+            elements[n].click()
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_nth_element_click' - An Exception occurred:", e)
 
     def visible_element_mb3_click(self, locator):
         """ Method to click MB3 on element when it get visible"""
@@ -53,6 +72,15 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_mb3_click' - An Exception occurred:", e)
 
+    def visible_nth_element_mb3_click(self, locators, n):
+        """ Method to click MB3 on 'nth' element from list of elements when it get visible"""
+        try:
+            chain = ActionChains(self.browser)
+            elements = self.find_elements(locators)
+            chain.context_click(elements[n]).perform()
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_nth_element_mb3_click' - An Exception occurred:", e)
+
     def visible_element_double_click(self, locator):
         """ Method to click MB3 on element when it get visible"""
         try:
@@ -62,12 +90,29 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_double_click' - An Exception occurred:", e)
 
+    def visible_nth_element_double_click(self, locators, n):
+        """ Method to click MB3 on 'nth' element in list of elements when it get visible"""
+        try:
+            chain = ActionChains(self.browser)
+            elements = self.find_elements(locators)
+            chain.double_click(elements[n]).perform()
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_nth_element_double_click' - An Exception occurred:", e)
+
     def visible_element_send_text(self, locator, text):
         """ Method to input text in element when it get visible"""
         try:
             self.find_element(locator).send_keys(text)
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_send_text' - An Exception occurred:", e)
+
+    def visible_nth_element_send_text(self, locators, n, text):
+        """ Method to input text in 'nth' element in list of elements when it get visible"""
+        try:
+            elements = self.find_elements(locators)
+            elements[n].send_keys(text)
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_nth_element_send_text' - An Exception occurred:", e)
 
     def visible_element_get_text(self, locator):
         """ Method to get 'text' from element when it get visible"""
@@ -78,6 +123,15 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_text' - An Exception occurred:", e)
 
+    def visible_nth_element_get_text(self, locators, n):
+        """ Method to get 'text' from 'nth' element from list of elements when it get visible"""
+        try:
+            elements = self.find_elements(locators)
+            print("Get Text =", elements[n].text)
+            return elements[n].text
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_element_get_text' - An Exception occurred:", e)
+
     def visible_element_clear_text(self, locator):
         """ Method to delete text from textbox when it get visible"""
         try:
@@ -85,6 +139,14 @@ class BasePageElement(object):
             element.clear()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_click' - An Exception occurred:", e)
+
+    def visible_nth_element_clear_text(self, locators, n):
+        """ Method to delete text from 'ntx' textbox in list of elements when it get visible"""
+        try:
+            elements = self.find_elements(locators)
+            elements[n].clear()
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_nth_element_click' - An Exception occurred:", e)
 
     def visible_element_get_value(self, locator):
         """ Method to get 'value' from element when it get visible"""
@@ -103,6 +165,15 @@ class BasePageElement(object):
             return element.get_attribute('class')
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_class' - An Exception occurred:", e)
+
+    def visible_nth_element_get_class(self, locators, n):
+        """ Method to get 'class' value from element when it get visible"""
+        try:
+            elements = self.find_elements(locators)
+            print("Get Class =", elements[n].get_attribute('class'))
+            return elements[n].get_attribute('class')
+        except Exception as e:
+            print(f"Locators {locators} in 'visible_element_get_class' - An Exception occurred:", e)
 
     def trunner_lnk_click(self):
         """ Click on 'TRunner' link"""
@@ -172,6 +243,15 @@ class BasePageElement(object):
             print(locator, " - element is not seen timeout error", e)
             return False
 
+    def are_elements_seen(self, locators):
+        """ Check that all elements from list of elements seen on page """
+        try:
+            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_all_elements_located(locators))
+            return True
+        except TimeoutException as e:
+            print(locators, " - elements are not seen timeout error", e)
+            return False
+
     def wait_new_page_load(self):
         """ Check that current page URL changes to new """
         #curr_url = self.browser.find_element_by_tag_name('html')
@@ -193,12 +273,11 @@ class BasePageElement(object):
                 EC.element_to_be_clickable(locator))
         tbx.send_keys(text, Keys.RETURN)
 
-    def click_several_buttons(self, locator):
+    def click_several_buttons(self, locators):
         """Click several buttons one by one"""
         buttons = None
         try:
-            wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-            buttons = wait.until(EC.presence_of_all_elements_located(locator))
+            buttons = self.find_elements(locators)
             #print("Buttons count= ", len(buttons))
             for button in buttons:
                 button.click()
@@ -231,13 +310,13 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locator {locator} in 'get_element_size' - An Exception occurred:", e)
 
-    def get_css_property(self, locator, property):
+    def get_css_property(self, locator, css_property):
         """Method for getting css styles of WebElement"""
         element = self.find_element(locator)
-        element_property = element.value_of_css_property(property)
+        element_property = element.value_of_css_property(css_property)
         return element_property
 
-    def move_mouse_on_element(self,locator):
+    def move_mouse_on_element(self, locator):
         """Method to move mouse on element"""
         action = ActionChains(self.browser)
         element = self.find_element(locator)  # or your another selector here
