@@ -1,5 +1,5 @@
 from selenium.webdriver.support.expected_conditions import staleness_of
-
+from urllib.parse import urlparse
 from utils.constants import DEFAULT_WAIT_TIME
 from selenium.common.exceptions import TimeoutException, ElementNotVisibleException, StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
@@ -272,3 +272,8 @@ class BasePageElement(object):
         action.perform()
         action.move_by_offset(x, y)
         action.perform()
+
+    def extract_domain_from_url(self, url):
+        """Methods that allows extract domain name from url"""
+        domain = urlparse(url).netloc
+        return domain
