@@ -184,6 +184,32 @@ def test_statistics_table_scenario3(browser, login, logout):
            cases_page.visible_element_get_text(locators.CasesPageLocators.STATTABLE_RESULT) == "❌  Failed"
 
 @pytest.mark.cases
+def test_stat_table_comment_scenario1(browser, login, logout):
+    """Check that Statistics table contains comments"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_nth_case(7)
+    cases_page.click_statistics_option()
+    cases_page.move_mouse_on_element(locators.CasesPageLocators.STATTABLE_RESULT)
+    assert cases_page.is_element_seen(locators.CasesPageLocators.COMMENT)
+
+@pytest.mark.cases
+def test_stat_table_comment_scenario2(browser, login, logout):
+    """Check that Statistics table contains comments with appropriate text"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.click_nth_case(4)
+    cases_page.click_statistics_option()
+    cases_page.move_mouse_on_element(locators.CasesPageLocators.STATTABLE_RESULT)
+    assert cases_page.visible_element_get_text(locators.CasesPageLocators.COMMENT)
+
+@pytest.mark.cases
 def test_cases_info_scenario1(browser, login, logout):
     """Check that cases info is visible and contains correct information.
     Expected result: Second test case is checking. Id=48697, Naming is
@@ -329,3 +355,15 @@ def test_cases_assign_option_scenario3(browser, login, logout):
     cases_page.visible_element_click(locators.CasesPageLocators.ASSIGN_TO_1ST_USER)
     first_case_tester = cases_page.get_nth_case_tester_name(1)
     assert assignment_tester == first_case_tester  # defect: unable to change tester
+
+@pytest.mark.cases
+def test_cases_click_on_id(browser, login, logout):
+    """"Verify that if click on the ID user is redirecting to the login link in Azure"""
+    suites_page = SuitesPage(browser)
+    suites_page.wait_new_page_load()
+    suites_page.suite_1st_link_click()
+    suites_page.wait_new_page_load()
+    cases_page = CasesPage(browser)
+    cases_page.visible_element_click(locators.CasesPageLocators.CASE_ID_LNK)
+    url=browser.current_url
+    assert cases_page.extract_domain_from_url(url)=="login.microsoftonline.com"
