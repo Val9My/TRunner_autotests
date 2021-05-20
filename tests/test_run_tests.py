@@ -137,7 +137,7 @@ class TestRunPage(object):
         self.open_run_test_page_for_1st_test(browser)
         run_test_page = RunTestPage(browser)
         run_test_page.step_1_double_click()
-        assert run_test_page.is_element_seen(RunTestPageLocators.TC_1ST_STEP_COMMENT_TB), "Comment should be seen"
+        assert run_test_page.is_element_seen(RunTestPageLocators.TC_N_STEP_COMMENT_TB), "Comment should be seen"
         run_test_page.back_to_suite_btn_click()
         cases_page = CasesPage(browser)
         cases_page.wait_new_page_load()
@@ -184,7 +184,7 @@ class TestRunPage(object):
         run_test_page.step_alt_click(step_description_locator)
         run_test_page.step_alt_click(step_description_locator)
         run_test_page.visible_element_send_text(step_description_locator, " New Added Description")
-        run_test_page.visible_element_double_click(RunTestPageLocators.TC_1ST_STEP_DESCRIPTION)  # to exit editing mode
+        run_test_page.visible_element_double_click(RunTestPageLocators.TC_N_STEP_DESCRIPTION)  # to exit editing mode
         run_test_page.failed_btn_1_step_click()
         run_test_page.passed_btn_1_step_click()
         run_test_page.save_and_close_btn_click()

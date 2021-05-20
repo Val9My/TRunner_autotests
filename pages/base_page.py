@@ -175,10 +175,11 @@ class BasePageElement(object):
         except Exception as e:
             print(" In 'handling_alert' - An Exception occurred:", e)
 
-    def is_element_seen(self, locator):
+    def is_element_seen(self, locator, n=0):
         """ Check that element seen on page """
         try:
-            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of_element_located(locator))
+            element = self.find_elements(locator)
+            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of(element[n]))
             return True
         except TimeoutException as e:
             print(locator, " - element is not seen timeout error", e)

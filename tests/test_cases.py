@@ -300,6 +300,7 @@ def test_cases_background_color_scenario1(browser, login, logout):
     background_color = cases_page.get_css_property(locators.CasesPageLocators.CLICKABLE_ROW, 'background-color')
     assert background_color == "rgba(221, 221, 221, 1)"
 
+
 @pytest.mark.cases
 def test_cases_background_color_scenario2(browser, login, logout):
     """"Verify that if cases row has not been clicked its background color should be whited out"""
@@ -310,6 +311,7 @@ def test_cases_background_color_scenario2(browser, login, logout):
     cases_page = CasesPage(browser)
     background_color = cases_page.get_css_property(locators.CasesPageLocators.CLICKABLE_ROW, 'background-color')
     assert background_color == "rgba(0, 0, 0, 0)"
+
 
 @pytest.mark.cases
 def test_cases_assign_option_scenario1(browser, login, logout):
@@ -323,6 +325,7 @@ def test_cases_assign_option_scenario1(browser, login, logout):
     cases_page.click_mb3_first_case()
     cases_page.move_mouse_on_element(locators.CasesPageLocators.ASSIGN_OPT_LNK)
     assert cases_page.is_element_seen(locators.CasesPageLocators.ASSIGN_SUB_MENU)
+
 
 @pytest.mark.cases
 def test_cases_assign_option_scenario2(browser, login, logout):
@@ -355,6 +358,7 @@ def test_cases_assign_option_scenario3(browser, login, logout):
     cases_page.visible_element_click(locators.CasesPageLocators.ASSIGN_TO_1ST_USER)
     first_case_tester = cases_page.get_nth_case_tester_name(1)
     assert assignment_tester == first_case_tester  # defect: unable to change tester
+
 
 @pytest.mark.cases
 def test_cases_click_on_id(browser, login, logout):

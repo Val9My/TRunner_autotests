@@ -22,6 +22,7 @@ class BasePageLocators:
 class WelcomePageLocators:
     #WELCOME_URL = "http://127.0.0.1:5000/login?next=%2F"
     WELCOME_URL = "https://trunner.herokuapp.com/login?next=%2Fsuites"
+    #WELCOME_URL = "https://trunner-staging.herokuapp.com/login"
     TRUNNER_UP_LNK = (By.CSS_SELECTOR, ".right-panel .content p:first-child")
     ABOUT_US_BTN = (By.CSS_SELECTOR, ".content-logo [href='/about']")
     SIGN_UP_BTN_IN = (By.CSS_SELECTOR, "[class='container'] #sign-up-btn")
@@ -199,16 +200,17 @@ class RunTestPageLocators:
 #    TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
     TC_1ST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:first-child")
     TC_N_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row .action")
-    TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
+#    TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
     TC_N_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row .expected")
 #    TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
     TC_N_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
 #    TC_1ST_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
 #    TC_1ST_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
     TC_N_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
-    TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
+#    TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
     TC_N_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row [id^=exampleForm]")
-    TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
+#    TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
+    TC_N_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row [for^=exampleForm]")
 
     TC_LAST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:last-child td:first-child")
     TC_LAST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:last-child .action")
