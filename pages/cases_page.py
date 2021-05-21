@@ -55,29 +55,34 @@ class CasesPage(BasePageElement):
         statistics = self.visible_element_click(CasesPageLocators.STATISTICS_BTN)
         return statistics
 
-    def click_nth_case(self,n):
+    def click_nth_case(self, n):
         """Click on nth case to select"""
-        self.visible_element_click((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") td:nth-child(2)"))
+        #self.visible_element_click((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") td:nth-child(2)"))
+        self.visible_element_click(CasesPageLocators.CASE_N_NAME, n)
 
     def get_nth_case_id(self, n):
         """Get nth test case id"""
-        id = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .tcid a"))
-        return id
+        #id = self.visible_element_get_text((By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .tcid a"))
+        case_id = self.visible_element_get_text(CasesPageLocators.CASE_ID_N_LNK, n)
+        return case_id
 
     def get_nth_case_name(self, n):
         """Get nth test case name"""
-        name = self.visible_element_get_text(
-            (By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") td:nth-child(2) p"))
+#        name = self.visible_element_get_text(
+#            (By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") td:nth-child(2) p"))
+        name = self.visible_element_get_text(CasesPageLocators.CASE_N_NAME, n)
         return name
 
     def get_nth_case_tester_name(self, n):
         """Get nth test case tester name"""
-        tester_name = self.visible_element_get_text(
-            (By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .centered p"))
+#        tester_name = self.visible_element_get_text(
+#            (By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .centered p"))
+        tester_name = self.visible_element_get_text(CasesPageLocators.TESTER_N_NAME, n)
         return tester_name
 
     def get_nth_case_status(self, n):
         """Get nth test case status"""
-        case_status = self.visible_element_get_text(
-            (By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .testCaseState p"))
+#        case_status = self.visible_element_get_text(
+#            (By.CSS_SELECTOR, "tbody .clickable-row:nth-child(" + str(n) + ") .testCaseState p"))
+        case_status = self.visible_element_get_text(CasesPageLocators.CASE_N_STATE, n)
         return case_status

@@ -347,7 +347,7 @@ class TestRunPage(object):
         assert status == '🚫  Blocked', "Status should be 'Blocked' for test case"
         run_test_page.back_to_suite_btn_click()
 
-    @pytest.mark.run
+    @pytest.mark.run1
     def test_set_case_status_blocked_and_save_close(self, browser, login, logout):
         """Set 'Blocked' test case status and save and open case status on 'Cases' page"""
         self.open_run_test_page_for_1st_test(browser)

@@ -47,72 +47,72 @@ class BasePageElement(object):
         except Exception as e:
             print(f"Locators {locators} in 'find_elements' - An Exception occurred:", e)
 
-    def visible_element_click(self, locator, n=0):
+    def visible_element_click(self, locator, n=1):
         """ Method to click on element or 'nth' element from list of elements when it get visible"""
         try:
             element = self.find_elements(locator)
-            element[n].click()
+            element[n-1].click()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_click' - An Exception occurred:", e)
 
-    def visible_element_mb3_click(self, locator, n=0):
+    def visible_element_mb3_click(self, locator, n=1):
         """ Method to click MB3 on element or 'nth' element from list of elements when it get visible"""
         try:
             chain = ActionChains(self.browser)
             element = self.find_elements(locator)
-            chain.context_click(element[n]).perform()
+            chain.context_click(element[n-1]).perform()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_mb3_click' - An Exception occurred:", e)
 
-    def visible_element_double_click(self, locator, n=0):
+    def visible_element_double_click(self, locator, n=1):
         """ Method to click MB3 on element or 'nth' element from list of elements when it get visible"""
         try:
             chain = ActionChains(self.browser)
             element = self.find_elements(locator)
-            chain.double_click(element[n]).perform()
+            chain.double_click(element[n-1]).perform()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_double_click' - An Exception occurred:", e)
 
-    def visible_element_send_text(self, locator, text, n=0):
+    def visible_element_send_text(self, locator, text, n=1):
         """ Method to input text in element or 'nth' element from list of elements when it get visible"""
         try:
             elements = self.find_elements(locator)
-            elements[n].send_keys(text)
+            elements[n-1].send_keys(text)
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_send_text' - An Exception occurred:", e)
 
-    def visible_element_get_text(self, locator, n=0):
+    def visible_element_get_text(self, locator, n=1):
         """ Method to get 'text' from element or 'nth' element from list of elements when it get visible"""
         try:
             element = self.find_elements(locator)
-            print("Get Text =", element[n].text)
-            return element[n].text
+            print("Get Text =", element[n-1].text)
+            return element[n-1].text
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_text' - An Exception occurred:", e)
 
-    def visible_element_clear_text(self, locator, n=0):
+    def visible_element_clear_text(self, locator, n=1):
         """ Method to delete text from textbox or 'ntx' textbox in list of elements when it get visible"""
         try:
             element = self.find_elements(locator)
-            element[n].clear()
+            element[n-1].clear()
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_click' - An Exception occurred:", e)
 
-    def visible_element_get_value(self, locator, n=0):
+    def visible_element_get_value(self, locator, n=1):
         """ Method to get 'value' from element or 'ntx' element in list of elements when it get visible"""
         try:
             element = self.find_elements(locator)
             print('Get Value =', element[n].get_attribute('value'))
-            return element[n].get_attribute('value')
+            return element[n-1].get_attribute('value')
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_value' - An Exception occurred:", e)
 
-    def visible_element_get_class(self, locator, n=0):
+    def visible_element_get_class(self, locator, n=1):
         """ Method to get 'class' value from element or 'ntx' element in list of elements when it get visible"""
         try:
             element = self.find_elements(locator)
             print("Get Class =", element[n].get_attribute('class'))
-            return element[n].get_attribute('class')
+            return element[n-1].get_attribute('class')
         except Exception as e:
             print(f"Locator {locator} in 'visible_element_get_class' - An Exception occurred:", e)
 
@@ -175,11 +175,11 @@ class BasePageElement(object):
         except Exception as e:
             print(" In 'handling_alert' - An Exception occurred:", e)
 
-    def is_element_seen(self, locator, n=0):
+    def is_element_seen(self, locator, n=1):
         """ Check that element seen on page """
         try:
             element = self.find_elements(locator)
-            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of(element[n]))
+            WebDriverWait(self.browser, DEFAULT_WAIT_TIME).until(EC.visibility_of(element[n-1]))
             return True
         except TimeoutException as e:
             print(locator, " - element is not seen timeout error", e)
@@ -258,11 +258,11 @@ class BasePageElement(object):
         element_property = element.value_of_css_property(css_property)
         return element_property
 
-    def move_mouse_on_element(self, locator, n=0):
+    def move_mouse_on_element(self, locator, n=1):
         """Method to move mouse on element or 'nth' element in list of elements"""
         action = ActionChains(self.browser)
         element = self.find_elements(locator)  # or your another selector here
-        action.move_to_element(element[n])
+        action.move_to_element(element[n-1])
         action.perform()
 
     def move_mouse_by_offset(self, locator, x, y):

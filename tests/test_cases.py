@@ -178,7 +178,7 @@ def test_statistics_table_scenario3(browser, login, logout):
     cases_page.click_statistics_option()
     cases_page.click_nth_case(7)
     cases_page.click_statistics_option()
-    time.sleep(2)
+    #time.sleep(2)
     assert cases_page.visible_element_get_text(locators.CasesPageLocators.STATTABLE_SUITE) == "Nadiia - Linux - 20.6.4" and \
            cases_page.visible_element_get_text(locators.CasesPageLocators.STATTABLE_RUN_BY) == "Nadiia" and \
            cases_page.visible_element_get_text(locators.CasesPageLocators.STATTABLE_RESULT) == "❌  Failed"
@@ -196,6 +196,7 @@ def test_stat_table_comment_scenario1(browser, login, logout):
     cases_page.move_mouse_on_element(locators.CasesPageLocators.STATTABLE_RESULT)
     assert cases_page.is_element_seen(locators.CasesPageLocators.COMMENT)
 
+
 @pytest.mark.cases
 def test_stat_table_comment_scenario2(browser, login, logout):
     """Check that Statistics table contains comments with appropriate text"""
@@ -208,6 +209,7 @@ def test_stat_table_comment_scenario2(browser, login, logout):
     cases_page.click_statistics_option()
     cases_page.move_mouse_on_element(locators.CasesPageLocators.STATTABLE_RESULT)
     assert cases_page.visible_element_get_text(locators.CasesPageLocators.COMMENT)
+
 
 @pytest.mark.cases
 def test_cases_info_scenario1(browser, login, logout):
@@ -227,6 +229,7 @@ def test_cases_info_scenario1(browser, login, logout):
     assert second_case_id == "48697" and \
            second_case_name == "Validate that user A gets notification with changes in 'Sessions' view, when user B renames an editor." and \
            second_case_tester_name == "Nadiia" and second_case_status == "✅  Passed"
+
 
 @pytest.mark.cases
 def test_cases_info_scenario2(browser, login, logout):
@@ -268,7 +271,7 @@ def test_cases_info_scenario3(browser, login, logout):
            second_case_tester_name == "Nadiia" and second_case_status == "✅  Passed"
 
 
-@pytest.mark.cases
+@pytest.mark.cases1
 def test_cases_info_scenario4(browser, login, logout):
     """Check that cases info is visible and contains correct information.
     Expected result: 7th test case is checking. Id=49145, Naming is
@@ -368,6 +371,6 @@ def test_cases_click_on_id(browser, login, logout):
     suites_page.suite_1st_link_click()
     suites_page.wait_new_page_load()
     cases_page = CasesPage(browser)
-    cases_page.visible_element_click(locators.CasesPageLocators.CASE_ID_LNK)
-    url=browser.current_url
-    assert cases_page.extract_domain_from_url(url)=="login.microsoftonline.com"
+    cases_page.visible_element_click(locators.CasesPageLocators.CASE_ID_N_LNK)
+    url = browser.current_url
+    assert cases_page.extract_domain_from_url(url) == "login.microsoftonline.com"

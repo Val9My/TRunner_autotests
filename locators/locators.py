@@ -119,6 +119,11 @@ class CasesPageLocators:
     CASE_STATE = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .testCaseState p")
     TESTER_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .centered p")
 
+    CASE_ID_N_LNK = (By.CSS_SELECTOR, "tbody .clickable-row .tcid a")
+    CASE_N_NAME = (By.CSS_SELECTOR, "tbody .clickable-row td:nth-child(2) p")
+    CASE_N_STATE = (By.CSS_SELECTOR, "tbody .clickable-row .testCaseState p")
+    TESTER_N_NAME = (By.CSS_SELECTOR, "tbody .clickable-row .centered p")
+
 
     """MB3 options for active row"""
     ACTIVE_1ST_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2)")
@@ -197,20 +202,21 @@ class RunTestPageLocators:
     TC_N_PASSED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
     TC_N_FAILED_BTNS = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
     TC_N_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
-#    TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
     TC_1ST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:first-child")
     TC_N_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row .action")
-#    TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
     TC_N_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row .expected")
-#    TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
     TC_N_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #passed_label")
+    TC_N_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
+    TC_N_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row [id^=exampleForm]")
+    TC_N_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row [for^=exampleForm]")
+
+#    TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
+#    TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
 #    TC_1ST_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
 #    TC_1ST_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
-    TC_N_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
-#    TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
-    TC_N_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row [id^=exampleForm]")
-#    TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
-    TC_N_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row [for^=exampleForm]")
+#    TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
+#    TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
+#    TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
 
     TC_LAST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:last-child td:first-child")
     TC_LAST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:last-child .action")
