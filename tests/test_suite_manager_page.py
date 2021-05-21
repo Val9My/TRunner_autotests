@@ -22,7 +22,7 @@ def test_suite_selector_scenario1(browser, login, logout):
     suites_manager_page.load()
     suites_manager_page.suites_option_select_by_index(2)
     suites_manager_page.tc_checkbox_option_click(1)
-    assert suites_manager_page.get_id_tc_value(1) == 49256\
+    assert suites_manager_page.get_id_tc_value(1) == "49256"\
            and suites_manager_page.get_tc_title(1) == 'Frameworks - Interpretation View'
 
 
@@ -34,7 +34,7 @@ def test_suite_selector_scenario2(browser, login, logout):
     suites_manager_page.load()
     suites_manager_page.suites_option_select_by_index(3)
     suites_manager_page.tc_checkbox_option_click(1)
-    assert suites_manager_page.get_id_tc_value(1) == 49303\
+    assert suites_manager_page.get_id_tc_value(1) == "49303"\
            and suites_manager_page.get_tc_title(1) == 'Shortcut keys for Pseudo Wells Interpretation View in Map Editor.'
 
 @pytest.mark.test_suite_selector
@@ -45,7 +45,7 @@ def test_suite_selector_scenario3(browser, login, logout):
     suites_manager_page.load()
     suites_manager_page.suites_option_select_by_index(5)
     suites_manager_page.tc_checkbox_option_click(1)
-    assert suites_manager_page.get_id_tc_value(1) == 49307 \
+    assert suites_manager_page.get_id_tc_value(1) == "49307" \
             and suites_manager_page.get_tc_title(1) == 'Shortcut keys for Vertical Image Interpretation View in Section Editor.'
 
 @pytest.mark.add_test_case_modal_window
@@ -58,7 +58,7 @@ def test_suite_add_test_case_modal_window_scenario1(browser, login, logout):
     suites_manager_page.add_modal_window()
     suites_manager_page.click_checkbox_in_modal_add_window()
     suites_manager_page.close_add_test_modal_window()
-    assert suites_manager_page.get_id_tc_value(1) == 50012\
+    assert suites_manager_page.get_id_tc_value(1) == "50012"\
            and suites_manager_page.get_tc_title(1) == "Inventory: Inventory tree items restored with no active editor and Inventory view in docked and undocked state"
 
 
