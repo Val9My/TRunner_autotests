@@ -112,6 +112,7 @@ class CasesPageLocators:
     STATTABLE_RESULT = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(3)")
     STATTABLE_DURATION = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(4)")
     STATTABLE_DATE = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(5)")
+    COMMENT=(By.CSS_SELECTOR, "div.popover")
 
     """First row data (1st iteration)"""
     CASE_ID_LNK = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .tcid a")
@@ -155,6 +156,7 @@ class SuiteManagerPageLocators:
     ADD_TC_BUTTON_MODALW=(By.CSS_SELECTOR, "button#SaveToSuite")
     CHECKBOX_TC_MODALW=(By.CSS_SELECTOR, ".add_to_suite_checkbox")
     CLOSE_ADD_TEST_CASE_MODALW=(By.CSS_SELECTOR,"button[aria-label='Close'")
+    CLOSE_ICON=(By.CSS_SELECTOR,"span[aria-hidden='true']")
 
     CREATE_SUITE_DPDN = (By.CSS_SELECTOR, ".nav-link.suite-create")
     FROM_ADO_QUERY_OPT = (By.CSS_SELECTOR, ".dropdown-item[data-target='#addFromAdoQuery']")
@@ -163,20 +165,10 @@ class SuiteManagerPageLocators:
 
     TC_COUNT = (By.CSS_SELECTOR, ".table .test_case_row")
 
-    """First row data """
-    USE_1ST_TC_CHKBX = (By.CSS_SELECTOR, ".test_case_row:first-of-type .checked_tc")
-    ID_1ST_TC_VALUE = (By.CSS_SELECTOR, ".test_case_row:first-of-type .tcid")
-    TEST_CASE_1ST_TITLE = (By.CSS_SELECTOR, ".test_case_row:first-of-type td:last-child")
-
-    """Others rows data"""
-    USE_TC_CHKBX = (By.CSS_SELECTOR, ".test_case_row:nth-of-type(n) .checked_tc")  # n-number in table
-    ID_TC_VALUE = (By.CSS_SELECTOR, ".test_case_row:nth-of-type(n) .tcid")  # n-number in table
-    TEST_CASE_TITLE = (By.CSS_SELECTOR, ".test_case_row:nth-of-type(n) td:last-child")  # n-number in table
-
-    """Last row data """
-    USE_LAST_TC_CHKBX = (By.CSS_SELECTOR, ".test_case_row:last-of-type .checked_tc")
-    ID_LAST_TC_VALUE = (By.CSS_SELECTOR, ".test_case_row:last-of-type .tcid")
-    TEST_CASE_LAST_TITLE = (By.CSS_SELECTOR, ".test_case_row:last-of-type td:last-child")
+    USE_TC_CHKBX = (By.CSS_SELECTOR, ".test_case_row .check-row")
+    ID_TC_VALUE = (By.CSS_SELECTOR, "table .test_case_row .tcid")
+    TEST_CASE_TITLE = (By.CSS_SELECTOR, ".test_case_row td:last-child")
+    TEST_CASE_TITLE_IN_ADD_MODAL_WINDOW = (By.CSS_SELECTOR, "tbody>tr>td:nth-of-type(3)")
 
 
 class RunTestPageLocators:
