@@ -1,5 +1,4 @@
 import time
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
@@ -32,21 +31,17 @@ class SuiteManagerPage(BasePageElement):
 
     def tc_checkbox_option_click(self, n):
         """Click on TC checkbox from dropdown"""
-        self.visible_element_click((By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") .check-row"))
+        self.visible_element_click(locators.SuiteManagerPageLocators.USE_TC_CHKBX,n)
 
     def get_id_tc_value(self, n):
         """Get id of test case"""
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        id = wait.until(EC.visibility_of_element_located(
-            (By.CSS_SELECTOR, ".table .test_case_row:nth-of-type(" + str(n) + ") .tcid")))
-        return int(id.text)
+        id_text = self.visible_element_get_text(locators.SuiteManagerPageLocators.ID_TC_VALUE, n)
+        return id_text
 
     def get_tc_title(self, n):
         """Get test case title"""
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        tc_title = wait.until(EC.visibility_of_element_located(
-            (By.CSS_SELECTOR, ".test_case_row:nth-of-type(" + str(n) + ") td:last-child")))
-        return tc_title.text
+        tc_title = self.visible_element_get_text(locators.SuiteManagerPageLocators.TEST_CASE_TITLE, n)
+        return tc_title
 
     def add_modal_window(self):
         """Opening modal 'Add to Suite' window by clicking on +Add button"""
@@ -54,10 +49,8 @@ class SuiteManagerPage(BasePageElement):
 
     def get_tc_title_in_modal_add_window(self):
         """Get test case name in modal window 'Add to Suite'"""
-        wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        test_case_name = wait.until(EC.visibility_of_element_located(
-            (By.CSS_SELECTOR, "tbody>tr>td:nth-of-type(" + str(n) + ")")))
-        return test_case_name.text
+        tc_title = self.visible_element_get_text(locators.SuiteManagerPageLocators.TEST_CASE_TITLE_IN_ADD_MODAL_WINDOW)
+        return tc_title
 
     def click_add_button(self):
         """Click on 'Add Test Cases' button  in modal window 'Add to Suite'"""
@@ -66,17 +59,10 @@ class SuiteManagerPage(BasePageElement):
     def click_checkbox_in_modal_add_window(self):
         """Select checkbox of test cases in 'Add Test Cases' modal window"""
         self.visible_element_click(locators.SuiteManagerPageLocators.CHECKBOX_TC_MODALW)
-        # wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        # new = wait.until(EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CHECKBOX_TC_MODALW))
-        # new.click()
 
     def close_add_test_modal_window(self):
         """Close 'Add to Suite' modal window"""
         self.visible_element_click(locators.SuiteManagerPageLocators.CLOSE_ADD_TEST_CASE_MODALW)
-        #wait = WebDriverWait(self.browser, DEFAULT_WAIT_TIME)
-        #close_button = wait.until(
-        #    EC.element_to_be_clickable(locators.SuiteManagerPageLocators.CLOSE_ADD_TEST_CASE_MODALW))
-        #close_button.click()
 
     def click_delete_button(self):
         """Click on the '-Delete' button """
@@ -114,16 +100,13 @@ class SuiteManagerPage(BasePageElement):
 
     def close_create_from_ado_query_window(self):
         """Close 'Create Test Suite from ADO Query' window"""
-        close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
-        close_icons[1].click()
+        self.visible_element_click(locators.SuiteManagerPageLocators.CLOSE_ICON,2)
 
     def close_create_empty_suite_window(self):
         """Close 'create Empty suite' window """
-        close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
-        close_icons[2].click()
+        self.visible_element_click(locators.SuiteManagerPageLocators.CLOSE_ICON,3)
 
     def close_copy_test_suite_window(self):
         """Close 'Copy Suite' window"""
-        close_icons = self.browser.find_elements(By.CSS_SELECTOR, "span[aria-hidden='true']")
-        close_icons[3].click()
+        self.visible_element_click(locators.SuiteManagerPageLocators.CLOSE_ICON,4)
 
