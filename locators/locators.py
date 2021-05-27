@@ -69,21 +69,6 @@ class SuitesPageLocators:
     ADO_EXPORT_OPT = (By.CSS_SELECTOR, ".custom-menu li[data-action='ado-export']")
     DELETE_SUITE_OPT = (By.CSS_SELECTOR, ".custom-menu li[data-action='delete-suite']")
 
-    """First row data (1st iteration)"""
-#    FIRST_ROW = (By.CSS_SELECTOR, ".clickable-row:first-child")
-#    SUITE_1_LNK = (By.CSS_SELECTOR, ".clickable-row:first-child .suite-link")
-#   TEST_CASES_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(2)")
-#    PASSED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#passed'] ")  # p
-#    FAILED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#failed'] ")  # p
-#    BLOCKED_1_DPDN = (By.CSS_SELECTOR, ".clickable-row:first-child [data-target^='#blocked'] ")  # p
-#    NOT_EXECUTED_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(6)")
-#    CREATED_BY_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:nth-of-type(7)")
-#    CREATED_DATE_1_VALUE = (By.CSS_SELECTOR, ".clickable-row:first-child td:last-child")
-#    TEST_CASE_COUNT = (By.CSS_SELECTOR, "tbody tr[class=clickable-row]")
-#    PASSED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='passed'] a")
-#    FAILED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='failed'] a")
-#    BLOCKED_TC_1_1_LNK = (By.CSS_SELECTOR, "[class='clickable-row']:first-child+tr [id^='blocked'] a")
-
     """Links on lists of elements"""
     N_ROW = (By.CSS_SELECTOR, "tbody [class='clickable-row']")
     SUITE_N_LNK = (By.CSS_SELECTOR, ".clickable-row .suite-link")
@@ -106,19 +91,13 @@ class CasesPageLocators:
     CURRENT_SUITE_NAME = (By.CSS_SELECTOR, ".navbar-collapse [class='nav-link']")
 
     "Statistics table information"
-    STATTABLE=(By.ID, "statTable")
-    STATTABLE_SUITE=(By.CSS_SELECTOR, "tr.failure-row td:nth-child(1)")
+    STATTABLE = (By.ID, "statTable")
+    STATTABLE_SUITE = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(1)")
     STATTABLE_RUN_BY = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(2)")
     STATTABLE_RESULT = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(3)")
     STATTABLE_DURATION = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(4)")
     STATTABLE_DATE = (By.CSS_SELECTOR, "tr.failure-row td:nth-child(5)")
-    COMMENT=(By.CSS_SELECTOR, "div.popover")
-
-    """First row data (1st iteration)"""
-    CASE_ID_LNK = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .tcid a")
-    CASE_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2) p")
-    CASE_STATE = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .testCaseState p")
-    TESTER_NAME = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .centered p")
+    COMMENT = (By.CSS_SELECTOR, "div.popover")
 
     CASE_ID_N_LNK = (By.CSS_SELECTOR, "tbody .clickable-row .tcid a")
     CASE_N_NAME = (By.CSS_SELECTOR, "tbody .clickable-row td:nth-child(2) p")
@@ -127,12 +106,11 @@ class CasesPageLocators:
 
 
     """MB3 options for active row"""
-    ACTIVE_1ST_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child td:nth-child(2)")
-    CLICKABLE_ROW = (By.CSS_SELECTOR, "tbody .clickable-row")
+    ACTIVE_N_ROW = (By.CSS_SELECTOR, "tbody tr.clickable-row")  # ""tbody .clickable-row:first-child td:nth-child(2)"
     RUN_TEST_OPT_LNK = (By.CSS_SELECTOR, "body .run_tc_mb3") #body .custom-menu-tclist [data-action=run-test] .run_tc_mb3")
     STATISTICS_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist .show_stat_mb3")
 
-    ASSIGN_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist [data-action=assign-to] #assign-to-a")
+    ASSIGN_OPT_LNK = (By.CSS_SELECTOR, "body .custom-menu-tclist #assign-to-a")
     ASSIGN_SUB_MENU = (By.CSS_SELECTOR, "ul.assign-to-submenu")
     ASSIGN_TO_USER_COUNT = (By.CSS_SELECTOR, "body .assign-to-submenu li")
     ASSIGN_TO_1ST_USER = (By.CSS_SELECTOR, "body .assign-to-submenu .user-to-set:first-child")
@@ -142,8 +120,8 @@ class CasesPageLocators:
 class SuiteManagerPageLocators:
     SUITE_MANAGER_PAGE_URL = "https://trunner.herokuapp.com/suites_manager"
 
-    SEARCH_FIELD=(By.CSS_SELECTOR, "#search_input")
-    FILTRATED_CASES =(By.CSS_SELECTOR, ".test_case_row:not([style='display: none;'])")
+    SEARCH_FIELD = (By.CSS_SELECTOR, "#search_input")
+    FILTRATED_CASES = (By.CSS_SELECTOR, ".test_case_row:not([style='display: none;'])")
 
     SUITE_SELECTOR_DPDN = (By.CSS_SELECTOR, ".form-control#suites-selector")
     SUITES_COUNT_OPT = (By.CSS_SELECTOR, ".form-control#suites-selector .select-option")
@@ -201,14 +179,6 @@ class RunTestPageLocators:
     TC_N_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row .selector #failed_label")
     TC_N_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row [id^=exampleForm]")
     TC_N_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row [for^=exampleForm]")
-
-#    TC_1ST_STEP_COMMENT_TB_LABEL = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [for^=exampleForm]")
-#    TC_1ST_STEP_COMMENT_TB = (By.CSS_SELECTOR, "tbody .clickable-row:first-child [id^=exampleForm]")
-#    TC_1ST_STEP_PASSED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #passed_label")
-#    TC_1ST_STEP_FAILED_BTN = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .selector #failed_label")
-#    TC_1ST_STEP_EXPECTED_RESULT = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .expected")
-#    TC_1ST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:first-child .action")
-#    TC_1ST_STEP_ROW = (By.CSS_SELECTOR, "tbody .clickable-row:first-child")
 
     TC_LAST_STEP_NUMBER = (By.CSS_SELECTOR, "tbody .clickable-row:last-child td:first-child")
     TC_LAST_STEP_DESCRIPTION = (By.CSS_SELECTOR, "tbody .clickable-row:last-child .action")

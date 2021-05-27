@@ -27,28 +27,28 @@ class CasesPage(BasePageElement):
 
     def click_first_case(self):
         """Click on first case to select"""
-        self.visible_element_click(CasesPageLocators.ACTIVE_1ST_ROW)
+        self.visible_element_click(CasesPageLocators.ACTIVE_N_ROW)
 
     def click_mb3_first_case(self):
         """Click MB3 on first case to select"""
-        self.visible_element_mb3_click(CasesPageLocators.ACTIVE_1ST_ROW)
+        self.visible_element_mb3_click(CasesPageLocators.ACTIVE_N_ROW)
 
     def click_run_test_option(self):
         self.visible_element_click(CasesPageLocators.RUN_TEST_OPT_LNK)
 
     def get_first_case_name(self):
         """Get 1st test case title"""
-        name = self.visible_element_get_text(CasesPageLocators.CASE_NAME)
+        name = self.visible_element_get_text(CasesPageLocators.CASE_N_NAME)
         return name
 
     def get_first_case_tester_name(self):
         """Get 1st test case tester name"""
-        tester_name = self.visible_element_get_text(CasesPageLocators.TESTER_NAME)
+        tester_name = self.visible_element_get_text(CasesPageLocators.TESTER_N_NAME)
         return tester_name
 
     def get_first_case_status(self):
         """Get 1st test case tester name"""
-        case_status = self.visible_element_get_text(CasesPageLocators.CASE_STATE)
+        case_status = self.visible_element_get_text(CasesPageLocators.CASE_N_STATE)
         return case_status
 
     def click_statistics_option(self):

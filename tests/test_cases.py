@@ -33,6 +33,7 @@ def test_run_test_option_is_seen(browser, login, logout):
     cases_page.click_first_case()
     assert cases_page.is_element_seen(locators.CasesPageLocators.RUN_TEST_BTN)
 
+
 @pytest.mark.cases
 def test_run_test_btn(browser, login, logout):
     """Check that Run Test option is redirecting user to the Run Page"""
@@ -271,7 +272,7 @@ def test_cases_info_scenario3(browser, login, logout):
            second_case_tester_name == "Nadiia" and second_case_status == "✅  Passed"
 
 
-@pytest.mark.cases1
+@pytest.mark.cases
 def test_cases_info_scenario4(browser, login, logout):
     """Check that cases info is visible and contains correct information.
     Expected result: 7th test case is checking. Id=49145, Naming is
@@ -300,7 +301,7 @@ def test_cases_background_color_scenario1(browser, login, logout):
     suites_page.wait_new_page_load()
     cases_page = CasesPage(browser)
     cases_page.click_first_case()
-    background_color = cases_page.get_css_property(locators.CasesPageLocators.CLICKABLE_ROW, 'background-color')
+    background_color = cases_page.get_css_property(locators.CasesPageLocators.ACTIVE_N_ROW, 'background-color')
     assert background_color == "rgba(221, 221, 221, 1)"
 
 
@@ -312,7 +313,7 @@ def test_cases_background_color_scenario2(browser, login, logout):
     suites_page.suite_1st_link_click()
     suites_page.wait_new_page_load()
     cases_page = CasesPage(browser)
-    background_color = cases_page.get_css_property(locators.CasesPageLocators.CLICKABLE_ROW, 'background-color')
+    background_color = cases_page.get_css_property(locators.CasesPageLocators.ACTIVE_N_ROW, 'background-color')
     assert background_color == "rgba(0, 0, 0, 0)"
 
 
